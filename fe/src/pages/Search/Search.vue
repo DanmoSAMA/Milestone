@@ -1,7 +1,7 @@
 <template>
-  <div class="posts">
+  <div class="search">
     <SideBar />
-    <div>posts</div>
+    <div>search</div>
   </div>
 </template>
 

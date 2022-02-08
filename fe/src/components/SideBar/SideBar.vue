@@ -1,5 +1,5 @@
 <template>
-  <div class="home-sidebar">
+  <div class="c-sidebar">
     <List />
     <UserInfo />
   </div>
@@ -12,7 +12,7 @@ import UserInfo from './components/UserInfo/UserInfo.vue'
 </script>
 
 <style lang="scss">
-.home-sidebar {
+.c-sidebar {
   width: 300px;
   margin-right: 12px;
   flex-shrink: 0;

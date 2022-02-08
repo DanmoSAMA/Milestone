@@ -4,8 +4,6 @@
     <Post />
     <Post />
     <Post />
-    <Post />
-    <Post />
   </div>
 </template>
 
@@ -16,6 +14,5 @@ import Post from './components/Post/Post.vue'
 <style lang="scss">
 .home-posts {
   width: 850px;
-  // background-color: orange;
 }
 </style>

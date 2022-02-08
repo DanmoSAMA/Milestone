@@ -1,7 +1,7 @@
 <template>
-  <div class="posts">
+  <div class="tags">
     <SideBar />
-    <div>posts</div>
+    <div>tags</div>
   </div>
 </template>
 

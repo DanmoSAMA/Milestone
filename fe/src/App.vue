@@ -2,17 +2,10 @@
   <router-view></router-view>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 
-export default {
-  name: 'App',
-  setup() {
-    return {
-
-    }
-  }
-}
 </script>
+
 <style lang="scss">
 * {
   margin: 0;

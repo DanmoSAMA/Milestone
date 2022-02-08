@@ -1,16 +1,16 @@
 <template>
-  <div class="home-sidebar-userinfo">
-    <div class="home-sidebar-userinfo-avatar">
+  <div class="c-sidebar-userinfo">
+    <div class="c-sidebar-userinfo-avatar">
       <img
-        class="home-sidebar-userinfo-avatar-img"
-        src="../../../../../../assets/images/avatar.jpg"
+        class="c-sidebar-userinfo-avatar-img"
+        src="../../../../assets/images/avatar.jpg"
       />
     </div>
-    <div class="home-sidebar-userinfo-count">
-      <div class="home-sidebar-userinfo-count-posts">日志</div>
-      <div class="home-sidebar-userinfo-count-tags">标签</div>
+    <div class="c-sidebar-userinfo-count">
+      <div class="c-sidebar-userinfo-count-posts">日志</div>
+      <div class="c-sidebar-userinfo-count-tags">标签</div>
     </div>
-    <div class="home-sidebar-userinfo-contact"></div>
+    <div class="c-sidebar-userinfo-contact"></div>
   </div>
 </template>
 
@@ -19,7 +19,7 @@
 </script>
 
 <style lang="scss">
-.home-sidebar-userinfo {
+.c-sidebar-userinfo {
   border: 1px solid #eee;
   display: flex;
   flex-direction: column;

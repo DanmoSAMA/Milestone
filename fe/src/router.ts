@@ -2,6 +2,10 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
 const Home = () => import('./pages/Home/Home.vue');
 const Posts = () => import('./pages/Posts/Posts.vue');
+const Tags = () => import('./pages/Tags/Tags.vue');
+const Search = () => import('./pages/Search/Search.vue');
+const Resume = () => import('./pages/Resume/Resume.vue');
+const Album = () => import('./pages/Album/Album.vue');
 const NotFound = () => import('./pages/NotFound/NotFound.vue');
 
 const routes: RouteRecordRaw[] = [
@@ -14,6 +18,21 @@ const routes: RouteRecordRaw[] = [
     path: '/posts',
     name: 'posts',
     component: Posts,
+  },
+  {
+    path: '/tags',
+    name: 'tags',
+    component: Tags,
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: Search,
+  },
+  {
+    path: '/album',
+    name: 'album',
+    component: Album,
   },
   {
     path: '/404',

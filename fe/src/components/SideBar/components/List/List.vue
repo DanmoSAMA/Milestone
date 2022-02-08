@@ -1,27 +1,27 @@
 <template>
-  <div class="home-sidebar-list">
-    <div class="home-sidebar-list-header">
-      <h1 class="home-sidebar-list-header-title">Milestone</h1>
-      <h2 class="home-sidebar-list-header-subtitle">test</h2>
+  <div class="c-sidebar-list">
+    <div class="c-sidebar-list-header">
+      <h1 class="c-sidebar-list-header-title">Milestone</h1>
+      <h2 class="c-sidebar-list-header-subtitle">test</h2>
     </div>
-    <div class="home-sidebar-list-body">
-      <div class="home-sidebar-list-body-item selected">
+    <div class="c-sidebar-list-body">
+      <div class="c-sidebar-list-body-item selected">
         <svg-icon name="shouye" :styleConfig="styleConfig" />
         首页
       </div>
-      <div class="home-sidebar-list-body-item">
+      <div class="c-sidebar-list-body-item">
         <svg-icon name="gf-tags" :styleConfig="styleConfig" />
         标签
       </div>
-      <div class="home-sidebar-list-body-item">
+      <div class="c-sidebar-list-body-item">
         <svg-icon name="sousuo" :styleConfig="styleConfig" />
         搜索
       </div>
-      <div class="home-sidebar-list-body-item">
+      <div class="c-sidebar-list-body-item">
         <svg-icon name="jianli" :styleConfig="styleConfig" />
         简历
       </div>
-      <div class="home-sidebar-list-body-item">
+      <div class="c-sidebar-list-body-item">
         <svg-icon name="tupian" :styleConfig="styleConfig" />
         相册
       </div>
@@ -38,7 +38,7 @@ const styleConfig = {
 </script>
 
 <style lang="scss">
-.home-sidebar-list {
+.c-sidebar-list {
   border: 1px solid #eee;
   margin-bottom: 12px;
 
