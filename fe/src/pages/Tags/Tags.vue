@@ -107,7 +107,6 @@ import SideBar from '../../components/SideBar/SideBar.vue';
 
 <style lang="scss">
 .tags {
-  margin: 0 auto;
   display: flex;
   justify-content: center;
 
