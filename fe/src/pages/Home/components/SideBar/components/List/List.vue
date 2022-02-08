@@ -6,37 +6,35 @@
     </div>
     <div class="home-sidebar-list-body">
       <div class="home-sidebar-list-body-item selected">
-        <svg-icon name="shouye" color="#333" />
+        <svg-icon name="shouye" :styleConfig="styleConfig" />
         首页
       </div>
       <div class="home-sidebar-list-body-item">
-        <svg-icon name="gf-tags" color="#333" />
+        <svg-icon name="gf-tags" :styleConfig="styleConfig" />
         标签
       </div>
       <div class="home-sidebar-list-body-item">
-        <svg-icon name="sousuo" color="#333" />
+        <svg-icon name="sousuo" :styleConfig="styleConfig" />
         搜索
       </div>
       <div class="home-sidebar-list-body-item">
-        <svg-icon name="jianli" color="#333" />
+        <svg-icon name="jianli" :styleConfig="styleConfig" />
         简历
       </div>
       <div class="home-sidebar-list-body-item">
-        <svg-icon name="tupian" color="#333" />
+        <svg-icon name="tupian" :styleConfig="styleConfig" />
         相册
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  name: 'List',
-  components: {},
-  setup() {
-    return {};
-  },
-};
+<script setup lang="ts">
+const styleConfig = {
+  color: '#333', 
+  position: 'relative', 
+  top: '-1px',
+}
 </script>
 
 <style lang="scss">

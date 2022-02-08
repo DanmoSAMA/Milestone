@@ -1,5 +1,5 @@
 <template>
-  <svg :class="svgClass" v-bind="$attrs" :style="{ color: color, fontSize: size }">
+  <svg :class="svgClass" v-bind="$attrs" :style="styleConfig">
     <use :xlink:href="iconName" />
   </svg>
 </template>
@@ -12,19 +12,15 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  color: {
-    type: String,
-    default: '',
-  },
-  size: {
-    type: String,
-    default: '14px'
+  styleConfig: {
+    type: Object,
+    default: {},
   }
 });
 
 const iconName = computed(() => `#icon-${props.name}`);
 const svgClass = computed(() => {
-  console.log(props.name, 'props.name');
+  // console.log(props.name, 'props.name');
   if (props.name) {
     return `svg-icon icon-${props.name}`;
   }

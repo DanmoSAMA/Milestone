@@ -1,23 +1,21 @@
 <template>
   <div class="home-posts">
-
+    <Post />
+    <Post />
+    <Post />
+    <Post />
+    <Post />
+    <Post />
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  name: 'Posts',
-  components: {},
-  setup() {
-    return {
-
-    }
-  }
-}
+<script setup lang="ts">
+import Post from './components/Post/Post.vue'
 </script>
+
 <style lang="scss">
 .home-posts {
   width: 850px;
-  background-color: orange;
+  // background-color: orange;
 }
 </style>

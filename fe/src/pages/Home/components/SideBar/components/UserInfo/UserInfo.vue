@@ -14,15 +14,10 @@
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  name: 'UserInfo',
-  components: {},
-  setup() {
-    return {};
-  },
-};
+<script setup lang="ts">
+
 </script>
+
 <style lang="scss">
 .home-sidebar-userinfo {
   border: 1px solid #eee;
