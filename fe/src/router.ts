@@ -30,6 +30,11 @@ const routes: RouteRecordRaw[] = [
     component: Search,
   },
   {
+    path: '/resume',
+    name: 'resume',
+    component: Resume,
+  },
+  {
     path: '/album',
     name: 'album',
     component: Album,

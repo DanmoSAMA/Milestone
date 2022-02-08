@@ -5,23 +5,23 @@
       <h2 class="c-sidebar-list-header-subtitle">test</h2>
     </div>
     <div class="c-sidebar-list-body">
-      <div class="c-sidebar-list-body-item selected">
+      <div class="c-sidebar-list-body-item selected" @click="jump('/')">
         <svg-icon name="shouye" :styleConfig="styleConfig" />
         首页
       </div>
-      <div class="c-sidebar-list-body-item">
+      <div class="c-sidebar-list-body-item" @click="jump('/tags')">
         <svg-icon name="gf-tags" :styleConfig="styleConfig" />
         标签
       </div>
-      <div class="c-sidebar-list-body-item">
+      <div class="c-sidebar-list-body-item" @click="jump('/search')">
         <svg-icon name="sousuo" :styleConfig="styleConfig" />
         搜索
       </div>
-      <div class="c-sidebar-list-body-item">
+      <div class="c-sidebar-list-body-item" @click="jump('/resume')">
         <svg-icon name="jianli" :styleConfig="styleConfig" />
         简历
       </div>
-      <div class="c-sidebar-list-body-item">
+      <div class="c-sidebar-list-body-item" @click="jump('/album')">
         <svg-icon name="tupian" :styleConfig="styleConfig" />
         相册
       </div>
@@ -30,11 +30,19 @@
 </template>
 
 <script setup lang="ts">
+import router from '../../../../router'
+
+// 用于传入svg
 const styleConfig = {
   color: '#333', 
   position: 'relative', 
   top: '-1px',
 }
+
+function jump(path: string) {
+  router.push({ path });
+}
+
 </script>
 
 <style lang="scss">

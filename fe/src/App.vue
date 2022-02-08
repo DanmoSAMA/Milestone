@@ -14,4 +14,10 @@
   font-weight: normal;
   letter-spacing: 2px;
 }
+
+a {
+  color: #333;
+  text-decoration: none;
+  cursor: default;
+}
 </style>
