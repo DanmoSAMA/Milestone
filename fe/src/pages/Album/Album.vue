@@ -1,35 +1,22 @@
 <template>
-  <div class="album">
-    <SideBar />
-    <div class="album-main">
-      <h1 class="album-main-title">
-        相册
-      </h1>
-      <div class="album-main-body">
-
-      </div>
-    </div>
+  <div class="app_wrapper-album">
+    <h1 class="app_wrapper-album-title">相册</h1>
+    <div class="app_wrapper-album-body"></div>
   </div>
 </template>
 
-<script setup lang="ts">
-import SideBar from '../../components/SideBar/SideBar.vue';
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss">
-.album {
-  display: flex;
-  justify-content: center;
+.app_wrapper-album {
+  width: 850px;
+  padding: 30px;
+  box-sizing: border-box;
 
-  &-main {
-    width: 850px;
-    padding: 30px;
-
-    &-title {
-      font-size: 24px;
-      text-align: center;
-      margin: 30px 0;
-    }
+  &-title {
+    font-size: 24px;
+    text-align: center;
+    margin: 30px 0;
   }
 }
 </style>

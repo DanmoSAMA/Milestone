@@ -1,35 +1,22 @@
 <template>
-  <div class="resume">
-    <SideBar />
-    <div class="resume-main">
-      <h1 class="resume-main-title">
-        简历
-      </h1>
-      <div class="resume-main-body">
-
-      </div>
-    </div>
+  <div class="app_wrapper-resume">
+    <h1 class="app_wrapper-resume-title">简历</h1>
+    <div class="app_wrapper-resume-body"></div>
   </div>
 </template>
 
-<script setup lang="ts">
-import SideBar from '../../components/SideBar/SideBar.vue';
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss">
-.resume {
-  display: flex;
-  justify-content: center;
+.app_wrapper-resume {
+  width: 850px;
+  padding: 30px;
+  box-sizing: border-box;
 
-  &-main {
-    width: 850px;
-    padding: 30px;
-
-    &-title {
-      font-size: 24px;
-      text-align: center;
-      margin: 30px 0;
-    }
+  &-title {
+    font-size: 24px;
+    text-align: center;
+    margin: 30px 0;
   }
 }
 </style>

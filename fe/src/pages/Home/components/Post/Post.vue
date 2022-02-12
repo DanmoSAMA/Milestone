@@ -1,6 +1,6 @@
 <template>
-  <div class="home-posts-post">
-    <h1 class="home-posts-post-title">
+  <div class="app_wrapper-home-posts-post">
+    <h1 class="app_wrapper-home-posts-post-title">
       Markdown 转换微信公众号文章内容
     </h1>
   </div>
@@ -11,7 +11,7 @@
 </script>
 
 <style lang="scss">
-.home-posts-post {
+.app_wrapper-home-posts-post {
   height: 250px;
   display: flex;
   align-items: center;

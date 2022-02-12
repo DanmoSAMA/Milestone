@@ -5,23 +5,58 @@
       <h2 class="c-sidebar-list-header-subtitle">test</h2>
     </div>
     <div class="c-sidebar-list-body">
-      <div class="c-sidebar-list-body-item selected" @click="jump('/')">
+      <div
+        class="c-sidebar-list-body-item"
+        :class="{selected: currentPage === 'home'}"
+        @click="
+          jump('/');
+          changeCurPage('home');
+        "
+      >
         <svg-icon name="shouye" :styleConfig="styleConfig" />
         首页
       </div>
-      <div class="c-sidebar-list-body-item" @click="jump('/tags')">
+      <div
+        class="c-sidebar-list-body-item"
+        :class="{selected: currentPage === 'tags'}"
+        @click="
+          jump('/tags');
+          changeCurPage('tags');
+        "
+      >
         <svg-icon name="gf-tags" :styleConfig="styleConfig" />
         标签
       </div>
-      <div class="c-sidebar-list-body-item" @click="jump('/search')">
+      <div
+        class="c-sidebar-list-body-item"
+        :class="{selected: currentPage === 'search'}"
+        @click="
+          jump('/search');
+          changeCurPage('search');
+        "
+      >
         <svg-icon name="sousuo" :styleConfig="styleConfig" />
         搜索
       </div>
-      <div class="c-sidebar-list-body-item" @click="jump('/resume')">
+      <div
+        class="c-sidebar-list-body-item"
+        :class="{selected: currentPage === 'resume'}"
+        @click="
+          jump('/resume');
+          changeCurPage('resume');
+        "
+      >
         <svg-icon name="jianli" :styleConfig="styleConfig" />
         简历
       </div>
-      <div class="c-sidebar-list-body-item" @click="jump('/album')">
+      <div
+        class="c-sidebar-list-body-item"
+        :class="{selected: currentPage === 'album'}"
+        @click="
+          jump('/album');
+          changeCurPage('album');
+        "
+      >
         <svg-icon name="tupian" :styleConfig="styleConfig" />
         相册
       </div>
@@ -30,19 +65,26 @@
 </template>
 
 <script setup lang="ts">
-import router from '../../../../router'
+import router from '../../../../router';
+import { ref } from 'vue';
 
 // 用于传入svg
 const styleConfig = {
-  color: '#333', 
-  position: 'relative', 
+  color: '#333',
+  position: 'relative',
   top: '-1px',
-}
+};
+
+type curPageType = 'home' | 'tags' | 'search' | 'resume' | 'album';
+const currentPage = ref<curPageType>('home');
 
 function jump(path: string) {
   router.push({ path });
 }
 
+function changeCurPage(name: curPageType) {
+  currentPage.value = name;
+}
 </script>
 
 <style lang="scss">

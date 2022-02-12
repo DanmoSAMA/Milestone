@@ -1,20 +1,18 @@
 <template>
-  <div class="home">
-    <SideBar />
-    <Posts />
+  <div class="app_wrapper-home">
+    <Post />
+    <Post />
+    <Post />
+    <Post />
   </div>
-  
 </template>
 
 <script setup lang="ts">
-import SideBar from '../../components/SideBar/SideBar.vue';
-import Posts from './components/Posts/Posts.vue'
+import Post from './components/Post/Post.vue';
 </script>
 
 <style lang="scss">
-.home {
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
+.app_wrapper-home {
+  width: 850px;
 }
 </style>
