@@ -7,15 +7,25 @@
       />
     </div>
     <div class="c-sidebar-userinfo-count">
-      <div class="c-sidebar-userinfo-count-posts">日志</div>
-      <div class="c-sidebar-userinfo-count-tags">标签</div>
+      <div class="c-sidebar-userinfo-count-posts">
+        <span class="c-sidebar-userinfo-count-posts-count">
+          {{ postCount }}
+        </span>
+        <span class="c-sidebar-userinfo-count-posts-title"> 日志 </span>
+      </div>
+      <div class="c-sidebar-userinfo-count-tags">
+        <span class="c-sidebar-userinfo-count-tags-count"> 0 </span>
+        <span class="c-sidebar-userinfo-count-tags-title"> 标签 </span>
+      </div>
     </div>
     <div class="c-sidebar-userinfo-contact"></div>
   </div>
 </template>
 
 <script setup lang="ts">
-
+import { usePosts } from '../../../../pinia/posts';
+const postsStore = usePosts();
+const postCount = postsStore.posts.length;
 </script>
 
 <style lang="scss">
@@ -46,7 +56,26 @@
 
   &-count {
     display: flex;
-    margin: 5px 0;
+    margin: 15px 0 5px 0;
+
+    &-posts,
+    &-tags {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 5px 0 5px;
+
+      &-title {
+        font-size: 13px;
+        color: #777;
+      }
+
+      &-count {
+        font-size: 15px;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+    }
   }
 }
 </style>

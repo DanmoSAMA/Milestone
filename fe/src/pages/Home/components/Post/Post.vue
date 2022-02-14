@@ -1,13 +1,20 @@
 <template>
   <div class="app_wrapper-home-posts-post">
     <h1 class="app_wrapper-home-posts-post-title">
-      Markdown 转换微信公众号文章内容
+      {{ title }}
     </h1>
   </div>
 </template>
 
 <script setup lang="ts">
+const props = defineProps({
+  post: {
+    type: Object,
+    required: true,
+  },
+});
 
+const { title } = props.post
 </script>
 
 <style lang="scss">
@@ -22,7 +29,7 @@
     font-size: 26px;
     text-align: center;
     cursor: pointer;
-    transition: all .3s;
+    transition: all 0.3s;
     max-width: 550px;
     padding: 20px;
     position: relative;
@@ -57,21 +64,20 @@
 
   &-title:hover {
     box-shadow: 0 5px 15px rgba($color: #000000, $alpha: 0.5);
-  } 
+  }
 
   &-title:hover:before {
     border-color: #262626;
     height: 100%;
     transform: translateX(0);
-    transition: .3s transform linear, .3s height linear;
+    transition: 0.3s transform linear, 0.3s height linear;
   }
 
   &-title:hover:after {
     border-color: #262626;
     height: 100%;
     transform: translateX(0);
-    transition: .3s transform linear, .3s height linear;
+    transition: 0.3s transform linear, 0.3s height linear;
   }
 }
-
 </style>

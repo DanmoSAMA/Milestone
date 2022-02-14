@@ -2,7 +2,7 @@
   <div class="c-sidebar-list">
     <div class="c-sidebar-list-header">
       <h1 class="c-sidebar-list-header-title">Milestone</h1>
-      <h2 class="c-sidebar-list-header-subtitle">test</h2>
+      <h2 class="c-sidebar-list-header-subtitle">{{ motto }}</h2>
     </div>
     <div class="c-sidebar-list-body">
       <div
@@ -65,22 +65,19 @@
 </template>
 
 <script setup lang="ts">
-import router from '../../../../router';
 import { ref } from 'vue';
+import jump from '../../../../utils/jump'
 
 // 用于传入svg
+type curPageType = 'home' | 'tags' | 'search' | 'resume' | 'album';
+
 const styleConfig = {
   color: '#333',
   position: 'relative',
   top: '-1px',
 };
-
-type curPageType = 'home' | 'tags' | 'search' | 'resume' | 'album';
 const currentPage = ref<curPageType>('home');
-
-function jump(path: string) {
-  router.push({ path });
-}
+const motto = '用进废退 | 艺不压身'
 
 function changeCurPage(name: curPageType) {
   currentPage.value = name;
@@ -102,12 +99,12 @@ function changeCurPage(name: curPageType) {
     padding: 20px 0;
 
     &-title {
-      font-size: 24px;
+      font-size: 26px;
       margin-bottom: 10px;
     }
 
     &-subtitle {
-      font-size: 15px;
+      font-size: 13px;
     }
   }
 
