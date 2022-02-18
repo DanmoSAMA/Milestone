@@ -15,6 +15,10 @@ nav {
   font-family: 'Times New Roman', Times, serif;
 }
 
+code > span {
+  font-family: hack;
+}
+
 h1 {
   text-align: center;
 }
@@ -87,7 +91,7 @@ ol {
 }
 pre {
   /* padding: 0px 24px; */
-  /* font-family: hack!important; */
+  font-family: hack!important;
   max-width: 790px;
   white-space: pre-wrap;
 }
