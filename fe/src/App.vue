@@ -10,6 +10,10 @@ import SideBar from './components/SideBar/SideBar.vue'
 import { useRoute } from 'vue-router'
 import { computed } from 'vue'
 
+import hljs from 'highlight.js';
+import 'highlight.js/styles/atom-one-dark.css';
+import './styles/markdown.css'
+
 const route = useRoute()
 
 const showSideBar = computed(() => {
