@@ -21,6 +21,46 @@ export const usePosts = defineStore('posts', {
           content: `最妙的是下点小雪呀。看吧，山上的矮松越发的青黑，树尖上顶着一髻儿白花，好像日本看护妇。山尖全白了，给蓝天镶上一道银边。山坡上，有的地方雪厚点，有的地方草色还露着，这样，一道儿白，一道儿暗黄，给山们穿上一件带水纹的花衣；看着看着，这件花衣好像被风儿吹动，叫你希望看见一点更美的山的肌肤。等到快日落的时候，微黄的阳光斜射在山腰上，那点薄雪好像忽然害了羞，微微露出点粉色。就是下小雪吧，济南是受不住大雪的，那些小山太秀气！`,
           id: 2,
         },
+        {
+          title: '技术文章',
+          content: 
+`# title
+在类型系统中实现 JS 中的\`Array.includes\`函数. \`Includes\`类接受两个泛型参数, 返回值应为\`true\`或者\`false\`
+
+\`\`\`ts
+import { Equal } from '@type-challenges/utils'
+type Includes<T extends readonly any[], U> =
+  T extends [infer F, ...infer V] ?
+  Equal<U, F> extends true
+  ? true : Includes<V, U>
+  : false
+\`\`\`
+
+**虽然不怎么想依赖equal函数，但是github上的很多答案都用了，我就妥协了**
+
+看看equal函数的实现：
+
+\`\`\`ts
+type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends (<T>() => T extends Y ? 1 : 2)
+  ? true
+  : false;
+\`\`\`
+
+因此，如果equal要返回true，就需要满足：
+
+- T extends T
+- X 和 Y 是同类型
+- 1 extends 1，2 extends 2
+
+显然第一条和第三条满足，所以只需要X和Y同类型即可，而equal函数的作用就是判断同类型，只要同类型就返回true
+
+> aaa
+> aaa
+> a
+> aaa
+`,
+          id: 3,
+        },
       ],
     };
   },

@@ -34,6 +34,7 @@ const { title } = props.post
     padding: 20px;
     position: relative;
     overflow: hidden;
+    font-weight: normal;
   }
 
   &-title::before {

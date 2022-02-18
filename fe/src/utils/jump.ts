@@ -1,6 +1,10 @@
 import router from '../router';
 
-export default function jump(path: string, query?: object) {
+type Query =  {
+  [key: string]: string
+}
+
+export default function jump(path: string, query?: Query) {
   if (query) {
     router.push({ path, query });
   }

@@ -22,18 +22,18 @@ const showSideBar = computed(() => {
 
 <style lang="scss">
 * {
-  margin: 0;
-  padding: 0;
-  font-size: 16px;
-  font-weight: normal;
+  // margin: 0;
+  // padding: 0;
+  // font-size: 16px;
+  // font-weight: normal;
   letter-spacing: 2px;
 }
 
-a {
-  color: #333;
-  text-decoration: none;
-  cursor: default;
-}
+// a {
+//   color: #333;
+//   text-decoration: none;
+//   cursor: default;
+// }
 
 .app_wrapper {
   display: flex;
