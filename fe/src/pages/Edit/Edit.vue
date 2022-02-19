@@ -3,7 +3,9 @@
     <div class="app_wrapper-edit-body">
       <input type="text" class="app_wrapper-edit-body-input" />
       <div class="app_wrapper-edit-body-tags">
-
+        <span class="app_wrapper-edit-body-tags-add">
+          + 添加标签
+        </span>
       </div>
       <textarea
         cols="30"
@@ -38,10 +40,11 @@
     &-textarea {
       outline: none;
       border: 1px solid #bbb;
-      padding: 5px;
+      padding: 8px;
       font-family: 'Times New Roman', Times, serif;
       width: 100%;
       border-radius: 3px;
+      background-color: #F8F9FA;
     }
 
     &-input {
@@ -52,12 +55,32 @@
 
     &-tags {
       height: 55px;
+      width: 100%;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      color: #6C757D;
+
+      &-add {
+        height: 30px;
+        line-height: 30px;
+        border: 1px solid #6C757D;
+        padding: 3px;
+        font-size: 14px;
+        border-radius: 2px;
+        cursor: pointer;
+        transition: .3s all;
+      }
+
+      &-add:hover {
+        background-color: #6C757D;
+        color: #fff;
+      }
     }
 
     &-textarea {
       resize: none;
       height: 500px;
-      background-color: #F8F9FA;
       font-size: 16px;
     }
 
