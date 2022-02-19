@@ -1,6 +1,6 @@
 <template>
   <div class="app_wrapper-search">
-    <h1 class="app_wrapper-search-title">搜索（支持正则）</h1>
+    <div class="app_wrapper-search-title">搜索（支持正则）</div>
     <div class="app_wrapper-search-input_wrapper">
       <input type="text" class="app_wrapper-search-input_wrapper-input" />
       <svg-icon

@@ -1,6 +1,6 @@
 <template>
   <div class="app_wrapper-resume">
-    <h1 class="app_wrapper-resume-title">简历</h1>
+    <div class="app_wrapper-resume-title">简历</div>
     <div class="app_wrapper-resume-body"></div>
   </div>
 </template>

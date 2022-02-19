@@ -19,15 +19,12 @@ code > span {
   font-family: hack;
 }
 
-h1 {
-  text-align: center;
-}
-
 h1,
 h2,
 h3,
 h4 {
   font-weight: 400;
+  zoom: .75;
 }
 
 h1,

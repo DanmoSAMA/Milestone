@@ -1,8 +1,8 @@
 <template>
   <div class="app_wrapper-home-posts-post">
-    <h1 class="app_wrapper-home-posts-post-title">
+    <div class="app_wrapper-home-posts-post-title">
       {{ title }}
-    </h1>
+    </div>
   </div>
 </template>
 

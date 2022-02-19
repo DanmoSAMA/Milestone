@@ -1,6 +1,6 @@
 <template>
   <div class="app_wrapper-edit">
-    <h1 class="app_wrapper-edit-title">发表文章</h1>
+    <div class="app_wrapper-edit-title">发表文章</div>
     <div class="app_wrapper-edit-body">
       
     </div>

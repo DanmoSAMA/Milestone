@@ -1,6 +1,6 @@
 <template>
   <div class="app_wrapper-tags">
-    <h1 class="app_wrapper-tags-title">标签</h1>
+    <div class="app_wrapper-tags-title">标签</div>
     <div class="app_wrapper-tags-cloud">
       <span class="app_wrapper-tags-cloud-item">标签</span>
       <span class="app_wrapper-tags-cloud-item">标签</span>

@@ -1,8 +1,8 @@
 <template>
   <div class="c-sidebar-list">
     <div class="c-sidebar-list-header">
-      <h1 class="c-sidebar-list-header-title">Milestone</h1>
-      <h2 class="c-sidebar-list-header-subtitle">{{ motto }}</h2>
+      <div class="c-sidebar-list-header-title">Milestone</div>
+      <div class="c-sidebar-list-header-subtitle">{{ motto }}</div>
     </div>
     <div class="c-sidebar-list-body">
       <div
@@ -107,7 +107,7 @@ function changeCurPage(name: curPageType) {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 20px 0;
+    padding: 22px 0;
 
     &-title {
       font-size: 26px;

@@ -1,6 +1,6 @@
 <template>
   <div class="not_found">
-    <h1 class="not_found-title">404 not found</h1>
+    <div class="not_found-title">404 not found</div>
   </div>
 </template>
 

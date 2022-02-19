@@ -1,6 +1,6 @@
 <template>
   <div class="app_wrapper-album">
-    <h1 class="app_wrapper-album-title">相册</h1>
+    <div class="app_wrapper-album-title">相册</div>
     <div class="app_wrapper-album-body"></div>
   </div>
 </template>
