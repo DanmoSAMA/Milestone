@@ -2,11 +2,7 @@
   <div class="app_wrapper-edit">
     <div class="app_wrapper-edit-body">
       <input type="text" class="app_wrapper-edit-body-input" />
-      <div class="app_wrapper-edit-body-tags">
-        <span class="app_wrapper-edit-body-tags-add">
-          + 添加标签
-        </span>
-      </div>
+      <Tags />
       <textarea
         cols="30"
         rows="10"
@@ -17,7 +13,9 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Tags from './components/Tags/Tags.vue'
+</script>
 
 <style lang="scss">
 .app_wrapper-edit {
@@ -44,38 +42,14 @@
       font-family: 'Times New Roman', Times, serif;
       width: 100%;
       border-radius: 3px;
-      background-color: #F8F9FA;
+      background-color: #f8f9fa;
+      box-sizing: border-box;
     }
 
     &-input {
-      height: 30px;
-      line-height: 30px;
+      height: 45px;
+      line-height: 45px;
       font-size: 18px;
-    }
-
-    &-tags {
-      height: 55px;
-      width: 100%;
-      display: flex;
-      justify-content: start;
-      align-items: center;
-      color: #6C757D;
-
-      &-add {
-        height: 30px;
-        line-height: 30px;
-        border: 1px solid #6C757D;
-        padding: 3px;
-        font-size: 14px;
-        border-radius: 2px;
-        cursor: pointer;
-        transition: .3s all;
-      }
-
-      &-add:hover {
-        background-color: #6C757D;
-        color: #fff;
-      }
     }
 
     &-textarea {
@@ -92,9 +66,9 @@
       width: 120px;
       border: 1px solid #bbb;
       border-radius: 18px;
-      background-color: #F8F9FA;
+      background-color: #f8f9fa;
       cursor: pointer;
-      transition: all .3s;
+      transition: all 0.3s;
     }
 
     &-btn:hover {
