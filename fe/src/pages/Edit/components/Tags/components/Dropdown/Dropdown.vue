@@ -10,6 +10,11 @@
       class="app_wrapper-edit-body-tags-add-dropdown-item"
       v-for="tag in tags"
       :key="tag"
+      @click="
+        () => {
+          props.chosenTags.push(tag);
+        }
+      "
     >
       {{ tag }}
     </div>
@@ -19,6 +24,7 @@
 <script setup lang="ts">
 const props = defineProps({
   showDropdown: Boolean,
+  chosenTags: Array,
 });
 
 const tags = [
