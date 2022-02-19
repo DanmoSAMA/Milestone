@@ -12,6 +12,7 @@
       :key="tag"
       @click="
         () => {
+          if (props.chosenTags.find(item => item === tag)) return;
           props.chosenTags.push(tag);
         }
       "
