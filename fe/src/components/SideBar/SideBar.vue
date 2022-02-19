@@ -17,6 +17,8 @@ import UserInfo from './components/UserInfo/UserInfo.vue'
   margin-right: 12px;
   flex-shrink: 0;
   background-color: #fff;
-  max-height: 100vh;
+  // 该值待定
+  max-height: 1000vh;
+  position: relative;
 }
 </style>

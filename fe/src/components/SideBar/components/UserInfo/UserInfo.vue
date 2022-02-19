@@ -36,6 +36,8 @@ const postCount = postsStore.posts.length;
   justify-content: center;
   align-items: center;
   padding: 16px 0;
+  position: sticky;
+  top: 10px;
 
   &-avatar {
     width: 130px;

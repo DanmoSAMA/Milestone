@@ -7,7 +7,7 @@
     <div class="c-sidebar-list-body">
       <div
         class="c-sidebar-list-body-item"
-        :class="{selected: currentPage === 'home'}"
+        :class="{ selected: currentPage === 'home' }"
         @click="
           jump('/');
           changeCurPage('home');
@@ -18,7 +18,7 @@
       </div>
       <div
         class="c-sidebar-list-body-item"
-        :class="{selected: currentPage === 'tags'}"
+        :class="{ selected: currentPage === 'tags' }"
         @click="
           jump('/tags');
           changeCurPage('tags');
@@ -29,7 +29,7 @@
       </div>
       <div
         class="c-sidebar-list-body-item"
-        :class="{selected: currentPage === 'search'}"
+        :class="{ selected: currentPage === 'search' }"
         @click="
           jump('/search');
           changeCurPage('search');
@@ -40,7 +40,7 @@
       </div>
       <div
         class="c-sidebar-list-body-item"
-        :class="{selected: currentPage === 'resume'}"
+        :class="{ selected: currentPage === 'resume' }"
         @click="
           jump('/resume');
           changeCurPage('resume');
@@ -51,7 +51,7 @@
       </div>
       <div
         class="c-sidebar-list-body-item"
-        :class="{selected: currentPage === 'album'}"
+        :class="{ selected: currentPage === 'album' }"
         @click="
           jump('/album');
           changeCurPage('album');
@@ -60,16 +60,27 @@
         <svg-icon name="tupian" :styleConfig="styleConfig" />
         相册
       </div>
+      <hr class="c-sidebar-list-body-hr" />
+      <div
+        class="c-sidebar-list-body-item"
+        :class="{ selected: currentPage === 'edit' }"
+        @click="
+          jump('/edit');
+          changeCurPage('edit');
+        "
+      >
+        发表文章
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import jump from '../../../../utils/jump'
+import jump from '../../../../utils/jump';
 
 // 用于传入svg
-type curPageType = 'home' | 'tags' | 'search' | 'resume' | 'album';
+type curPageType = 'home' | 'tags' | 'search' | 'resume' | 'album' | 'edit';
 
 const styleConfig = {
   color: '#333',
@@ -77,7 +88,7 @@ const styleConfig = {
   top: '-1px',
 };
 const currentPage = ref<curPageType>('home');
-const motto = '用进废退 | 艺不压身'
+const motto = '用进废退 | 艺不压身';
 
 function changeCurPage(name: curPageType) {
   currentPage.value = name;
@@ -110,6 +121,14 @@ function changeCurPage(name: curPageType) {
 
   &-body {
     padding: 12px 0;
+
+    &-hr {
+      width: 96%;
+      margin: 4px auto;
+      background-color: #eee !important;
+      border: none;
+      height: 1px;
+    }
 
     &-item {
       padding: 0 20px;

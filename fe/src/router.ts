@@ -6,6 +6,7 @@ const Tags = () => import('./pages/Tags/Tags.vue');
 const Search = () => import('./pages/Search/Search.vue');
 const Resume = () => import('./pages/Resume/Resume.vue');
 const Album = () => import('./pages/Album/Album.vue');
+const Edit = () => import('./pages/Edit/Edit.vue')
 const NotFound = () => import('./pages/NotFound/NotFound.vue');
 
 const routes: RouteRecordRaw[] = [
@@ -38,6 +39,11 @@ const routes: RouteRecordRaw[] = [
     path: '/album',
     name: 'album',
     component: Album,
+  },
+  {
+    path: '/edit',
+    name: 'edit',
+    component: Edit,
   },
   {
     path: '/404',
