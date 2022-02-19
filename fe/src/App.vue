@@ -12,7 +12,7 @@ import { computed } from 'vue'
 
 import hljs from 'highlight.js';
 import 'highlight.js/styles/atom-one-dark.css';
-import './styles/markdown.css'
+import './styles/index.css'
 
 const route = useRoute()
 

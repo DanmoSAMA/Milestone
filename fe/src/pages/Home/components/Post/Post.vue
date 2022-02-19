@@ -19,11 +19,11 @@ const { title } = props.post
 
 <style lang="scss">
 .app_wrapper-home-posts-post {
-  height: 250px;
+  height: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #E5E6EA;
 
   &-title {
     font-size: 26px;

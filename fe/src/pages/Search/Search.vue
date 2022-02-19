@@ -41,11 +41,11 @@
 
     &-input {
       outline: none;
-      border: 1px solid #aaa;
+      border: 1px solid #bbb;
       width: 400px;
       height: 50px;
       line-height: 50px;
-      background-color: #eee;
+      background-color: #F8F9FA;
       padding: 0 50px 0 15px;
       border-radius: 25px;
     }
