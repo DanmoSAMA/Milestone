@@ -43,6 +43,49 @@ type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends (<T>() => T extends Y 
 > 显然第一条和第三条满足，所以只需要X和Y同类型即可，而equal函数的作用就是判断同类型，只要同类型就返回true显然第一条和第三条满足，所以只需要X和Y同类型即可，而equal函数的作用就是判断同类型，只要同类型就返回true显然第一条和第三条满足，所以只需要X和Y同类型即可，而equal函数的作用就是判断同类型，只要同类型就返回true显然第一条和第三条满足，所以只需要X和Y同类型即可，而equal函数的作用就是判断同类型，只要同类型就返回true
 `,
           id: 0,
+          tags: ['前端', 'ts'],
+        },
+        {
+          title: '文章1',
+          content: 'test',
+          id: 1,
+          tags: ['ts', '后端'],
+        },
+        {
+          title: '文章2',
+          content: 'test',
+          id: 2,
+          tags: ['前端', 'css'],
+        },
+        {
+          title: '文章3',
+          content: 'test',
+          id: 3,
+          tags: ['css', 'js'],
+        },
+        {
+          title: '文章4',
+          content: 'test',
+          id: 4,
+          tags: ['js', 'ts'],
+        },
+        {
+          title: '文章5',
+          content: 'test',
+          id: 5,
+          tags: ['webpack', 'js'],
+        },
+        {
+          title: '文章6',
+          content: 'test',
+          id: 6,
+          tags: ['ts'],
+        },
+        {
+          title: '文章7',
+          content: 'test',
+          id: 7,
+          tags: [],
         },
       ],
     };

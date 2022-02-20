@@ -1,32 +1,52 @@
 <template>
   <div class="app_wrapper-home-posts-post">
-    <div class="app_wrapper-home-posts-post-title">
+    <div
+      class="app_wrapper-home-posts-post-title"
+      @click="jump('/posts', { id })"
+    >
       {{ title }}
+    </div>
+    <div class="app_wrapper-home-posts-post-tags">
+      <div
+        class="app_wrapper-home-posts-post-tags-item"
+        v-for="tag in tags"
+        :key="tag"
+      >
+        {{ tag }}
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import jump from '../../../../utils/jump';
+
 const props = defineProps({
   post: {
     type: Object,
     required: true,
   },
+  id: {
+    type: Number,
+    required: true,
+  }
 });
 
-const { title } = props.post
+const { id } = props
+const { title, tags } = props.post;
 </script>
 
 <style lang="scss">
 .app_wrapper-home-posts-post {
   height: 150px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid #E5E6EA;
+  border-bottom: 1px solid #e5e6ea;
 
   &-title {
-    font-size: 26px;
+    font-size: 30px;
     text-align: center;
     cursor: pointer;
     transition: all 0.3s;
@@ -79,6 +99,27 @@ const { title } = props.post
     height: 100%;
     transform: translateX(0);
     transition: 0.3s transform linear, 0.3s height linear;
+  }
+
+  &-tags {
+    display: flex;
+
+    &-item {
+      cursor: pointer;
+      height: 25px;
+      line-height: 25px;
+      margin: 10px 10px 0 0;
+      border: 1px solid #6c757d;
+      color: #6c757d;
+      padding: 0 8px;
+      border-radius: 3px;
+      transition: all .3s;
+    }
+
+    &-item:hover {
+      background-color: #6c757d;
+      color: #fff;
+    }
   }
 }
 </style>

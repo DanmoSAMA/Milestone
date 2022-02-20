@@ -4,7 +4,7 @@
       v-for="item in postsStore.posts"
       :post="item"
       :key="item.id"
-      @click="jump('/posts', {id: item.id})"
+      :id="item.id"
     />
   </div>
 </template>
@@ -12,7 +12,6 @@
 <script setup lang="ts">
 import Post from './components/Post/Post.vue';
 import { usePosts } from '../../pinia/posts';
-import jump from '../../utils/jump';
 
 const postsStore = usePosts();
 </script>
