@@ -103,12 +103,13 @@ const { title, tags } = props.post;
 
   &-tags {
     display: flex;
+    margin-top: 10px;
 
     &-item {
       cursor: pointer;
       height: 25px;
       line-height: 25px;
-      margin: 10px 10px 0 0;
+      margin-right: 10px;
       border: 1px solid #6c757d;
       color: #6c757d;
       padding: 0 8px;
