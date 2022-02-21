@@ -11,6 +11,7 @@
         class="app_wrapper-home-posts-post-tags-item"
         v-for="tag in tags"
         :key="tag"
+        @click="jump('/', { tag })"
       >
         {{ tag }}
       </div>
@@ -29,10 +30,10 @@ const props = defineProps({
   id: {
     type: Number,
     required: true,
-  }
+  },
 });
 
-const { id } = props
+const { id } = props;
 const { title, tags } = props.post;
 </script>
 
@@ -114,7 +115,7 @@ const { title, tags } = props.post;
       color: #6c757d;
       padding: 0 8px;
       border-radius: 3px;
-      transition: all .3s;
+      transition: all 0.3s;
     }
 
     &-item:hover {

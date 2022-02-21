@@ -4,7 +4,12 @@
       {{ title }}
     </h1>
     <div class="app_wrapper-post-tags">
-      <div class="app_wrapper-post-tags-item" v-for="tag in tags" :key="tag">
+      <div
+        class="app_wrapper-post-tags-item"
+        v-for="tag in tags"
+        :key="tag"
+        @click="jump('/', { tag })"
+      >
         {{ tag }}
       </div>
     </div>
@@ -16,6 +21,7 @@
 import getQuery from '../../utils/getQuery';
 import { usePosts } from '../../pinia/posts';
 import Markdown from 'vue3-markdown-it';
+import jump from '../../utils/jump'
 
 const postsStore = usePosts();
 const id = <string>getQuery().id;

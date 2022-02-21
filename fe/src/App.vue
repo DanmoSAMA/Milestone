@@ -1,7 +1,8 @@
 <template>
   <div class="app_wrapper">
     <SideBar v-show="showSideBar"/>
-    <router-view></router-view>
+    <!--必须添加:key="route.query"，否则由于vue做最小更新，改变query时候页面不发生改变-->
+    <router-view :key="route.query"></router-view>
   </div>
 </template>
 
@@ -21,6 +22,8 @@ const showSideBar = computed(() => {
   // 因为刚刷新的时候route.name === undefined，迅速改变为404，页面会闪一下
   return !(route.name === '404' || route.name === undefined)
 })
+
+console.log(route)
 
 </script>
 

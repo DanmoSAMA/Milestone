@@ -14,7 +14,7 @@
   box-sizing: border-box;
 
   &-title {
-    font-size: 24px;
+    font-size: 35px;
     text-align: center;
     margin: 30px 0;
   }

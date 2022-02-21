@@ -1,6 +1,9 @@
 <template>
   <div class="app_wrapper-search">
-    <div class="app_wrapper-search-title">搜索（支持正则）</div>
+    <div class="app_wrapper-search-title">搜索</div>
+    <div class="app_wrapper-search-hint">
+      支持正则表达式
+    </div>
     <div class="app_wrapper-search-input_wrapper">
       <input type="text" class="app_wrapper-search-input_wrapper-input" />
       <svg-icon
@@ -25,9 +28,14 @@
   box-sizing: border-box;
 
   &-title {
-    font-size: 24px;
+    font-size: 35px;
     text-align: center;
     margin: 30px 0;
+  }
+
+  &-hint {
+    text-align: center;
+    font-size: 14px;
   }
 
   &-input_wrapper {
