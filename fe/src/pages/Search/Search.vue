@@ -39,7 +39,7 @@
   }
 
   &-input_wrapper {
-    height: 200px;
+    height: 160px;
     width: 467px;
     position: relative;
     display: flex;
