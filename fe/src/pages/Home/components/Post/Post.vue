@@ -52,7 +52,7 @@ const { title, tags } = props.post;
     cursor: pointer;
     transition: all 0.3s;
     max-width: 550px;
-    padding: 20px;
+    padding: 10px 25px;
     position: relative;
     overflow: hidden;
     font-weight: normal;
