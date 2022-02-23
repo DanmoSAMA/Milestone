@@ -25,7 +25,9 @@ export async function request<T>(
 
     // 根据指定配置创建一个新的 axios
     const instance = axios.create({
-      baseURL: BE_DOMAIN,
+      // 这里还有问题，设置了没用
+      // baseURL: BE_DOMAIN,
+      baseURL: 'http://127.0.0.1:8080',
       timeout: 60000,
     });
 

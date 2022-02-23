@@ -22,9 +22,6 @@ const showSideBar = computed(() => {
   // 因为刚刷新的时候route.name === undefined，迅速改变为404，页面会闪一下
   return !(route.name === '404' || route.name === undefined)
 })
-
-console.log(route)
-
 </script>
 
 <style lang="scss">

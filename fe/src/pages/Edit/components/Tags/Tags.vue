@@ -29,13 +29,17 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue';
 import { useShowDropdown } from '../../../../hooks/useShowDropdown';
 import Dropdown from './components/Dropdown/Dropdown.vue';
 
+const props = defineProps({
+  chosenTags: Array,
+});
+
+const { chosenTags } = props
+
 const { showDropdown, setShowDropdown } = useShowDropdown();
-// 被选择的标签
-const chosenTags = reactive([]);
+
 </script>
 
 <style lang="scss">

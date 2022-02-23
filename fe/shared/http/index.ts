@@ -3,3 +3,5 @@ export type HttpRes<T = unknown> = {
   msg: string;
   data: T;
 };
+
+export * from "./post";

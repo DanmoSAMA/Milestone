@@ -1,6 +1,7 @@
 import { connect, connection } from 'mongoose';
 
 export function setupMongo() {
+  // 创建名为 milestone 的数据库
   const DB_URL = 'mongodb://127.0.0.1/milestone';
   connect(DB_URL);
 
@@ -15,3 +16,5 @@ export function setupMongo() {
     });
   });
 }
+
+export * from "../../../fe/shared/http";
