@@ -33,13 +33,8 @@ const sendPostReq = async () => {
   if (title.value.length && content.value.length) {
     const check = await addPost(data);
     // toggle的逻辑
-    if (check) {
-      alert('发送成功')
-      // title.value = ''
-      // content.value = ''
-    }
-  } else alert('标题或内容不能为空')
-
+    if (check) alert('发送成功');
+  } else alert('标题或内容不能为空');
 };
 </script>
 

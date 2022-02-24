@@ -3,23 +3,39 @@
     <Post
       v-for="item in filteredPosts"
       :post="item"
-      :key="item.id"
-      :id="item.id"
+      :key="item._id"
+      :id="Number(item._id)"
     />
   </div>
 </template>
 
 <script setup lang="ts">
 import Post from './components/Post/Post.vue';
-import { usePosts } from '../../pinia/posts';
 import getQuery from '../../utils/getQuery';
+import { ref } from 'vue';
+import { getAllPosts } from '../../network/post/getAllPosts';
+import { GetPostsResData } from '../../../shared/http/post';
 
-const postsStore = usePosts();
+let posts = ref<GetPostsResData>([]);
+let filteredPosts = ref<GetPostsResData>([]);
 const tag = <string>getQuery().tag;
-const filteredPosts = tag ? postsStore.posts.filter((item) =>
-  item.tags.find((item) => item === tag)
-) : postsStore.posts
 
+async function getPosts() {
+  const newPosts = await getAllPosts();
+  if (newPosts && newPosts.length) {
+    posts.value = newPosts;
+    handlePosts();
+  }
+}
+
+function handlePosts() {
+  // 根据query中的id参数，筛选页面上的文章；如无id，则不筛选
+  filteredPosts.value = tag
+    ? posts.value.filter((item) => item.tags.find((item) => item === tag))
+    : posts.value;
+}
+
+getPosts();
 </script>
 
 <style lang="scss">
