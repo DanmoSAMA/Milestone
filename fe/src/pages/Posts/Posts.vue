@@ -18,16 +18,25 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
+import { Post, DEFAULT_POST } from '../../../shared/models/post';
+import { getPostDetail } from '../../network/post/getPostDetail';
 import getQuery from '../../utils/getQuery';
-import { usePosts } from '../../pinia/posts';
 import Markdown from 'vue3-markdown-it';
-import jump from '../../utils/jump'
+import jump from '../../utils/jump';
 
-const postsStore = usePosts();
 const id = <string>getQuery().id;
-const title = postsStore.posts[id].title;
-const source = postsStore.posts[id].content;
-const tags = postsStore.posts[id].tags;
+const post = ref<Post>({ ...DEFAULT_POST });
+const source = ref('');
+const title = ref('');
+const tags = ref<string[]>([]);
+
+getPostDetail(id).then((p) => {
+  post.value = p;
+  source.value = p.content;
+  title.value = p.title;
+  tags.value = p.tags;
+});
 </script>
 
 <style lang="scss" scope>

@@ -4,7 +4,7 @@
       v-for="item in filteredPosts"
       :post="item"
       :key="item._id"
-      :id="Number(item._id)"
+      :id="item._id"
     />
   </div>
 </template>
@@ -16,8 +16,8 @@ import { ref } from 'vue';
 import { getAllPosts } from '../../network/post/getAllPosts';
 import { GetPostsResData } from '../../../shared/http/post';
 
-let posts = ref<GetPostsResData>([]);
-let filteredPosts = ref<GetPostsResData>([]);
+const posts = ref<GetPostsResData>([]);
+const filteredPosts = ref<GetPostsResData>([]);
 const tag = <string>getQuery().tag;
 
 async function getPosts() {

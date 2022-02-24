@@ -9,4 +9,5 @@ export type GetPostsReq = {
   // limit: number;
   // kw?: string;
 };
+export type GetPostDetailRes = HttpRes<Post>;
 export type CreatePostReq = Pick<Post, "tags" | "title" | "content">

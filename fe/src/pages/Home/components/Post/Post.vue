@@ -28,7 +28,7 @@ const props = defineProps({
     required: true,
   },
   id: {
-    type: Number,
+    type: String,
     required: true,
   },
 });
