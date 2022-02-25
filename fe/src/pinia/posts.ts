@@ -1,93 +1,32 @@
 import { defineStore } from 'pinia';
+import { getAllPosts } from '../network/post/getAllPosts';
+import { GetPostsResData } from '../../shared/http/post';
 
 export const usePosts = defineStore('posts', {
   state: () => {
     return {
-      posts: [
-        {
-          title: '技术文章',
-          content: 
-`# 大标题 Test
-
-## 小标题
-在类型系统中实现 JS 中的\`Array.includes\`函数. \`Includes\`类接受两个泛型参数, 返回值应为\`true\`或者\`false\`
-
-\`\`\`ts
-import { Equal } from '@type-challenges/utils'
-type Includes<T extends readonly any[], U> =
-  T extends [infer F, ...infer V] ?
-  Equal<U, F> extends true
-  ? true : Includes<V, U>
-  : false
-\`\`\`
-
-**虽然不怎么想依赖equal函数，但是github上的很多答案都用了，我就妥协了**
-
-看看equal函数的实现：
-
-\`\`\`ts
-type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends (<T>() => T extends Y ? 1 : 2)
-  ? true
-  : false;
-\`\`\`
-
-因此，如果equal要返回true，就需要满足：
-
-- T extends T
-  * xxx
-- X 和 Y 是同类型
-- 1 extends 1，2 extends 2
-
-显然第一条和第三条满足，所以只需要X和Y同类型即可，而equal函数的作用就是判断同类型，只要同类型就返回true
-
-> 显然第一条和第三条满足，所以只需要X和Y同类型即可，而equal函数的作用就是判断同类型，只要同类型就返回true显然第一条和第三条满足，所以只需要X和Y同类型即可，而equal函数的作用就是判断同类型，只要同类型就返回true显然第一条和第三条满足，所以只需要X和Y同类型即可，而equal函数的作用就是判断同类型，只要同类型就返回true显然第一条和第三条满足，所以只需要X和Y同类型即可，而equal函数的作用就是判断同类型，只要同类型就返回true
-`,
-          id: 0,
-          tags: ['前端', 'ts'],
-        },
-        {
-          title: '文章1',
-          content: 'test',
-          id: 1,
-          tags: ['ts', '后端'],
-        },
-        {
-          title: '文章2',
-          content: 'test',
-          id: 2,
-          tags: ['前端', 'css'],
-        },
-        {
-          title: '文章3',
-          content: 'test',
-          id: 3,
-          tags: ['css', 'js'],
-        },
-        {
-          title: '文章4',
-          content: 'test',
-          id: 4,
-          tags: ['js', 'ts'],
-        },
-        {
-          title: '文章5',
-          content: 'test',
-          id: 5,
-          tags: ['webpack', 'js'],
-        },
-        {
-          title: '文章6',
-          content: 'test',
-          id: 6,
-          tags: ['ts'],
-        },
-        {
-          title: '文章7',
-          content: 'test',
-          id: 7,
-          tags: [],
-        },
-      ],
+      posts: [] as GetPostsResData,
+      tags: [] as string[],
     };
+  },
+  actions: {
+    async setPosts() {
+      const newPosts = await getAllPosts();
+      if (newPosts && newPosts.length) {
+        this.posts = newPosts;
+        this.setTags();
+      }
+    },
+    setTags() {
+      this.posts.forEach((post) => {
+        post.tags.forEach((tag) => {
+          // 如果是tags数组里没有的tag，则加入
+          if (!this.tags.find((item) => tag === item)) {
+            this.tags.push(tag);
+          }
+        });
+      });
+      console.log(this.tags);
+    },
   },
 });

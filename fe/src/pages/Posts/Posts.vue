@@ -14,6 +14,10 @@
       </div>
     </div>
     <Markdown :source="source" class="markdown-body" />
+    <div class="app_wrapper-post-btn">
+      <div class="app_wrapper-post-btn-edit">编辑</div>
+      <div class="app_wrapper-post-btn-delete" @click="handleDel()">删除</div>
+    </div>
   </div>
 </template>
 
@@ -21,6 +25,8 @@
 import { ref } from 'vue';
 import { Post, DEFAULT_POST } from '../../../shared/models/post';
 import { getPostDetail } from '../../network/post/getPostDetail';
+import { delPost } from '../../network/post/delPost';
+import router from '../../router';
 import getQuery from '../../utils/getQuery';
 import Markdown from 'vue3-markdown-it';
 import jump from '../../utils/jump';
@@ -37,6 +43,16 @@ getPostDetail(id).then((p) => {
   title.value = p.title;
   tags.value = p.tags;
 });
+
+async function handleDel() {
+  if (confirm('确认删除文章吗?')) {
+    const check = await delPost(id);
+    if (check) {
+      alert('删除成功!');
+      jump('/');
+    }
+  }
+}
 </script>
 
 <style lang="scss" scope>
@@ -72,5 +88,38 @@ getPostDetail(id).then((p) => {
       color: #fff;
     }
   }
+
+  &-btn {
+    display: flex;
+    justify-content: center;
+
+    &-edit,
+    &-delete {
+      text-align: center;
+      margin-top: 30px;
+      height: 36px;
+      line-height: 36px;
+      width: 120px;
+      border: 1px solid #bbb;
+      border-radius: 18px;
+      background-color: #f8f9fa;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    &-edit {
+      margin-right: 60px;
+    }
+
+    &-edit:hover,
+    &-delete:hover {
+      background-color: #016dff;
+      color: #fff;
+    }
+  }
+}
+
+.markdown-body {
+  min-height: 400px;
 }
 </style>

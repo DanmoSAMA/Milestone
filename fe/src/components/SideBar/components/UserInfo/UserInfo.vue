@@ -9,12 +9,14 @@
     <div class="c-sidebar-userinfo-count">
       <div class="c-sidebar-userinfo-count-posts">
         <span class="c-sidebar-userinfo-count-posts-count">
-          {{ postCount }}
+          {{ postsStore.posts.length }}
         </span>
         <span class="c-sidebar-userinfo-count-posts-title"> 日志 </span>
       </div>
       <div class="c-sidebar-userinfo-count-tags">
-        <span class="c-sidebar-userinfo-count-tags-count"> 0 </span>
+        <span class="c-sidebar-userinfo-count-tags-count">
+          {{ postsStore.tags.length }}  
+        </span>
         <span class="c-sidebar-userinfo-count-tags-title"> 标签 </span>
       </div>
     </div>
@@ -24,8 +26,9 @@
 
 <script setup lang="ts">
 import { usePosts } from '../../../../pinia/posts';
+import { ref } from 'vue';
+
 const postsStore = usePosts();
-const postCount = postsStore.posts.length;
 </script>
 
 <style lang="scss">

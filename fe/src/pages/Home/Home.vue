@@ -13,29 +13,25 @@
 import Post from './components/Post/Post.vue';
 import getQuery from '../../utils/getQuery';
 import { ref } from 'vue';
-import { getAllPosts } from '../../network/post/getAllPosts';
 import { GetPostsResData } from '../../../shared/http/post';
+import { usePosts } from '../../pinia/posts';
 
-const posts = ref<GetPostsResData>([]);
+const postsStore = usePosts();
+
 const filteredPosts = ref<GetPostsResData>([]);
 const tag = <string>getQuery().tag;
 
-async function getPosts() {
-  const newPosts = await getAllPosts();
-  if (newPosts && newPosts.length) {
-    posts.value = newPosts;
-    handlePosts();
-  }
-}
-
 function handlePosts() {
-  // 根据query中的id参数，筛选页面上的文章；如无id，则不筛选
+  // 根据query中的tag参数，筛选页面上的文章；如无tag，则不筛选
   filteredPosts.value = tag
-    ? posts.value.filter((item) => item.tags.find((item) => item === tag))
-    : posts.value;
+    ? postsStore.posts.filter((item) => item.tags.find((item) => item === tag))
+    : postsStore.posts;
 }
 
-getPosts();
+postsStore.setPosts().then(() => {
+  handlePosts();
+})
+
 </script>
 
 <style lang="scss">

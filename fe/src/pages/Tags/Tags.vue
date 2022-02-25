@@ -1,11 +1,13 @@
 <template>
   <div class="app_wrapper-tags">
     <div class="app_wrapper-tags-title">标签</div>
-    <div class="app_wrapper-tags-count">目前共计{{ tagArr.length }}个标签</div>
+    <div class="app_wrapper-tags-count">
+      目前共计{{ postsStore.tags.length }}个标签
+    </div>
     <div class="app_wrapper-tags-cloud">
       <div
         class="app_wrapper-tags-cloud-item"
-        v-for="tag in tagArr"
+        v-for="tag in postsStore.tags"
         :key="tag"
         @click="jump('/', { tag })"
       >
@@ -17,8 +19,10 @@
 
 <script setup lang="ts">
 // 向后端请求，拿到所有标签
-const tagArr = ['前端', 'ts', '后端', 'css', 'js', 'webpack'];
 import jump from '../../utils/jump';
+import { usePosts } from '../../pinia/posts';
+
+const postsStore = usePosts();
 </script>
 
 <style lang="scss">

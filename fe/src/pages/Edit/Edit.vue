@@ -15,6 +15,7 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue';
 import { addPost } from '../../network/post/addPost';
+import jump from '../../utils/jump';
 import Tags from './components/Tags/Tags.vue';
 
 const title = ref('');
@@ -33,7 +34,10 @@ const sendPostReq = async () => {
   if (title.value.length && content.value.length) {
     const check = await addPost(data);
     // toggle的逻辑
-    if (check) alert('发表成功');
+    if (check) {
+      alert('发表成功');
+      jump('/');
+    }
   } else alert('标题或内容不能为空');
 };
 </script>
