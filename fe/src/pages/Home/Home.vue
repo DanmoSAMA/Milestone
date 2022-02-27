@@ -28,10 +28,7 @@ function handlePosts() {
     : postsStore.posts;
 }
 
-postsStore.setPosts().then(() => {
-  handlePosts();
-})
-
+handlePosts();
 </script>
 
 <style lang="scss">

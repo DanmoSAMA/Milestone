@@ -29,6 +29,8 @@ import { usePosts } from '../../../../pinia/posts';
 import { ref } from 'vue';
 
 const postsStore = usePosts();
+postsStore.setPosts();
+
 </script>
 
 <style lang="scss">
