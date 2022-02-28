@@ -28,7 +28,10 @@ function handlePosts() {
     : postsStore.posts;
 }
 
-handlePosts();
+// 虽然在sideBar请求了一次，但是为了发/删文章跳过来能直接看到更新，这里得再请求一次
+postsStore.setPosts().then(() => {
+  handlePosts();
+})
 </script>
 
 <style lang="scss">
