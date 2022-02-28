@@ -24,6 +24,8 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue';
 import { addPost } from '../../network/post/addPost';
+import { currentPage } from '../../hooks/useCurPage';
+
 import jump from '../../utils/jump';
 import Tags from './components/Tags/Tags.vue';
 
@@ -33,6 +35,8 @@ const props = defineProps({
   defaultContent: String,
   type: Number, // 0 表示新建，1 表示编辑
 });
+
+// const { currentPage, changeCurPage } = useCurPage();
 
 const title = ref(props.defaultTitle);
 const content = ref(props.defaultContent);
@@ -45,7 +49,7 @@ const sendPostReq = async () => {
   const data = {
     title: title.value,
     content: content.value,
-    tags: chosenTags,
+    tags: chosenTags as string[],
   };
   if (title.value.length && content.value.length) {
     const check = await addPost(data);
@@ -53,6 +57,8 @@ const sendPostReq = async () => {
     if (check) {
       alert('发表成功');
       jump('/');
+      // changeCurPage('home');
+      currentPage.value = 'home';
     }
   } else alert('标题或内容不能为空');
 };
@@ -64,8 +70,14 @@ function toHome() {
   if (title.value !== '' || chosenTags.length !== 0 || content.value !== '') {
     if (confirm('内容将不会保存，确定返回首页吗')) {
       jump('/');
+      // changeCurPage('home');
+      currentPage.value = 'home';
     }
-  } else jump('/');
+  } else {
+    jump('/');
+    // changeCurPage('home');
+    currentPage.value = 'home';
+  }
 }
 </script>
 

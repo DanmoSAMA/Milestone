@@ -10,7 +10,8 @@
         :class="{ selected: currentPage === 'home' }"
         @click="
           jump('/');
-          changeCurPage('home');
+          // changeCurPage('home');
+          currentPage = 'home';
         "
       >
         <svg-icon name="shouye" :styleConfig="styleConfig" />
@@ -21,7 +22,8 @@
         :class="{ selected: currentPage === 'tags' }"
         @click="
           jump('/tags');
-          changeCurPage('tags');
+          // changeCurPage('tags');
+          currentPage = 'tags';
         "
       >
         <svg-icon name="gf-tags" :styleConfig="styleConfig" />
@@ -32,7 +34,8 @@
         :class="{ selected: currentPage === 'search' }"
         @click="
           jump('/search');
-          changeCurPage('search');
+          // changeCurPage('search');
+          currentPage = 'search';
         "
       >
         <svg-icon name="sousuo" :styleConfig="styleConfig" />
@@ -43,7 +46,8 @@
         :class="{ selected: currentPage === 'resume' }"
         @click="
           jump('/resume');
-          changeCurPage('resume');
+          // changeCurPage('resume');
+          currentPage = 'resume';
         "
       >
         <svg-icon name="jianli" :styleConfig="styleConfig" />
@@ -54,7 +58,8 @@
         :class="{ selected: currentPage === 'album' }"
         @click="
           jump('/album');
-          changeCurPage('album');
+          // changeCurPage('album');
+          currentPage = 'album';
         "
       >
         <svg-icon name="tupian" :styleConfig="styleConfig" />
@@ -66,7 +71,8 @@
         :class="{ selected: currentPage === 'edit' }"
         @click="
           jump('/edit');
-          changeCurPage('edit');
+          // changeCurPage('edit');
+          currentPage = 'edit';
         "
       >
         发表文章
@@ -77,22 +83,19 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { currentPage } from '../../../../hooks/useCurPage';
+
 import jump from '../../../../utils/jump';
+// const { currentPage, changeCurPage } = useCurPage();
 
 // 用于传入svg
-type curPageType = 'home' | 'tags' | 'search' | 'resume' | 'album' | 'edit';
-
 const styleConfig = {
   color: '#333',
   position: 'relative',
   top: '-1px',
 };
-const currentPage = ref<curPageType>('home');
-const motto = '用进废退 | 艺不压身';
 
-function changeCurPage(name: curPageType) {
-  currentPage.value = name;
-}
+const motto = '用进废退 | 艺不压身';
 </script>
 
 <style lang="scss">

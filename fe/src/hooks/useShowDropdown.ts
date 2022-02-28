@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 
 export const useShowDropdown = () => {
-  let showDropdown = ref(false)
+  const showDropdown = ref(false)
 
   function setShowDropdown(val: boolean) {
     showDropdown.value = val
