@@ -1,11 +1,11 @@
 <template>
   <div class="app_wrapper-edit">
-    <Edit />
+    <Edit :defaultTitle="''" :defaultTags="[]" :defaultContent="''" :type="0" />
   </div>
 </template>
 
 <script setup lang="ts">
-import Edit from '../../components/Edit/Edit.vue'
+import Edit from '../../components/Edit/Edit.vue';
 </script>
 
 <style lang="scss" scope>

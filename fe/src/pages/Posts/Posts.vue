@@ -29,8 +29,13 @@
         </div>
       </div>
     </div>
+    <!--此处必须用v-if，如果用v-show，一开始就会生成vdom，会直接把没有值的props传给Edit-->
     <Edit
-      v-show="isEdited"
+      v-if="isEdited"
+      :defaultTitle="title"
+      :defaultTags="tags"
+      :defaultContent="source"
+      :type="1"
     />
   </div>
 </template>

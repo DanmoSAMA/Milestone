@@ -26,7 +26,6 @@ export const usePosts = defineStore('posts', {
           }
         });
       });
-      console.log(this.tags);
     },
   },
 });
