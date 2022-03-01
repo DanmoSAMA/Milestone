@@ -37,5 +37,6 @@ postsStore.setPosts().then(() => {
 <style lang="scss">
 .app_wrapper-home {
   width: 850px;
+  background-color: #fff;
 }
 </style>

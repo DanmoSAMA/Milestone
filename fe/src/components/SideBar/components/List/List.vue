@@ -75,7 +75,6 @@ const styleConfig = {
 const motto = '用进废退 | 艺不压身';
 
 function handleClick(val: curPageType) {
-  console.log(val);
   jump(val === 'home' ? '/' : `/${val}`);
   currentPage.value = val;
   isEdited.value = false;
@@ -84,8 +83,9 @@ function handleClick(val: curPageType) {
 
 <style lang="scss">
 .c-sidebar-list {
-  border: 1px solid #eee;
+  // border: 1px solid #F6F7F9;
   margin-bottom: 12px;
+  background-color: #fff;
 
   &-header {
     color: #fff;
@@ -112,7 +112,7 @@ function handleClick(val: curPageType) {
     &-hr {
       width: 96%;
       margin: 4px auto;
-      background-color: #eee !important;
+      // background-color: #F6F7F9 !important;
       border: none;
       height: 1px;
     }
@@ -128,11 +128,11 @@ function handleClick(val: curPageType) {
     }
 
     &-item:hover {
-      background-color: #eee;
+      background-color: #F5F5F5;
     }
 
     &-item.selected {
-      background-color: #eee;
+      background-color: #F5F5F5;
     }
   }
 }

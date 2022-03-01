@@ -44,7 +44,8 @@ const { title, tags } = props.post;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid #e5e6ea;
+  // border-bottom: 1px solid #e5e6ea;
+  position: relative;
 
   &-title {
     font-size: 30px;
@@ -123,5 +124,14 @@ const { title, tags } = props.post;
       color: #fff;
     }
   }
+}
+
+.app_wrapper-home-posts-post::after {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 1px;
+  background-color: #e5e6ea;
+  bottom: 0;
 }
 </style>

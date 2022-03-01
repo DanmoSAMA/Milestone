@@ -1,6 +1,5 @@
 <template>
   <div class="app_wrapper-post">
-    <!---->
     <div class="app_wrapper-post-main" v-if="!isEdited">
       <h1 class="app_wrapper-post-main-title">
         {{ title }}
@@ -85,6 +84,7 @@ async function handleDel() {
   width: 850px;
   padding: 30px;
   box-sizing: border-box;
+  background-color: #fff;
 
   &-main {
     &-title {

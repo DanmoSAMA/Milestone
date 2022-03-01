@@ -19,5 +19,6 @@ import Edit from '../../components/Edit/Edit.vue';
   width: 850px;
   padding: 30px;
   box-sizing: border-box;
+  background-color: #fff;
 }
 </style>

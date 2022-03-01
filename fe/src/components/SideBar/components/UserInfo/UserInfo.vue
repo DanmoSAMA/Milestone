@@ -35,7 +35,7 @@ postsStore.setPosts();
 
 <style lang="scss">
 .c-sidebar-userinfo {
-  border: 1px solid #eee;
+  // border: 1px solid #eee;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -43,6 +43,7 @@ postsStore.setPosts();
   padding: 16px 0;
   position: sticky;
   top: 10px;
+  background-color: #fff;
 
   &-avatar {
     width: 130px;

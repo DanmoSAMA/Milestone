@@ -30,6 +30,7 @@ const postsStore = usePosts();
   width: 850px;
   padding: 30px;
   box-sizing: border-box;
+  background-color: #fff;
 
   &-title {
     font-size: 35px;

@@ -56,8 +56,6 @@ const props = defineProps({
   type: Number, // 0 表示新建，1 表示编辑
 });
 
-// const { currentPage, changeCurPage } = useCurPage();
-
 const title = ref(props.defaultTitle);
 const content = ref(props.defaultContent);
 
@@ -77,13 +75,12 @@ const sendPostReq = async () => {
     if (check) {
       alert('发表成功');
       jump('/');
-      // changeCurPage('home');
       currentPage.value = 'home';
     }
   } else alert('标题或内容不能为空');
 };
 
-// 更新文章
+// 更新文章（更新后需要刷新一次页面，因为没有重新生成Posts组件，数据还是之前请求的数据）
 async function updatePost() {
   const data = {
     title: title.value,
@@ -104,12 +101,10 @@ function toHome() {
   ) {
     if (confirm('内容将不会被保存，确定返回吗')) {
       jump('/');
-      // changeCurPage('home');
       currentPage.value = 'home';
     }
   } else {
     jump('/');
-    // changeCurPage('home');
     currentPage.value = 'home';
   }
 }
