@@ -1,6 +1,7 @@
 <template>
   <div class="app_wrapper-post">
-    <div class="app_wrapper-post-main" v-show="!isEdited">
+    <!---->
+    <div class="app_wrapper-post-main" v-if="!isEdited">
       <h1 class="app_wrapper-post-main-title">
         {{ title }}
       </h1>
@@ -35,6 +36,7 @@
       :defaultTitle="title"
       :defaultTags="tags"
       :defaultContent="source"
+      :id="id"
       :type="1"
     />
   </div>

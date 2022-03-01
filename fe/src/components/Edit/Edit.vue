@@ -12,7 +12,11 @@
         >
           发表
         </span>
-        <span class="c-edit-body-btn-update" v-show="props.type === 1">
+        <span
+          class="c-edit-body-btn-update"
+          @click="updatePost()"
+          v-show="props.type === 1"
+        >
           更新
         </span>
         <span
@@ -35,10 +39,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue';
+import { ref, Ref } from 'vue';
 import { addPost } from '../../network/post/addPost';
 import { currentPage } from '../../hooks/useCurPage';
 import { isEdited, setIsEdited } from '../../hooks/useIsEdited';
+import { updatePost as updatePostReq } from '../../network/post/updatePost';
 
 import jump from '../../utils/jump';
 import Tags from './components/Tags/Tags.vue';
@@ -47,6 +52,7 @@ const props = defineProps({
   defaultTitle: String,
   defaultTags: Array,
   defaultContent: String,
+  id: String,
   type: Number, // 0 表示新建，1 表示编辑
 });
 
@@ -56,14 +62,14 @@ const title = ref(props.defaultTitle);
 const content = ref(props.defaultContent);
 
 // 被选择的标签
-const chosenTags = reactive(props.defaultTags);
+const chosenTags = ref(props.defaultTags) as Ref<string[]>;
 
 // 创建文章
 const sendPostReq = async () => {
   const data = {
     title: title.value,
     content: content.value,
-    tags: chosenTags as string[],
+    tags: chosenTags.value,
   };
   if (title.value.length && content.value.length) {
     const check = await addPost(data);
@@ -78,10 +84,24 @@ const sendPostReq = async () => {
 };
 
 // 更新文章
+async function updatePost() {
+  const data = {
+    title: title.value,
+    content: content.value,
+    tags: chosenTags.value,
+  };
+  const res = await updatePostReq(data, props.id);
+  if (res) alert('更新成功');
+  setIsEdited(false);
+}
 
 // 返回首页
 function toHome() {
-  if (title.value !== '' || chosenTags.length !== 0 || content.value !== '') {
+  if (
+    title.value !== '' ||
+    chosenTags.value.length !== 0 ||
+    content.value !== ''
+  ) {
     if (confirm('内容将不会被保存，确定返回吗')) {
       jump('/');
       // changeCurPage('home');
@@ -96,7 +116,11 @@ function toHome() {
 
 // 返回该文章
 function toPost() {
-  if (title.value !== '' || chosenTags.length !== 0 || content.value !== '') {
+  if (
+    title.value !== '' ||
+    chosenTags.value.length !== 0 ||
+    content.value !== ''
+  ) {
     if (confirm('内容将不会被保存，确定返回吗')) {
       setIsEdited(false);
     }

@@ -8,11 +8,7 @@
       <div
         class="c-sidebar-list-body-item"
         :class="{ selected: currentPage === 'home' }"
-        @click="
-          jump('/');
-          // changeCurPage('home');
-          currentPage = 'home';
-        "
+        @click="handleClick('home')"
       >
         <svg-icon name="shouye" :styleConfig="styleConfig" />
         首页
@@ -20,11 +16,7 @@
       <div
         class="c-sidebar-list-body-item"
         :class="{ selected: currentPage === 'tags' }"
-        @click="
-          jump('/tags');
-          // changeCurPage('tags');
-          currentPage = 'tags';
-        "
+        @click="handleClick('tags')"
       >
         <svg-icon name="gf-tags" :styleConfig="styleConfig" />
         标签
@@ -32,11 +24,7 @@
       <div
         class="c-sidebar-list-body-item"
         :class="{ selected: currentPage === 'search' }"
-        @click="
-          jump('/search');
-          // changeCurPage('search');
-          currentPage = 'search';
-        "
+        @click="handleClick('search')"
       >
         <svg-icon name="sousuo" :styleConfig="styleConfig" />
         搜索
@@ -44,11 +32,7 @@
       <div
         class="c-sidebar-list-body-item"
         :class="{ selected: currentPage === 'resume' }"
-        @click="
-          jump('/resume');
-          // changeCurPage('resume');
-          currentPage = 'resume';
-        "
+        @click="handleClick('resume')"
       >
         <svg-icon name="jianli" :styleConfig="styleConfig" />
         简历
@@ -56,11 +40,7 @@
       <div
         class="c-sidebar-list-body-item"
         :class="{ selected: currentPage === 'album' }"
-        @click="
-          jump('/album');
-          // changeCurPage('album');
-          currentPage = 'album';
-        "
+        @click="handleClick('album')"
       >
         <svg-icon name="tupian" :styleConfig="styleConfig" />
         相册
@@ -69,11 +49,7 @@
       <div
         class="c-sidebar-list-body-item"
         :class="{ selected: currentPage === 'edit' }"
-        @click="
-          jump('/edit');
-          // changeCurPage('edit');
-          currentPage = 'edit';
-        "
+        @click="handleClick('edit')"
       >
         发表文章
       </div>
@@ -84,9 +60,10 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { currentPage } from '../../../../hooks/useCurPage';
+import { curPageType } from '../../../../models/curPage';
+import { isEdited } from '../../../../hooks/useIsEdited';
 
 import jump from '../../../../utils/jump';
-// const { currentPage, changeCurPage } = useCurPage();
 
 // 用于传入svg
 const styleConfig = {
@@ -96,6 +73,13 @@ const styleConfig = {
 };
 
 const motto = '用进废退 | 艺不压身';
+
+function handleClick(val: curPageType) {
+  console.log(val);
+  jump(val === 'home' ? '/' : `/${val}`);
+  currentPage.value = val;
+  isEdited.value = false;
+}
 </script>
 
 <style lang="scss">

@@ -1,6 +1,12 @@
 <template>
   <div class="app_wrapper-edit">
-    <Edit :defaultTitle="''" :defaultTags="[]" :defaultContent="''" :type="0" />
+    <Edit
+      :defaultTitle="''"
+      :defaultTags="[]"
+      :defaultContent="''"
+      :id="''"
+      :type="0"
+    />
   </div>
 </template>
 

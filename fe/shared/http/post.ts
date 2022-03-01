@@ -1,5 +1,5 @@
-import { Post } from "../models/post";
-import { HttpRes } from "./";
+import { Post } from '../models/post';
+import { HttpRes } from './';
 
 export type GetPostsResData = Post[];
 export type GetPostsRes = HttpRes<GetPostsResData>;
@@ -10,4 +10,5 @@ export type GetPostsReq = {
   // kw?: string;
 };
 export type GetPostDetailRes = HttpRes<Post>;
-export type CreatePostReq = Pick<Post, "tags" | "title" | "content">
+export type CreatePostReq = Pick<Post, 'tags' | 'title' | 'content'>;
+export type UpdatePostReq = CreatePostReq;
