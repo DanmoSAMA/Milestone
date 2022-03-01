@@ -21,7 +21,7 @@
         />
       </div>
       <div class="app_wrapper-post-main-btn">
-        <div class="app_wrapper-post-main-btn-edit" @click="updatePost()">
+        <div class="app_wrapper-post-main-btn-edit" @click="setIsEdited(true)">
           编辑
         </div>
         <div class="app_wrapper-post-main-btn-delete" @click="handleDel()">
@@ -45,6 +45,7 @@ import { ref } from 'vue';
 import { Post, DEFAULT_POST } from '../../../shared/models/post';
 import { getPostDetail } from '../../network/post/getPostDetail';
 import { delPost } from '../../network/post/delPost';
+import { isEdited, setIsEdited } from '../../hooks/useIsEdited';
 
 import router from '../../router';
 import getQuery from '../../utils/getQuery';
@@ -58,7 +59,6 @@ const post = ref<Post>({ ...DEFAULT_POST });
 const source = ref('');
 const title = ref('');
 const tags = ref<string[]>([]);
-const isEdited = ref(false);
 
 getPostDetail(id).then((p) => {
   post.value = p;
@@ -75,10 +75,6 @@ async function handleDel() {
       jump('/');
     }
   }
-}
-
-function updatePost() {
-  isEdited.value = true;
 }
 </script>
 

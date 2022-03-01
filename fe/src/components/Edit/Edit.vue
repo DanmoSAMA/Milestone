@@ -15,7 +15,20 @@
         <span class="c-edit-body-btn-update" v-show="props.type === 1">
           更新
         </span>
-        <span class="c-edit-body-btn-return" @click="toHome()"> 返回 </span>
+        <span
+          class="c-edit-body-btn-return"
+          @click="toHome()"
+          v-show="props.type === 0"
+        >
+          返回首页
+        </span>
+        <span
+          class="c-edit-body-btn-return"
+          @click="toPost()"
+          v-show="props.type === 1"
+        >
+          返回文章
+        </span>
       </div>
     </div>
   </div>
@@ -25,6 +38,7 @@
 import { ref, reactive } from 'vue';
 import { addPost } from '../../network/post/addPost';
 import { currentPage } from '../../hooks/useCurPage';
+import { isEdited, setIsEdited } from '../../hooks/useIsEdited';
 
 import jump from '../../utils/jump';
 import Tags from './components/Tags/Tags.vue';
@@ -68,7 +82,7 @@ const sendPostReq = async () => {
 // 返回首页
 function toHome() {
   if (title.value !== '' || chosenTags.length !== 0 || content.value !== '') {
-    if (confirm('内容将不会保存，确定返回首页吗')) {
+    if (confirm('内容将不会被保存，确定返回吗')) {
       jump('/');
       // changeCurPage('home');
       currentPage.value = 'home';
@@ -77,6 +91,17 @@ function toHome() {
     jump('/');
     // changeCurPage('home');
     currentPage.value = 'home';
+  }
+}
+
+// 返回该文章
+function toPost() {
+  if (title.value !== '' || chosenTags.length !== 0 || content.value !== '') {
+    if (confirm('内容将不会被保存，确定返回吗')) {
+      setIsEdited(false);
+    }
+  } else {
+    setIsEdited(false);
   }
 }
 </script>
