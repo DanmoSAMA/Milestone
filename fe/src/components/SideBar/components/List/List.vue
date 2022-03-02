@@ -75,7 +75,12 @@ const styleConfig = {
 const motto = '用进废退 | 艺不压身';
 
 function handleClick(val: curPageType) {
-  jump(val === 'home' ? '/' : `/${val}`);
+  if (val === 'home') {
+    // jump('/', { page: '0' });
+    jump('/');
+  } else {
+    jump(`/${val}`);
+  }
   currentPage.value = val;
   isEdited.value = false;
 }
@@ -128,11 +133,11 @@ function handleClick(val: curPageType) {
     }
 
     &-item:hover {
-      background-color: #F5F5F5;
+      background-color: #f5f5f5;
     }
 
     &-item.selected {
-      background-color: #F5F5F5;
+      background-color: #f5f5f5;
     }
   }
 }

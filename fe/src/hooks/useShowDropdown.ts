@@ -1,21 +1,21 @@
-import { ref } from 'vue'
+import { ref } from 'vue';
 
 export const useShowDropdown = () => {
-  const showDropdown = ref(false)
+  const showDropdown = ref(false);
 
   function setShowDropdown(val: boolean) {
-    showDropdown.value = val
-  } 
-
-  function closeDropdown() {
-    if (!showDropdown.value) return
-    showDropdown.value = false
+    showDropdown.value = val;
   }
 
-  document.addEventListener('click', closeDropdown)
+  function closeDropdown() {
+    if (!showDropdown.value) return;
+    showDropdown.value = false;
+  }
+
+  document.addEventListener('click', closeDropdown);
 
   return {
     showDropdown,
-    setShowDropdown
-  }
-}
+    setShowDropdown,
+  };
+};

@@ -100,10 +100,12 @@ function toHome() {
     content.value !== ''
   ) {
     if (confirm('内容将不会被保存，确定返回吗')) {
+      // jump('/', { page: '0' });
       jump('/');
       currentPage.value = 'home';
     }
   } else {
+    // jump('/', { page: '0' });
     jump('/');
     currentPage.value = 'home';
   }

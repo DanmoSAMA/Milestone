@@ -1,18 +1,101 @@
 <template>
-
+  <div class="c-pager">
+    <div class="c-pager-cur_page">第{{ curPageNum }}页</div>
+    <div class="c-pager-btn">
+      <div
+        :class="
+          curPageNum === 0 ? 'c-pager-btn-pre disabled' : 'c-pager-btn-pre'
+        "
+        @click="toPrePage()"
+      >
+        上一页
+      </div>
+      <div
+        :class="
+          curPageNum === totalPageNum - 1
+            ? 'c-pager-btn-pre disabled'
+            : 'c-pager-btn-pre'
+        "
+        @click="toNextPage()"
+      >
+        下一页
+      </div>
+    </div>
+  </div>
 </template>
 
-<script lang="ts">
-export default {
-  name: '',
-  components: {},
-  setup() {
-    return {
+<script setup lang="ts">
+import { curPageNum, totalPageNum } from '../../hooks/usePage';
+import jump from '../../utils/jump';
 
+function toPrePage() {
+  curPageNum.value--;
+  jump('/', { page: `${curPageNum.value}` });
+}
+
+function toNextPage() {
+  curPageNum.value++;
+  jump('/', { page: `${curPageNum.value}` });
+}
+</script>
+
+<style lang="scss" scope>
+.c-pager {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+  padding: 20px;
+
+  .btn {
+    width: 80px;
+    padding: 5px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border: 1px solid #bbb;
+    border-radius: 20px;
+    background-color: #f8f9fa;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .btn:hover {
+    background-color: #016dff;
+    color: #fff;
+  }
+
+  .disabled {
+    // cursor: default;
+    pointer-events: none;
+    background-color: #ccc;
+    color: #666;
+  }
+
+  .disabled:hover {
+    background-color: #ccc;
+    color: #666;
+  }
+
+  &-cur_page {
+    @extend .btn;
+  }
+
+  &-btn {
+    display: flex;
+
+    &-pre,
+    &-next {
+      @extend .btn;
+    }
+
+    &-pre {
+      margin-right: 20px;
+    }
+
+    &-pre.disabled,
+    &-next.disabled {
+      @extend .disabled;
     }
   }
 }
-</script>
-<style lang="scss">
-
 </style>

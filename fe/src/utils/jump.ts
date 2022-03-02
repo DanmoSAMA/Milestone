@@ -1,8 +1,5 @@
 import router from '../router';
-
-type Query =  {
-  [key: string]: string
-}
+import { Query } from '../models/query'
 
 export default function jump(path: string, query?: Query) {
   if (query) {
