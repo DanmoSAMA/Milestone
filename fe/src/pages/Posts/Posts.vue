@@ -53,7 +53,7 @@ function handlePageNum() {
     }
     curPageNum.value = num;
   } else {
-    alert('页数错误');
+    // 这样可以达到"缺少查询参数，重定向到查询参数为默认值"的效果
     jump('/posts', { page: '0' });
   }
 }
