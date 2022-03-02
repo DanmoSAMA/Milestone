@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
-const Home = () => import('./pages/Home/Home.vue');
 const Posts = () => import('./pages/Posts/Posts.vue');
+const Post = () => import('./pages/Post/Post.vue');
 const Tags = () => import('./pages/Tags/Tags.vue');
 const Search = () => import('./pages/Search/Search.vue');
 const Resume = () => import('./pages/Resume/Resume.vue');
@@ -12,13 +12,17 @@ const NotFound = () => import('./pages/NotFound/NotFound.vue');
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    name: 'home',
-    component: Home,
+    redirect: '/posts',
   },
   {
-    path: '/posts',
+    path: '/posts/',
     name: 'posts',
     component: Posts,
+  },
+  {
+    path: '/post',
+    name: 'post',
+    component: Post,
   },
   {
     path: '/tags',

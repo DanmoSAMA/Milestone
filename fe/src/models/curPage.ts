@@ -1,1 +1,1 @@
-export type curPageType = 'home' | 'tags' | 'search' | 'resume' | 'album' | 'edit';
+export type curPageType = 'post' | 'posts' | 'search' | 'resume' | 'album' | 'edit';

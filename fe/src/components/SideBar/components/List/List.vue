@@ -7,8 +7,8 @@
     <div class="c-sidebar-list-body">
       <div
         class="c-sidebar-list-body-item"
-        :class="{ selected: currentPage === 'home' }"
-        @click="handleClick('home')"
+        :class="{ selected: currentPage === 'posts' }"
+        @click="handleClick('posts')"
       >
         <svg-icon name="shouye" :styleConfig="styleConfig" />
         首页
@@ -75,12 +75,8 @@ const styleConfig = {
 const motto = '用进废退 | 艺不压身';
 
 function handleClick(val: curPageType) {
-  if (val === 'home') {
-    // jump('/', { page: '0' });
-    jump('/');
-  } else {
-    jump(`/${val}`);
-  }
+  if (val === 'posts') jump('/posts', { page: '0' });
+  else jump(`/${val}`);
   currentPage.value = val;
   isEdited.value = false;
 }

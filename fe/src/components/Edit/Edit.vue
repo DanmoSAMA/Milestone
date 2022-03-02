@@ -74,7 +74,7 @@ const sendPostReq = async () => {
     // toggle的逻辑
     if (check) {
       alert('发表成功');
-      jump('/');
+      jump('/posts');
       currentPage.value = 'home';
     }
   } else alert('标题或内容不能为空');
@@ -100,13 +100,11 @@ function toHome() {
     content.value !== ''
   ) {
     if (confirm('内容将不会被保存，确定返回吗')) {
-      // jump('/', { page: '0' });
-      jump('/');
+      jump('/posts', { page: '0'});
       currentPage.value = 'home';
     }
   } else {
-    // jump('/', { page: '0' });
-    jump('/');
+    jump('/posts', { page: '0'});
     currentPage.value = 'home';
   }
 }

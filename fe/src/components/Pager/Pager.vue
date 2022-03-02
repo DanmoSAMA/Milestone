@@ -30,21 +30,24 @@ import jump from '../../utils/jump';
 
 function toPrePage() {
   curPageNum.value--;
-  jump('/', { page: `${curPageNum.value}` });
+  jump('/posts', { page: `${curPageNum.value}` });
 }
 
 function toNextPage() {
   curPageNum.value++;
-  jump('/', { page: `${curPageNum.value}` });
+  jump('/posts', { page: `${curPageNum.value}` });
 }
 </script>
 
 <style lang="scss" scope>
 .c-pager {
+  width: 100%;
+  box-sizing: border-box;
   display: flex;
   justify-content: space-around;
-  margin-top: 50px;
   padding: 20px;
+  position: absolute;
+  bottom: 0;
 
   .btn {
     width: 80px;

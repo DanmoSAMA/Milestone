@@ -9,7 +9,7 @@
         class="app_wrapper-tags-cloud-item"
         v-for="tag in postsStore.tags"
         :key="tag"
-        @click="jump('/', { tag })"
+        @click="jump('/posts', { page: 0, tag })"
       >
         {{ tag }}
       </div>

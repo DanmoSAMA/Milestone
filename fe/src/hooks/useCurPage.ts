@@ -8,8 +8,8 @@ const curType = (
   curLocation.length <= 6
     ? curLocation !== ''
       ? curLocation
-      : 'home'
-    : 'home'
+      : 'posts'
+    : 'posts'
 ) as curPageType;
 
 export const currentPage = ref<curPageType>(curType);
