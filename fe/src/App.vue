@@ -1,7 +1,10 @@
 <template>
   <div class="app_wrapper">
-    <router-view></router-view>
-    <router-view name="main"></router-view>
+    <div class="app_wrapper-body">
+      <router-view></router-view>
+      <router-view name="main"></router-view>
+    </div>
+    <router-view name="footer"></router-view>
   </div>
 </template>
 
@@ -31,8 +34,10 @@ const route = useRoute();
 // }
 
 .app_wrapper {
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
+  &-body {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+  }
 }
 </style>

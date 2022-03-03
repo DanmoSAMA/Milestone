@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
 const SideBar = () => import('./components/SideBar/Sidebar.vue');
+const Footer = () => import('./components/Footer/Footer.vue');
+
 const Posts = () => import('./pages/Posts/Posts.vue');
 const Post = () => import('./pages/Post/Post.vue');
 const Tags = () => import('./pages/Tags/Tags.vue');
@@ -21,6 +23,7 @@ const routes: RouteRecordRaw[] = [
     components: {
       default: SideBar,
       main: Posts,
+      footer: Footer,
     },
   },
   {
@@ -29,6 +32,7 @@ const routes: RouteRecordRaw[] = [
     components: {
       default: SideBar,
       main: Post,
+      footer: Footer,
     },
   },
   {
@@ -37,6 +41,7 @@ const routes: RouteRecordRaw[] = [
     components: {
       default: SideBar,
       main: Tags,
+      footer: Footer,
     },
   },
   {
@@ -45,6 +50,7 @@ const routes: RouteRecordRaw[] = [
     components: {
       default: SideBar,
       main: Search,
+      footer: Footer,
     },
   },
   {
@@ -53,6 +59,7 @@ const routes: RouteRecordRaw[] = [
     components: {
       default: SideBar,
       main: Resume,
+      footer: Footer,
     },
   },
   {
@@ -61,6 +68,7 @@ const routes: RouteRecordRaw[] = [
     components: {
       default: SideBar,
       main: Album,
+      footer: Footer,
     },
   },
   {
@@ -69,6 +77,7 @@ const routes: RouteRecordRaw[] = [
     components: {
       default: SideBar,
       main: Edit,
+      footer: Footer,
     },
   },
   {
