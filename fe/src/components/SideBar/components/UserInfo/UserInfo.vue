@@ -15,7 +15,7 @@
       </div>
       <div class="c-sidebar-userinfo-count-tags">
         <span class="c-sidebar-userinfo-count-tags-count">
-          {{ postsStore.tags.length }}  
+          {{ postsStore.tags.length }}
         </span>
         <span class="c-sidebar-userinfo-count-tags-title"> 标签 </span>
       </div>
@@ -27,10 +27,14 @@
 <script setup lang="ts">
 import { usePosts } from '../../../../pinia/posts';
 import { ref } from 'vue';
+import { currentPage } from '../../../../hooks/useCurPage';
 
 const postsStore = usePosts();
-postsStore.setPosts();
 
+// 避免重复请求，导致request.ts抛出错误
+if (currentPage.value !== 'posts') {
+  postsStore.setPosts();
+}
 </script>
 
 <style lang="scss">

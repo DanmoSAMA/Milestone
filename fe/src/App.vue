@@ -1,26 +1,18 @@
 <template>
   <div class="app_wrapper">
-    <SideBar v-show="showSideBar" />
-    <!--必须添加:key="route.query"，否则由于vue做最小更新，改变query时候页面不发生改变-->
-    <router-view :key="route.query"></router-view>
+    <router-view></router-view>
+    <router-view name="main"></router-view>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
-import { computed } from 'vue';
-import SideBar from './components/SideBar/SideBar.vue';
 
 import hljs from 'highlight.js';
 import 'highlight.js/styles/atom-one-dark.css';
 import './styles/index.css';
 
 const route = useRoute();
-const showSideBar = computed(() => {
-  // 加入undefined是防止刷新时页面闪动
-  // 因为刚刷新的时候route.name === undefined，迅速改变为404，页面会闪一下
-  return !(route.name === '404' || route.name === undefined);
-});
 </script>
 
 <style lang="scss">

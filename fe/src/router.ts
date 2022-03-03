@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
+const SideBar = () => import('./components/SideBar/Sidebar.vue');
 const Posts = () => import('./pages/Posts/Posts.vue');
 const Post = () => import('./pages/Post/Post.vue');
 const Tags = () => import('./pages/Tags/Tags.vue');
@@ -17,37 +18,58 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/posts/',
     name: 'posts',
-    component: Posts,
+    components: {
+      default: SideBar,
+      main: Posts,
+    },
   },
   {
     path: '/post',
     name: 'post',
-    component: Post,
+    components: {
+      default: SideBar,
+      main: Post,
+    },
   },
   {
     path: '/tags',
     name: 'tags',
-    component: Tags,
+    components: {
+      default: SideBar,
+      main: Tags,
+    },
   },
   {
     path: '/search',
     name: 'search',
-    component: Search,
+    components: {
+      default: SideBar,
+      main: Search,
+    },
   },
   {
     path: '/resume',
     name: 'resume',
-    component: Resume,
+    components: {
+      default: SideBar,
+      main: Resume,
+    },
   },
   {
     path: '/album',
     name: 'album',
-    component: Album,
+    components: {
+      default: SideBar,
+      main: Album,
+    },
   },
   {
     path: '/edit',
     name: 'edit',
-    component: Edit,
+    components: {
+      default: SideBar,
+      main: Edit,
+    },
   },
   {
     path: '/404',
