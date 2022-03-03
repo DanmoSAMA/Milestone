@@ -1,6 +1,8 @@
 <template>
   <div class="c-pager">
-    <div class="c-pager-cur_page">第{{ curPageNum }}页</div>
+    <div class="c-pager-cur_page" @click="jump('/posts', { page: '0' })">
+      第{{ curPageNum }}页
+    </div>
     <div class="c-pager-btn">
       <div
         :class="

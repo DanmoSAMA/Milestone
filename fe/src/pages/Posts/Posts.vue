@@ -59,6 +59,7 @@ function handlePageNum() {
 }
 
 // 虽然在sideBar请求了一次，但是为了发/删文章跳过来能直接看到更新，这里得再请求一次
+// 这里可以优化，设置某变量，通过watch使得sidebar那边重新请求数据...Todo
 postsStore.setPosts().then(() => {
   handlePosts();
   handlePageNum();
