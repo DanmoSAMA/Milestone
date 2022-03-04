@@ -27,13 +27,19 @@ const postsStore = usePosts();
 const filteredPosts = ref<GetPostsResData>([]);
 const pagedPosts = ref<GetPostsResData>([]);
 
-const tag = getQuery().tag;
-const page = getQuery().page;
+const tag = getQuery().tag as string;
+const page = getQuery().page as string;
+const kw = getQuery().kw as string;
 
 function handlePosts() {
   // 根据query中的tag参数，筛选页面上的文章；如无tag，则不筛选
   filteredPosts.value = tag
     ? postsStore.posts.filter((item) => item.tags.find((item) => item === tag))
+    : postsStore.posts;
+
+  // 根据query中的kw参数，再次进行筛选
+  filteredPosts.value = kw
+    ? postsStore.posts.filter((item) => item.title.indexOf(kw) !== -1)
     : postsStore.posts;
 
   pagedPosts.value = filteredPosts.value.slice(
@@ -47,11 +53,12 @@ function handlePageNum() {
 
   if (page !== undefined) {
     const num = parseInt(page as string);
-    if (num < 0 || num > totalPageNum.value - 1) {
+    if (num === 0 && totalPageNum.value === 0) {
+      // 做一个动画提示"无内容" Todo...
+    } else if (num < 0 || num > totalPageNum.value - 1) {
       alert('页数错误');
       jump('/posts', { page: '0' });
     }
-    curPageNum.value = num;
   } else {
     // 这样可以达到"缺少查询参数，重定向到查询参数为默认值"的效果
     jump('/posts', { page: '0' });

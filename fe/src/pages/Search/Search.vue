@@ -1,11 +1,14 @@
 <template>
   <div class="app_wrapper-search">
     <div class="app_wrapper-search-title">搜索</div>
-    <div class="app_wrapper-search-hint">
-      支持正则表达式
-    </div>
+    <div class="app_wrapper-search-hint">支持搜索标题</div>
     <div class="app_wrapper-search-input_wrapper">
-      <input type="text" class="app_wrapper-search-input_wrapper-input" />
+      <input
+        type="text"
+        class="app_wrapper-search-input_wrapper-input"
+        @keyup.enter="search(searchStr)"
+        v-model="searchStr"
+      />
       <svg-icon
         name="sousuo"
         :styleConfig="{
@@ -14,12 +17,22 @@
           right: '20px',
           cursor: 'pointer',
         }"
+        @click="search(searchStr)"
       />
     </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from 'vue';
+import jump from '../../utils/jump';
+
+const searchStr = ref('');
+
+function search(searchStr) {
+  jump('/posts', { page: '0', kw: searchStr });
+}
+</script>
 
 <style lang="scss">
 .app_wrapper-search {
@@ -54,7 +67,7 @@
       width: 400px;
       height: 50px;
       line-height: 50px;
-      background-color: #F8F9FA;
+      background-color: #f8f9fa;
       padding: 0 50px 0 15px;
       border-radius: 25px;
     }

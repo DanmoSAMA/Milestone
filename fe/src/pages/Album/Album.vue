@@ -1,7 +1,9 @@
 <template>
   <div class="app_wrapper-album">
     <div class="app_wrapper-album-title">相册</div>
-    <div class="app_wrapper-album-body"></div>
+    <div class="app_wrapper-album-body">
+
+    </div>
   </div>
 </template>
 
