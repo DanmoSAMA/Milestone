@@ -6,6 +6,9 @@
         src="../../../../assets/images/avatar.jpg"
       />
     </div>
+    <div class="c-sidebar-userinfo-name">
+      Danmoits
+    </div>
     <div class="c-sidebar-userinfo-count">
       <div class="c-sidebar-userinfo-count-posts">
         <span class="c-sidebar-userinfo-count-posts-count">
@@ -64,6 +67,13 @@ if (currentPage.value !== 'posts') {
       left: -10px;
       top: 0;
     }
+  }
+
+  &-name {
+    height: 30px;
+    line-height: 30px;
+    margin-top: 10px;
+    font-size: 18px;
   }
 
   &-count {
