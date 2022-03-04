@@ -60,10 +60,8 @@ const styleConfig = {
 const motto = '用进废退 | 艺不压身';
 
 function handleClick(val: curPageType) {
-  if (val === 'posts') {
-    curPageNum.value = 0;
-    jump('/posts', { page: '0' });
-  } else jump(`/${val}`);
+  if (val === 'posts') jump('/posts', { page: '0' });
+  else jump(`/${val}`);
   currentPage.value = val;
   isEdited.value = false;
 }

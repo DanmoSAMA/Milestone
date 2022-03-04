@@ -6,7 +6,8 @@
       :key="item._id"
       :id="item._id"
     />
-    <Pager />
+    <NoPosts v-show="noPosts" />
+    <Pager v-show="!noPosts" />
   </div>
 </template>
 
@@ -18,6 +19,7 @@ import { curPageNum, eachPagePostNum, totalPageNum } from '../../hooks/usePage';
 
 import Pager from '../../components/Pager/Pager.vue';
 import Post from './components/Post/Post.vue';
+import NoPosts from './components/NoPosts/NoPosts.vue';
 
 import getQuery from '../../utils/getQuery';
 import jump from '../../utils/jump';
@@ -26,10 +28,11 @@ const postsStore = usePosts();
 
 const filteredPosts = ref<GetPostsResData>([]);
 const pagedPosts = ref<GetPostsResData>([]);
+const noPosts = ref(false);
 
 const tag = getQuery().tag as string;
 const page = getQuery().page as string;
-const kw = getQuery().kw as string;
+const kw = getQuery().kw ? getQuery().kw as string : ''
 
 function handlePosts() {
   // 根据query中的tag参数，筛选页面上的文章；如无tag，则不筛选
@@ -38,7 +41,7 @@ function handlePosts() {
     : postsStore.posts;
 
   // 根据query中的kw参数，再次进行筛选
-  filteredPosts.value = kw
+  filteredPosts.value = kw !== ''
     ? postsStore.posts.filter((item) => item.title.indexOf(kw) !== -1)
     : postsStore.posts;
 
@@ -54,7 +57,7 @@ function handlePageNum() {
   if (page !== undefined) {
     const num = parseInt(page as string);
     if (num === 0 && totalPageNum.value === 0) {
-      // 做一个动画提示"无内容" Todo...
+      noPosts.value = true;
     } else if (num < 0 || num > totalPageNum.value - 1) {
       alert('页数错误');
       jump('/posts', { page: '0' });

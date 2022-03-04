@@ -25,11 +25,13 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { currentPage } from '../../hooks/useCurPage';
 import jump from '../../utils/jump';
 
 const searchStr = ref('');
 
 function search(searchStr) {
+  currentPage.value = 'posts';
   jump('/posts', { page: '0', kw: searchStr });
 }
 </script>
