@@ -29,22 +29,6 @@
         <svg-icon name="sousuo" :styleConfig="styleConfig" />
         搜索
       </div>
-      <div
-        class="c-sidebar-list-body-item"
-        :class="{ selected: currentPage === 'resume' }"
-        @click="handleClick('resume')"
-      >
-        <svg-icon name="jianli" :styleConfig="styleConfig" />
-        简历
-      </div>
-      <div
-        class="c-sidebar-list-body-item"
-        :class="{ selected: currentPage === 'album' }"
-        @click="handleClick('album')"
-      >
-        <svg-icon name="tupian" :styleConfig="styleConfig" />
-        相册
-      </div>
       <hr class="c-sidebar-list-body-hr" />
       <div
         class="c-sidebar-list-body-item"

@@ -38,6 +38,7 @@ const route = useRoute();
     display: flex;
     justify-content: center;
     margin: 0 auto;
+    min-height: 630px;
   }
 }
 </style>
