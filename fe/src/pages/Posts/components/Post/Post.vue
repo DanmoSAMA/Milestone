@@ -11,7 +11,10 @@
         class="app_wrapper-home-posts-post-tags-item"
         v-for="tag in tags"
         :key="tag"
-        @click="jump('/posts', { page: 0, tag })"
+        @click="
+          jump('/posts', { page: 0, tag });
+          tagParam = tag;
+        "
       >
         {{ tag }}
       </div>
@@ -20,6 +23,7 @@
 </template>
 
 <script setup lang="ts">
+import { tag as tagParam } from '../../../../hooks/useTag';
 import jump from '../../../../utils/jump';
 
 const props = defineProps({

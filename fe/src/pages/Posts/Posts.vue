@@ -16,6 +16,8 @@ import { ref, Ref, watch } from 'vue';
 import { GetPostsResData } from '../../../shared/http/post';
 import { usePosts } from '../../pinia/posts';
 import { curPageNum, eachPagePostNum, totalPageNum } from '../../hooks/usePage';
+import { tag } from '../../hooks/useTag';
+import { kw } from '../../hooks/useKw';
 
 import Pager from '../../components/Pager/Pager.vue';
 import Post from './components/Post/Post.vue';
@@ -30,20 +32,24 @@ const filteredPosts = ref<GetPostsResData>([]);
 const pagedPosts = ref<GetPostsResData>([]);
 const noPosts = ref(false);
 
-const tag = getQuery().tag as string;
-const page = getQuery().page as string;
-const kw = getQuery().kw ? getQuery().kw as string : ''
+// 此处是为了避免刷新丢掉现在的状态
+curPageNum.value = parseInt(getQuery().page as string);
+tag.value = getQuery().tag ? (getQuery().tag as string) : '';
+kw.value = getQuery().kw ? (getQuery().kw as string) : '';
 
 function handlePosts() {
   // 根据query中的tag参数，筛选页面上的文章；如无tag，则不筛选
-  filteredPosts.value = tag
-    ? postsStore.posts.filter((item) => item.tags.find((item) => item === tag))
-    : postsStore.posts;
+  filteredPosts.value =
+    tag.value !== ''
+      ? postsStore.posts.filter((item) =>
+          item.tags.find((item) => item === tag.value)
+        )
+      : postsStore.posts;
 
   // 根据query中的kw参数，再次进行筛选
-  filteredPosts.value = kw !== ''
-    ? postsStore.posts.filter((item) => item.title.indexOf(kw) !== -1)
-    : postsStore.posts;
+  filteredPosts.value = kw
+    ? filteredPosts.value.filter((item) => item.title.indexOf(kw.value) !== -1)
+    : filteredPosts.value;
 
   pagedPosts.value = filteredPosts.value.slice(
     curPageNum.value * eachPagePostNum,
@@ -54,11 +60,13 @@ function handlePosts() {
 function handlePageNum() {
   totalPageNum.value = Math.ceil(filteredPosts.value.length / eachPagePostNum);
 
-  if (page !== undefined) {
-    const num = parseInt(page as string);
-    if (num === 0 && totalPageNum.value === 0) {
+  if (curPageNum.value !== Number.MAX_VALUE) {
+    if (curPageNum.value === 0 && totalPageNum.value === 0) {
       noPosts.value = true;
-    } else if (num < 0 || num > totalPageNum.value - 1) {
+    } else if (
+      curPageNum.value < 0 ||
+      curPageNum.value > totalPageNum.value - 1
+    ) {
       alert('页数错误');
       jump('/posts', { page: '0' });
     }
@@ -81,6 +89,16 @@ watch(curPageNum, () => {
     curPageNum.value * eachPagePostNum,
     (curPageNum.value + 1) * eachPagePostNum
   );
+});
+
+// 当tag改变时，重新生成posts
+watch(tag, () => {
+  handlePosts();
+});
+
+// 当kw改变时，重新生成posts
+watch(kw, () => {
+  handlePosts();
 });
 </script>
 

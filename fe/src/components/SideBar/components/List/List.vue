@@ -47,6 +47,8 @@ import { currentPage } from '../../../../hooks/useCurPage';
 import { curPageNum } from '../../../../hooks/usePage';
 import { curPageType } from '../../../../models/curPage';
 import { isEdited } from '../../../../hooks/useIsEdited';
+import { tag } from '../../../../hooks/useTag';
+import { kw } from '../../../../hooks/useKw';
 
 import jump from '../../../../utils/jump';
 
@@ -60,10 +62,13 @@ const styleConfig = {
 const motto = '用进废退 | 艺不压身';
 
 function handleClick(val: curPageType) {
-  if (val === 'posts') jump('/posts', { page: '0' });
-  else jump(`/${val}`);
   currentPage.value = val;
   isEdited.value = false;
+  tag.value = '';
+  kw.value = '';
+
+  if (val === 'posts') jump('/posts', { page: '0' });
+  else jump(`/${val}`);
 }
 </script>
 

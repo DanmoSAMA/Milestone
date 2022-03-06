@@ -9,7 +9,7 @@
         class="app_wrapper-tags-cloud-item"
         v-for="tag in postsStore.tags"
         :key="tag"
-        @click="jump('/posts', { page: 0, tag })"
+        @click="handleClick(tag)"
       >
         {{ tag }}
       </div>
@@ -21,8 +21,14 @@
 // 向后端请求，拿到所有标签
 import jump from '../../utils/jump';
 import { usePosts } from '../../pinia/posts';
+import { currentPage } from '../../hooks/useCurPage';
 
 const postsStore = usePosts();
+
+function handleClick(tag: string) {
+  currentPage.value = 'posts';
+  jump('/posts', { page: '0', tag });
+}
 </script>
 
 <style lang="scss">
