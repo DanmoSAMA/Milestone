@@ -209,4 +209,28 @@ function toPost() {
     }
   }
 }
+
+@media only screen and (max-width: 460px) {
+  .c-edit {
+    &-body {
+      &-btn {
+        &-create,
+        &-update,
+        &-return {
+          text-align: center;
+          margin-top: 20px;
+          height: 30px;
+          line-height: 30px;
+          width: 80px;
+          font-size: 13px;
+        }
+
+        &-create,
+        &-update {
+          margin-right: 40px;
+        }
+      }
+    }
+  }
+}
 </style>

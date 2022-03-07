@@ -12,7 +12,7 @@
       :key="tag"
       @click="
         () => {
-          if (props.chosenTags.find(item => item === tag)) return;
+          if (props.chosenTags.find((item) => item === tag)) return;
           props.chosenTags.push(tag);
         }
       "
@@ -48,7 +48,7 @@ const tags = [
 
 <style lang="scss">
 .app_wrapper-edit-body-tags-add-dropdown {
-  width: 430px;
+  width: 390px;
   padding: 15px;
   box-sizing: border-box;
   background-color: #fff;
@@ -81,5 +81,19 @@ const tags = [
 
 .app_wrapper-edit-body-tags-add-dropdown.visible {
   display: flex;
+}
+
+@media only screen and (max-width: 460px) {
+  .app_wrapper-edit-body-tags-add-dropdown {
+    width: 270px;
+    top: 38px;
+
+    &-item {
+      font-size: 12px;
+      height: 18px;
+      line-height: 18px;
+      margin: 4px;
+    }
+  }
 }
 </style>

@@ -1,14 +1,6 @@
 <template>
   <div class="app_wrapper-edit-body-tags">
     <div
-      class="app_wrapper-edit-body-tags-item"
-      v-for="(tag, index) in chosenTags"
-      :key="tag"
-      @click="() => {chosenTags.splice(index, 1)}"
-    >
-      {{ `${tag} ×` }}
-    </div>
-    <div
       class="app_wrapper-edit-body-tags-add"
       @click="
         (e) => {
@@ -25,6 +17,18 @@
       </span>
       <Dropdown :showDropdown="showDropdown" :chosenTags="chosenTags" />
     </div>
+    <div
+      class="app_wrapper-edit-body-tags-item"
+      v-for="(tag, index) in chosenTags"
+      :key="tag"
+      @click="
+        () => {
+          chosenTags.splice(index, 1);
+        }
+      "
+    >
+      {{ `${tag} ×` }}
+    </div>
   </div>
 </template>
 
@@ -36,10 +40,9 @@ const props = defineProps({
   chosenTags: Array,
 });
 
-const { chosenTags } = props
+const { chosenTags } = props;
 
 const { showDropdown, setShowDropdown } = useShowDropdown();
-
 </script>
 
 <style lang="scss">
@@ -56,15 +59,19 @@ const { showDropdown, setShowDropdown } = useShowDropdown();
   transition: 0.3s all;
   display: inline-block;
   margin-right: 10px;
+  margin-bottom: 10px;
+  white-space: nowrap;
 }
 
 .app_wrapper-edit-body-tags {
-  height: 60px;
   width: 100%;
   display: flex;
   justify-content: start;
   align-items: center;
   color: $tag-bg-on;
+  flex-wrap: wrap;
+  padding: 10px;
+  padding-bottom: 0;
 
   &-add {
     position: relative;
@@ -81,6 +88,15 @@ const { showDropdown, setShowDropdown } = useShowDropdown();
 
   &-item {
     @extend .app_wrapper-edit-body-tags-tag;
+  }
+}
+
+@media only screen and (max-width: 460px) {
+  .app_wrapper-edit-body-tags-tag {
+    height: 20px;
+    line-height: 20px;
+    font-size: 13px;
+    border-radius: 2px;
   }
 }
 </style>
