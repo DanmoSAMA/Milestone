@@ -99,11 +99,13 @@ watch(curPageNum, () => {
 // 当tag改变时，重新生成posts
 watch(tag, () => {
   handlePosts();
+  totalPageNum.value = Math.ceil(filteredPosts.value.length / eachPagePostNum);
 });
 
 // 当kw改变时，重新生成posts
 watch(kw, () => {
   handlePosts();
+  totalPageNum.value = Math.ceil(filteredPosts.value.length / eachPagePostNum);
 });
 </script>
 
