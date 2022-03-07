@@ -8,6 +8,7 @@ const Post = () => import('./pages/Post/Post.vue');
 const Tags = () => import('./pages/Tags/Tags.vue');
 const Search = () => import('./pages/Search/Search.vue');
 const Edit = () => import('./pages/Edit/Edit.vue');
+const Login = () => import('./pages/Login/Login.vue');
 const NotFound = () => import('./pages/NotFound/NotFound.vue');
 
 const routes: RouteRecordRaw[] = [
@@ -59,6 +60,11 @@ const routes: RouteRecordRaw[] = [
       main: Edit,
       footer: Footer,
     },
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login,
   },
   {
     path: '/404',

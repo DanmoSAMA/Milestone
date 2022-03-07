@@ -39,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, Ref } from 'vue';
+import { ref, Ref, onMounted } from 'vue';
 import { addPost } from '../../network/post/addPost';
 import { currentPage } from '../../hooks/useCurPage';
 import { isEdited, setIsEdited } from '../../hooks/useIsEdited';
@@ -47,6 +47,15 @@ import { updatePost as updatePostReq } from '../../network/post/updatePost';
 
 import jump from '../../utils/jump';
 import Tags from './components/Tags/Tags.vue';
+
+import { getToken } from '../../utils/token';
+
+onMounted(() => {
+  if (!getToken()) {
+    alert('请先登陆');
+    jump('/login');
+  }
+});
 
 const props = defineProps({
   defaultTitle: String,
@@ -70,12 +79,14 @@ const sendPostReq = async () => {
     tags: chosenTags.value,
   };
   if (title.value.length && content.value.length) {
+    // 登陆相关逻辑
+
     const check = await addPost(data);
     // toggle的逻辑
     if (check) {
       alert('发表成功');
       jump('/posts', { page: '0' });
-      currentPage.value = 'home';
+      currentPage.value = 'posts';
     }
   } else alert('标题或内容不能为空');
 };
@@ -101,11 +112,11 @@ function toHome() {
   ) {
     if (confirm('内容将不会被保存，确定返回吗')) {
       jump('/posts', { page: '0' });
-      currentPage.value = 'home';
+      currentPage.value = 'posts';
     }
   } else {
     jump('/posts', { page: '0' });
-    currentPage.value = 'home';
+    currentPage.value = 'posts';
   }
 }
 

@@ -1,6 +1,7 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { HttpRes } from '../../shared/http';
 import { BE_DOMAIN } from '../constants/domain';
+import { clearToken, getToken } from "../utils/token";
 
 // 记录对哪些url的请求正在进行中, 若上一次请求未完成则不进行下一次请求
 const requestSet = new Set<string>();
@@ -31,7 +32,20 @@ export async function request<T>(
       timeout: 60000,
     });
 
-    // 暂时不使用拦截器 interceptors
+    // 添加请求拦截器
+    instance.interceptors.request.use(
+      // 在发送请求之前做些什么
+      (config) => {
+        const token = getToken();
+        if (token) config.headers.Authorization = token.value;
+        return config;
+      },
+      // 对请求错误做些什么
+      (err) => {
+        console.error(err);
+        return err;
+      }
+    );
 
     return new Promise<HttpRes<T | null>>((resolve, reject) => {
       instance(config)
