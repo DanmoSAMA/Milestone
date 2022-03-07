@@ -1,14 +1,11 @@
 <template>
-  <div class="app_wrapper-home-posts-post">
-    <div
-      class="app_wrapper-home-posts-post-title"
-      @click="jump('/post', { id })"
-    >
+  <div class="app_wrapper-posts-post">
+    <div class="app_wrapper-posts-post-title" @click="jump('/post', { id })">
       {{ title }}
     </div>
-    <div class="app_wrapper-home-posts-post-tags">
+    <div class="app_wrapper-posts-post-tags">
       <div
-        class="app_wrapper-home-posts-post-tags-item"
+        class="app_wrapper-posts-post-tags-item"
         v-for="tag in tags"
         :key="tag"
         @click="
@@ -44,21 +41,22 @@ const { title, tags } = props.post;
 <style lang="scss">
 @import '../../../../styles/color-var.scss';
 
-.app_wrapper-home-posts-post {
-  height: 150px;
+.app_wrapper-posts-post {
+  height: 165px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   // border-bottom: 1px solid #e5e6ea;
   position: relative;
+  padding: 10px;
 
   &-title {
     font-size: 30px;
     text-align: center;
     cursor: pointer;
     transition: all 0.3s;
-    max-width: 550px;
+    max-width: 650px;
     padding: 10px 25px;
     position: relative;
     overflow: hidden;
@@ -123,6 +121,7 @@ const { title, tags } = props.post;
       padding: 0 8px;
       border-radius: 3px;
       transition: all 0.3s;
+      white-space: nowrap;
     }
 
     &-item:hover {
@@ -132,12 +131,41 @@ const { title, tags } = props.post;
   }
 }
 
-.app_wrapper-home-posts-post::after {
+.app_wrapper-posts-post::after {
   content: '';
   position: absolute;
   width: 50px;
   height: 1px;
   background-color: #e5e6ea;
   bottom: 0;
+}
+
+@media only screen and (max-width: 760px) {
+  .app_wrapper-posts-post {
+
+    &-tags {
+      &-item {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 460px) {
+  .app_wrapper-posts-post {
+    height: 135px;
+
+    &-title {
+      font-size: 22px;
+      padding: 8px 15px;
+    }
+
+    &-tags {
+      &-item {
+        font-size: 12px;
+        letter-spacing: 0;
+      }
+    }
+  }
 }
 </style>

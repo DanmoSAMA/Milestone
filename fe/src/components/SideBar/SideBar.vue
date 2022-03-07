@@ -6,9 +6,8 @@
 </template>
 
 <script setup lang="ts">
-import List from './components/List/List.vue'
-import UserInfo from './components/UserInfo/UserInfo.vue'
-
+import List from './components/List/List.vue';
+import UserInfo from './components/UserInfo/UserInfo.vue';
 </script>
 
 <style lang="scss">
@@ -20,5 +19,10 @@ import UserInfo from './components/UserInfo/UserInfo.vue'
   // 该值待定
   max-height: 1000vh;
   position: relative;
+}
+@media only screen and (max-width: 760px) {
+  .c-sidebar {
+    display: none;
+  }
 }
 </style>

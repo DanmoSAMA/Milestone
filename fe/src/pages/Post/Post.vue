@@ -93,7 +93,7 @@ async function handleDel() {
 
   &-main {
     &-title {
-      font-size: 55px;
+      font-size: 45px;
       text-align: center;
     }
 
@@ -111,6 +111,7 @@ async function handleDel() {
         padding: 0 8px;
         border-radius: 3px;
         transition: all 0.3s;
+        white-space: nowrap;
       }
 
       &-item:hover {
@@ -149,6 +150,57 @@ async function handleDel() {
       &-delete:hover {
         background-color: #016dff;
         color: #fff;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 760px) {
+  .app_wrapper-post {
+    &-main {
+      &-title {
+        font-size: 40px;
+      }
+      &-tags {
+        &-item {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 460px) {
+  .app_wrapper-post {
+    padding: 10px;
+
+    &-main {
+      &-title {
+        font-size: 30px;
+      }
+
+      &-tags {
+        &-item {
+          font-size: 12px;
+          letter-spacing: 0;
+          height: 20px;
+          line-height: 20px;
+        }
+      }
+
+      &-btn {
+        &-edit,
+        &-delete {
+          width: 80px;
+          height: 25px;
+          line-height: 25px;
+          border-radius: 12.5px;
+          font-size: 14px;
+        }
+
+        &-edit {
+          margin-right: 40px;
+        }
       }
     }
   }

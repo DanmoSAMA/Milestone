@@ -35,4 +35,20 @@
     }
   }
 }
+
+@media only screen and (max-width: 760px) {
+  .c-footer {
+    &-inner {
+      padding-left: 0;
+    }
+  }
+}
+
+@media only screen and (max-width: 460px) {
+  .c-footer {
+    &-inner {
+      font-size: 14px;
+    }
+  }
+}
 </style>

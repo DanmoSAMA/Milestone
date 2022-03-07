@@ -62,7 +62,7 @@ function search(searchStr) {
 
   &-input_wrapper {
     height: 160px;
-    width: 70%;
+    width: 75%;
     position: relative;
     display: flex;
     justify-content: center;
@@ -78,6 +78,14 @@ function search(searchStr) {
       background-color: $form-bg;
       padding: 0 8% 0 15px;
       border-radius: 25px;
+    }
+  }
+}
+
+@media only screen and (max-width: 760px) {
+  .app_wrapper-search {
+    &-input_wrapper {
+      width: 90%;
     }
   }
 }

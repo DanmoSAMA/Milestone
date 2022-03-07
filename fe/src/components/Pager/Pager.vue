@@ -42,7 +42,7 @@ function toNextPage() {
 </script>
 
 <style lang="scss" scope>
-@import '../../styles/color-var.scss'; 
+@import '../../styles/color-var.scss';
 
 .c-pager {
   width: 100%;
@@ -102,6 +102,23 @@ function toNextPage() {
     &-pre.disabled,
     &-next.disabled {
       @extend .disabled;
+    }
+  }
+}
+
+@media only screen and (max-width: 460px) {
+  .c-pager {
+    .btn {
+      width: 60px;
+      height: 20px;
+      line-height: 20px;
+      font-size: 14px;
+    }
+
+    &-btn {
+      &-pre {
+        margin-right: 5px;
+      }
     }
   }
 }

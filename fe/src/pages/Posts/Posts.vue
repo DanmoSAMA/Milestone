@@ -1,5 +1,5 @@
 <template>
-  <div class="app_wrapper-home">
+  <div class="app_wrapper-posts">
     <Post
       v-for="item in pagedPosts"
       :post="item"
@@ -110,7 +110,7 @@ watch(kw, () => {
 </script>
 
 <style lang="scss">
-.app_wrapper-home {
+.app_wrapper-posts {
   width: 850px;
   background-color: #fff;
   position: relative;

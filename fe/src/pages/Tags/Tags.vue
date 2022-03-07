@@ -70,4 +70,16 @@ function handleClick(tag: string) {
     }
   }
 }
+
+@media only screen and (max-width: 460px) { 
+  .app_wrapper-tags {
+    &-cloud {
+      line-height: 25px;
+
+      &-item {
+        font-size: 18px;
+      }
+    }
+  }
+}
 </style>
