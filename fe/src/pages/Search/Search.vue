@@ -14,7 +14,7 @@
         :styleConfig="{
           fontSize: '20px',
           position: 'absolute',
-          right: '20px',
+          right: '6%',
           cursor: 'pointer',
         }"
         @click="search(searchStr)"
@@ -32,7 +32,11 @@ const searchStr = ref('');
 
 function search(searchStr) {
   currentPage.value = 'posts';
-  jump('/posts', { page: '0', kw: searchStr });
+  if (searchStr) {
+    jump('/posts', { page: '0', kw: searchStr });
+  } else {
+    alert('搜索内容不能为空');
+  }
 }
 </script>
 
@@ -56,7 +60,7 @@ function search(searchStr) {
 
   &-input_wrapper {
     height: 160px;
-    width: 467px;
+    width: 70%;
     position: relative;
     display: flex;
     justify-content: center;
@@ -66,11 +70,11 @@ function search(searchStr) {
     &-input {
       outline: none;
       border: 1px solid #bbb;
-      width: 400px;
+      width: 80%;
       height: 50px;
       line-height: 50px;
       background-color: #f8f9fa;
-      padding: 0 50px 0 15px;
+      padding: 0 8% 0 15px;
       border-radius: 25px;
     }
   }
