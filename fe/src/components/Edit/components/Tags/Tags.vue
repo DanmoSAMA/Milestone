@@ -43,10 +43,12 @@ const { showDropdown, setShowDropdown } = useShowDropdown();
 </script>
 
 <style lang="scss">
+@import '../../../../styles/color-var.scss';
+
 .app_wrapper-edit-body-tags-tag {
   height: 25px;
   line-height: 25px;
-  border: 1px solid #6c757d;
+  border: 1px solid $tag-bg-on;
   padding: 3px 8px;
   font-size: 14px;
   border-radius: 3px;
@@ -62,7 +64,7 @@ const { showDropdown, setShowDropdown } = useShowDropdown();
   display: flex;
   justify-content: start;
   align-items: center;
-  color: #6c757d;
+  color: $tag-bg-on;
 
   &-add {
     position: relative;
@@ -72,7 +74,7 @@ const { showDropdown, setShowDropdown } = useShowDropdown();
     }
 
     &-btn:hover {
-      background-color: #6c757d;
+      background-color: $tag-bg-on;
       color: #fff;
     }
   }

@@ -137,6 +137,8 @@ function toPost() {
 </script>
 
 <style lang="scss">
+@import '../../styles/color-var.scss';
+
 .c-edit {
   &-title {
     font-size: 24px;
@@ -157,7 +159,7 @@ function toPost() {
       font-family: 'Times New Roman', Times, serif;
       width: 100%;
       border-radius: 3px;
-      background-color: #f8f9fa;
+      background-color: $form-bg;
       box-sizing: border-box;
     }
 
@@ -188,7 +190,7 @@ function toPost() {
         width: 120px;
         border: 1px solid #bbb;
         border-radius: 18px;
-        background-color: #f8f9fa;
+        background-color: $form-bg;
         cursor: pointer;
         transition: all 0.3s;
       }
@@ -201,7 +203,7 @@ function toPost() {
       &-create:hover,
       &-update:hover,
       &-return:hover {
-        background-color: #016dff;
+        background-color: $btn-bg-on;
         color: #fff;
       }
     }

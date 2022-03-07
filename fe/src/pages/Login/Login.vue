@@ -30,6 +30,8 @@ function handleLogin(pswd: string) {
 </script>
 
 <style lang="scss">
+@import '../../styles/color-var.scss';
+
 .app_wrapper-login {
   width: 400px;
   height: 200px;
@@ -69,7 +71,7 @@ function handleLogin(pswd: string) {
   }
 
   &-btn:hover {
-    background-color: #016dff;
+    background-color: $btn-bg-on;
     color: #fff;
   }
 }

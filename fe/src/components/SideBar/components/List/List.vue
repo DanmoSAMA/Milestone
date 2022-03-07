@@ -73,6 +73,8 @@ function handleClick(val: curPageType) {
 </script>
 
 <style lang="scss">
+@import '../../../../styles/color-var.scss';
+
 .c-sidebar-list {
   // border: 1px solid #F6F7F9;
   margin-bottom: 12px;
@@ -119,11 +121,11 @@ function handleClick(val: curPageType) {
     }
 
     &-item:hover {
-      background-color: #f5f5f5;
+      background-color: $sidebar-bg-on;
     }
 
     &-item.selected {
-      background-color: #f5f5f5;
+      background-color: $sidebar-bg-on;
     }
   }
 }

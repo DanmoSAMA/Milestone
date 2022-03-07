@@ -42,6 +42,8 @@ function toNextPage() {
 </script>
 
 <style lang="scss" scope>
+@import '../../styles/color-var.scss'; 
+
 .c-pager {
   width: 100%;
   box-sizing: border-box;
@@ -65,7 +67,7 @@ function toNextPage() {
   }
 
   .btn:hover {
-    background-color: #016dff;
+    background-color: $btn-bg-on;
     color: #fff;
   }
 

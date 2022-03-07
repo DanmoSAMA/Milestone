@@ -42,6 +42,8 @@ const { title, tags } = props.post;
 </script>
 
 <style lang="scss">
+@import '../../../../styles/color-var.scss';
+
 .app_wrapper-home-posts-post {
   height: 150px;
   display: flex;
@@ -116,15 +118,15 @@ const { title, tags } = props.post;
       height: 25px;
       line-height: 25px;
       margin-right: 10px;
-      border: 1px solid #6c757d;
-      color: #6c757d;
+      border: 1px solid $tag-bg-on;
+      color: $tag-bg-on;
       padding: 0 8px;
       border-radius: 3px;
       transition: all 0.3s;
     }
 
     &-item:hover {
-      background-color: #6c757d;
+      background-color: $tag-bg-on;
       color: #fff;
     }
   }

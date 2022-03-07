@@ -1,5 +1,7 @@
+@import './color-var.scss';
+
 body {
-  background-color: #F6F7F9;
+  background-color: $primary;
 }
 
 h1,
@@ -57,7 +59,7 @@ h5 {
   font-size: 18px;
 }
 a {
-  color: #61bfc1;
+  color: $md-a;
   margin: 0;
   padding: 0;
   text-decoration: none;
@@ -67,10 +69,10 @@ a:hover {
   text-decoration: underline;
 }
 strong {
-  color: #016dff;
+  color: $md-strong;
 }
 a:visited {
-  color: #466b6c;
+  color: $md-a-visited;
 }
 ul,
 ol {

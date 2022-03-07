@@ -34,8 +34,11 @@ const noPosts = ref(false);
 
 // 此处是为了避免刷新丢掉现在的状态
 curPageNum.value = getQuery().page
-  ? parseInt(getQuery().page as string)
+  ? !isNaN(parseInt(getQuery().page as string))
+    ? parseInt(getQuery().page as string)
+    : Number.MAX_VALUE
   : Number.MAX_VALUE;
+
 tag.value = getQuery().tag ? (getQuery().tag as string) : '';
 kw.value = getQuery().kw ? (getQuery().kw as string) : '';
 

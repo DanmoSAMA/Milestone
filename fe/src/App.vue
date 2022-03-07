@@ -13,7 +13,7 @@ import { useRoute } from 'vue-router';
 
 import hljs from 'highlight.js';
 import 'highlight.js/styles/atom-one-dark.css';
-import './styles/index.css';
+import './styles/index.scss';
 
 const route = useRoute();
 </script>

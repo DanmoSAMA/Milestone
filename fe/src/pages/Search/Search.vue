@@ -41,6 +41,8 @@ function search(searchStr) {
 </script>
 
 <style lang="scss">
+@import '../../styles/color-var.scss';
+
 .app_wrapper-search {
   width: 850px;
   padding: 30px;
@@ -73,7 +75,7 @@ function search(searchStr) {
       width: 80%;
       height: 50px;
       line-height: 50px;
-      background-color: #f8f9fa;
+      background-color: $form-bg;
       padding: 0 8% 0 15px;
       border-radius: 25px;
     }

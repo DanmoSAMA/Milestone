@@ -8,11 +8,11 @@
 <script setup lang="ts"></script>
 
 <style lang="scss">
-@import '../../../../assets/css/variables.scss';
+@import '../../../../styles/color-var.scss';
 
 .app_wrapper-home-no_posts {
   display: flex;
-  margin: 50px auto;
+  margin: 60px auto;
   align-items: center;
   justify-content: center;
   width: 225px;
@@ -27,8 +27,8 @@
     height: 100%;
     border: 1px solid transparent;
     border: {
-      top: 1px solid $secondary;
-      bottom: 1px solid $secondary;
+      top: 1px solid #777;
+      bottom: 1px solid #888;
     }
     animation: rotate infinite linear;
     animation-duration: 6s;
@@ -45,7 +45,7 @@
     }
 
     &::before {
-      border-top: 1px solid $primary;
+      border-top: 1px solid #999;
       top: -10px;
       bottom: -10px;
       right: -10px;
@@ -55,7 +55,7 @@
     }
 
     &::after {
-      border-top: 1px solid $primary-2;
+      border-top: 1px solid #999;
       top: 10px;
       bottom: 10px;
       right: 10px;
@@ -73,10 +73,11 @@
       }
     }
   }
-  
+
   &-hint {
     margin: 0 2rem;
     word-break: break-all;
+    color: #333;
   }
 }
 </style>
