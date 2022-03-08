@@ -69,7 +69,8 @@ const title = ref(props.defaultTitle);
 const content = ref(props.defaultContent);
 
 // 被选择的标签
-const chosenTags = ref(props.defaultTags) as Ref<string[]>;
+// const chosenTags = ref(props.defaultTags) as Ref<string[]>;
+const chosenTags = ref([...props.defaultTags]);
 
 // 创建文章
 const sendPostReq = async () => {
