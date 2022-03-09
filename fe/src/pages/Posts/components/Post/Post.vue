@@ -145,6 +145,7 @@ const { title, tags } = props.post;
 
 @media only screen and (max-width: 760px) {
   .app_wrapper-posts-inner-post {
+
     &-tags {
       &-item {
         font-size: 14px;

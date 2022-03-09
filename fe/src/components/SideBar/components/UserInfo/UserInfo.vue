@@ -75,6 +75,11 @@ if (currentPage.value !== 'posts') {
       width: 160px;
       left: -10px;
       top: 0;
+      transition: 1.2s all;
+    }
+
+    &-img:hover {
+      transform: rotate(360deg);
     }
   }
 

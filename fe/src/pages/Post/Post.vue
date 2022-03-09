@@ -182,6 +182,8 @@ async function handleDel() {
 
 @media only screen and (max-width: 760px) {
   .app_wrapper-post {
+    width: 100%;
+
     &-main {
       &-title {
         font-size: 40px;

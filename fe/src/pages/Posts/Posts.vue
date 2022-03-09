@@ -1,12 +1,6 @@
 <template>
   <div class="app_wrapper-posts">
-    <div
-      :class="
-        showContent
-          ? 'app_wrapper-posts-inner'
-          : 'app_wrapper-posts-inner hidden'
-      "
-    >
+    <div :class="showContent ? 'app_wrapper-posts-inner' : 'app_wrapper-posts-inner hidden'">
       <Post
         v-for="item in pagedPosts"
         :post="item"
@@ -132,14 +126,13 @@ watch(kw, () => {
   min-height: 84vh;
 
   &-inner {
-    transition: all 0.8s;
-    position: relative;
-    top: 0;
+    transition: all .8s;
+    padding-top: 10px;
   }
 
   &-inner.hidden {
-    top: -10px;
     opacity: 0;
+    padding-top: 0;
   }
 }
 
