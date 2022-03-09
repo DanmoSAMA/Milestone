@@ -1,11 +1,11 @@
 <template>
-  <div class="app_wrapper-posts-post">
-    <div class="app_wrapper-posts-post-title" @click="jump('/post', { id })">
+  <div class="app_wrapper-posts-inner-post">
+    <div class="app_wrapper-posts-inner-post-title" @click="jump('/post', { id })">
       {{ title }}
     </div>
-    <div class="app_wrapper-posts-post-tags">
+    <div class="app_wrapper-posts-inner-post-tags">
       <div
-        class="app_wrapper-posts-post-tags-item"
+        class="app_wrapper-posts-inner-post-tags-item"
         v-for="tag in tags"
         :key="tag"
         @click="
@@ -20,6 +20,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
 import { tag as tagParam } from '../../../../hooks/useTag';
 import jump from '../../../../utils/jump';
 
@@ -41,7 +42,7 @@ const { title, tags } = props.post;
 <style lang="scss">
 @import '../../../../styles/color-var.scss';
 
-.app_wrapper-posts-post {
+.app_wrapper-posts-inner-post {
   height: 165px;
   display: flex;
   flex-direction: column;
@@ -50,6 +51,8 @@ const { title, tags } = props.post;
   // border-bottom: 1px solid #e5e6ea;
   position: relative;
   padding: 10px;
+  transition: all .8s;
+  opacity: 1;
 
   &-title {
     font-size: 30px;
@@ -131,7 +134,7 @@ const { title, tags } = props.post;
   }
 }
 
-.app_wrapper-posts-post::after {
+.app_wrapper-posts-inner-post::after {
   content: '';
   position: absolute;
   width: 50px;
@@ -141,8 +144,7 @@ const { title, tags } = props.post;
 }
 
 @media only screen and (max-width: 760px) {
-  .app_wrapper-posts-post {
-
+  .app_wrapper-posts-inner-post {
     &-tags {
       &-item {
         font-size: 14px;
@@ -152,7 +154,7 @@ const { title, tags } = props.post;
 }
 
 @media only screen and (max-width: 460px) {
-  .app_wrapper-posts-post {
+  .app_wrapper-posts-inner-post {
     height: 135px;
 
     &-title {

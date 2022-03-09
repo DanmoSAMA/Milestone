@@ -1,7 +1,13 @@
 <template>
-  <div class="c-sidebar-list-body">
+  <div
+    :class="
+      showContent
+        ? 'c-sidebar-list-body-wrapper'
+        : 'c-sidebar-list-body-wrapper hidden'
+    "
+  >
     <div
-      class="c-sidebar-list-body-item"
+      class="c-sidebar-list-body-wrapper-item"
       :class="{ selected: currentPage === 'posts' }"
       @click="handleClick('posts')"
     >
@@ -9,7 +15,7 @@
       首页
     </div>
     <div
-      class="c-sidebar-list-body-item"
+      class="c-sidebar-list-body-wrapper-item"
       :class="{ selected: currentPage === 'tags' }"
       @click="handleClick('tags')"
     >
@@ -17,16 +23,16 @@
       标签
     </div>
     <div
-      class="c-sidebar-list-body-item"
+      class="c-sidebar-list-body-wrapper-item"
       :class="{ selected: currentPage === 'search' }"
       @click="handleClick('search')"
     >
       <svg-icon name="sousuo" :styleConfig="listIconStyleConfig" />
       搜索
     </div>
-    <hr class="c-sidebar-list-body-hr" />
+    <hr class="c-sidebar-list-body-wrapper-hr" />
     <div
-      class="c-sidebar-list-body-item"
+      class="c-sidebar-list-body-wrapper-item"
       :class="{ selected: currentPage === 'edit' }"
       @click="handleClick('edit')"
     >
@@ -37,7 +43,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { currentPage } from '../../../../../../hooks/useCurPage'
+import { currentPage } from '../../../../../../hooks/useCurPage';
 import { curPageNum } from '../../../../../../hooks/usePage';
 import { curPageType } from '../../../../../../models/curPage';
 import { isEdited } from '../../../../../../hooks/useIsEdited';
@@ -46,12 +52,11 @@ import { kw } from '../../../../../../hooks/useKw';
 
 import jump from '../../../../../../utils/jump';
 
-// const showContent = ref(false);
+const showContent = ref(false);
 
-// setTimeout(() => {
-//   showContent.value = true
-// }, 500)
-
+setTimeout(() => {
+  showContent.value = true;
+}, 300);
 
 // 用于传入svg
 const listIconStyleConfig = {
@@ -74,9 +79,10 @@ function handleClick(val: curPageType) {
 <style lang="scss">
 @import '../../../../../../styles/color-var.scss';
 
-.c-sidebar-list-body {
+.c-sidebar-list-body-wrapper {
   padding: 12px 0;
-  transition: all .3s;
+  opacity: 1;
+  transition: all 0.3s;
   overflow: hidden;
 
   &-hr {
@@ -106,8 +112,12 @@ function handleClick(val: curPageType) {
   }
 }
 
+.c-sidebar-list-body-wrapper.hidden {
+  opacity: 0;
+}
+
 @media only screen and (max-width: 760px) {
-  .c-sidebar-list-body.collapse {
+  .c-sidebar-list-body-wrapper.collapse {
     height: 0;
   }
 }

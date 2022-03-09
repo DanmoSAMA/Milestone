@@ -1,14 +1,14 @@
 <template>
-  <div class="c-sidebar-userinfo">
+  <div
+    :class="showContent ? 'c-sidebar-userinfo' : 'c-sidebar-userinfo hidden'"
+  >
     <div class="c-sidebar-userinfo-avatar">
       <img
         class="c-sidebar-userinfo-avatar-img"
         src="../../../../assets/images/avatar.jpg"
       />
     </div>
-    <div class="c-sidebar-userinfo-name">
-      Danmoits
-    </div>
+    <div class="c-sidebar-userinfo-name">Danmoits</div>
     <div class="c-sidebar-userinfo-count">
       <div class="c-sidebar-userinfo-count-posts">
         <span class="c-sidebar-userinfo-count-posts-count">
@@ -34,6 +34,12 @@ import { currentPage } from '../../../../hooks/useCurPage';
 
 const postsStore = usePosts();
 
+const showContent = ref(false);
+
+setTimeout(() => {
+  showContent.value = true;
+}, 1500);
+
 // 避免重复请求，导致request.ts抛出错误
 if (currentPage.value !== 'posts') {
   postsStore.setPosts();
@@ -51,6 +57,9 @@ if (currentPage.value !== 'posts') {
   position: sticky;
   top: 10px;
   background-color: #fff;
+  transition: 1s all;
+  opacity: 1;
+  margin-top: 0;
 
   &-avatar {
     width: 130px;
@@ -99,6 +108,11 @@ if (currentPage.value !== 'posts') {
       }
     }
   }
+}
+
+.c-sidebar-userinfo.hidden {
+  opacity: 0;
+  margin-top: 25px;
 }
 
 @media only screen and (max-width: 760px) {

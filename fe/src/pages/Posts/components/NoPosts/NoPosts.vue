@@ -1,16 +1,18 @@
 <template>
-  <div class="app_wrapper-home-no_posts">
-    <span class="app_wrapper-home-no_posts-hint"> 什么都没有呢... </span>
-    <div class="app_wrapper-home-no_posts-decorate"></div>
+  <div class="app_wrapper-posts-inner-no_posts">
+    <span class="app_wrapper-posts-inner-no_posts-hint"> 什么都没有呢... </span>
+    <div class="app_wrapper-posts-inner-no_posts-decorate"></div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+
+</script>
 
 <style lang="scss">
 @import '../../../../styles/color-var.scss';
 
-.app_wrapper-home-no_posts {
+.app_wrapper-posts-inner-no_posts {
   display: flex;
   margin: 60px auto;
   align-items: center;

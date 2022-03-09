@@ -1,6 +1,11 @@
 <template>
   <div class="app_wrapper-post">
-    <div class="app_wrapper-post-main" v-if="!isEdited">
+    <div
+      :class="
+        showContent ? 'app_wrapper-post-main' : 'app_wrapper-post-main hidden'
+      "
+      v-if="!isEdited"
+    >
       <h1 class="app_wrapper-post-main-title">
         {{ title }}
       </h1>
@@ -61,6 +66,12 @@ const source = ref('');
 const title = ref('');
 const tags = ref<string[]>([]);
 
+const showContent = ref(false);
+
+setTimeout(() => {
+  showContent.value = true;
+}, 600);
+
 getPostDetail(id)
   .then((p) => {
     post.value = p;
@@ -90,8 +101,16 @@ async function handleDel() {
   padding: 30px;
   box-sizing: border-box;
   background-color: #fff;
+  opacity: 1;
+  transition: 0.8s all;
 
   &-main {
+    transition: .8s all;
+    opacity: 1;
+    padding-top: 10px;
+    position: relative;
+    top: 0;
+
     &-title {
       font-size: 45px;
       text-align: center;
@@ -152,6 +171,12 @@ async function handleDel() {
         color: #fff;
       }
     }
+  }
+
+  &-main.hidden {
+    opacity: 0;
+    padding-top: 10px;
+    top: -10px;
   }
 }
 

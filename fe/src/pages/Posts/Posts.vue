@@ -1,13 +1,21 @@
 <template>
   <div class="app_wrapper-posts">
-    <Post
-      v-for="item in pagedPosts"
-      :post="item"
-      :key="item._id"
-      :id="item._id"
-    />
-    <NoPosts v-show="noPosts" />
-    <Pager v-show="!noPosts" />
+    <div
+      :class="
+        showContent
+          ? 'app_wrapper-posts-inner'
+          : 'app_wrapper-posts-inner hidden'
+      "
+    >
+      <Post
+        v-for="item in pagedPosts"
+        :post="item"
+        :key="item._id"
+        :id="item._id"
+      />
+      <NoPosts v-show="noPosts" />
+      <Pager v-show="!noPosts" />
+    </div>
   </div>
 </template>
 
@@ -31,6 +39,12 @@ const postsStore = usePosts();
 const filteredPosts = ref<GetPostsResData>([]);
 const pagedPosts = ref<GetPostsResData>([]);
 const noPosts = ref(false);
+
+const showContent = ref(false);
+
+setTimeout(() => {
+  showContent.value = true;
+}, 600);
 
 // 此处是为了避免刷新丢掉现在的状态
 curPageNum.value = getQuery().page
@@ -116,6 +130,17 @@ watch(kw, () => {
   position: relative;
   padding-bottom: 100px;
   min-height: 84vh;
+
+  &-inner {
+    transition: all 0.8s;
+    position: relative;
+    top: 0;
+  }
+
+  &-inner.hidden {
+    top: -10px;
+    opacity: 0;
+  }
 }
 
 @media only screen and (max-width: 760px) {
