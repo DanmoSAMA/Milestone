@@ -100,4 +100,10 @@ if (currentPage.value !== 'posts') {
     }
   }
 }
+
+@media only screen and (max-width: 760px) {
+  .c-sidebar-userinfo {
+    display: none;
+  }
+}
 </style>

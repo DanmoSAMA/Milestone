@@ -20,9 +20,12 @@ import UserInfo from './components/UserInfo/UserInfo.vue';
   max-height: 1000vh;
   position: relative;
 }
+
 @media only screen and (max-width: 760px) {
   .c-sidebar {
-    display: none;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
   }
 }
 </style>

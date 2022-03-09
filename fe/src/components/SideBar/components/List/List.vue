@@ -3,78 +3,67 @@
     <div class="c-sidebar-list-header">
       <div class="c-sidebar-list-header-title">Milestone</div>
       <div class="c-sidebar-list-header-subtitle">{{ motto }}</div>
+      <svg-icon
+        :name="!isDropdownShown ? 'down' : 'up'"
+        :styleConfig="
+          screenWidth < 760 ? dropDownIconStyleConfig : { display: 'none' }
+        "
+        @click="toggleShowDropdown()"
+      />
     </div>
-    <div class="c-sidebar-list-body">
-      <div
-        class="c-sidebar-list-body-item"
-        :class="{ selected: currentPage === 'posts' }"
-        @click="handleClick('posts')"
-      >
-        <svg-icon name="shouye" :styleConfig="styleConfig" />
-        首页
-      </div>
-      <div
-        class="c-sidebar-list-body-item"
-        :class="{ selected: currentPage === 'tags' }"
-        @click="handleClick('tags')"
-      >
-        <svg-icon name="gf-tags" :styleConfig="styleConfig" />
-        标签
-      </div>
-      <div
-        class="c-sidebar-list-body-item"
-        :class="{ selected: currentPage === 'search' }"
-        @click="handleClick('search')"
-      >
-        <svg-icon name="sousuo" :styleConfig="styleConfig" />
-        搜索
-      </div>
-      <hr class="c-sidebar-list-body-hr" />
-      <div
-        class="c-sidebar-list-body-item"
-        :class="{ selected: currentPage === 'edit' }"
-        @click="handleClick('edit')"
-      >
-        发表文章
-      </div>
-    </div>
+    <ListBody
+      :style="
+        screenWidth >= 760 || isDropdownShown
+          ? { height: '165px' }
+          : { height: '0', padding: '0' }
+      "
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { currentPage } from '../../../../hooks/useCurPage';
-import { curPageNum } from '../../../../hooks/usePage';
-import { curPageType } from '../../../../models/curPage';
-import { isEdited } from '../../../../hooks/useIsEdited';
-import { tag } from '../../../../hooks/useTag';
-import { kw } from '../../../../hooks/useKw';
 
-import jump from '../../../../utils/jump';
-
-// 用于传入svg
-const styleConfig = {
-  color: '#333',
-  position: 'relative',
-  top: '-1px',
-};
+import ListBody from './components/ListBody/ListBody.vue';
 
 const motto = '用进废退 | 艺不压身';
+const screenWidth = ref(document.body.offsetWidth);
+const isDropdownShown = ref(false);
 
-function handleClick(val: curPageType) {
-  currentPage.value = val;
-  isEdited.value = false;
-  tag.value = '';
-  kw.value = '';
+const dropDownIconStyleConfig = {
+  color: '#fff',
+  position: 'absolute',
+  left: '20px',
+  width: '25px',
+  height: '25px',
+  cursor: 'pointer',
+};
 
-  if (val === 'posts') jump('/posts', { page: '0' });
-  else jump(`/${val}`);
+// resize节流
+(function () {
+  window.addEventListener('resize', resizeThrottler, false);
+
+  var resizeTimeout;
+  function resizeThrottler() {
+    if (!resizeTimeout) {
+      resizeTimeout = setTimeout(function () {
+        resizeTimeout = null;
+        actualResizeHandler();
+      }, 66);
+    }
+  }
+
+  function actualResizeHandler() {
+    screenWidth.value = document.body.offsetWidth;
+  }
+})();
+
+function toggleShowDropdown() {
+  isDropdownShown.value = !isDropdownShown.value;
 }
 </script>
 
 <style lang="scss">
-@import '../../../../styles/color-var.scss';
-
 .c-sidebar-list {
   // border: 1px solid #F6F7F9;
   margin-bottom: 12px;
@@ -98,34 +87,14 @@ function handleClick(val: curPageType) {
       font-size: 13px;
     }
   }
+}
 
-  &-body {
-    padding: 12px 0;
+@media only screen and (max-width: 760px) {
+  .c-sidebar-list {
+    margin-bottom: 0;
 
-    &-hr {
-      width: 96%;
-      margin: 4px auto;
-      // background-color: #F6F7F9 !important;
-      border: none;
-      height: 1px;
-    }
-
-    &-item {
-      padding: 0 20px;
-      font-size: 14px;
-      color: #333;
-      height: 33px;
-      line-height: 33px;
-      cursor: pointer;
-      transition: 0.3s background-color;
-    }
-
-    &-item:hover {
-      background-color: $sidebar-bg-on;
-    }
-
-    &-item.selected {
-      background-color: $sidebar-bg-on;
+    &-header {
+      padding: 25px 0;
     }
   }
 }

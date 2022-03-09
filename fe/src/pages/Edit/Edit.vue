@@ -21,4 +21,11 @@ import Edit from '../../components/Edit/Edit.vue';
   box-sizing: border-box;
   background-color: #fff;
 }
+
+@media only screen and (max-width: 760px) {
+  .app_wrapper-edit {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
 </style>

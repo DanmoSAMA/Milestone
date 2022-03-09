@@ -41,4 +41,12 @@ const route = useRoute();
     min-height: 630px;
   }
 }
+
+@media only screen and (max-width: 760px) {
+  .app_wrapper {
+    &-body {
+      flex-direction: column;
+    }
+  }
+}
 </style>

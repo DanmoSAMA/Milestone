@@ -84,6 +84,10 @@ function search(searchStr) {
 
 @media only screen and (max-width: 760px) {
   .app_wrapper-search {
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 600px;
+
     &-input_wrapper {
       width: 90%;
     }

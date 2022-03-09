@@ -71,7 +71,15 @@ function handleClick(tag: string) {
   }
 }
 
-@media only screen and (max-width: 460px) { 
+@media only screen and (max-width: 760px) {
+  .app_wrapper-tags {
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 600px;
+  }
+}
+
+@media only screen and (max-width: 460px) {
   .app_wrapper-tags {
     &-cloud {
       line-height: 25px;

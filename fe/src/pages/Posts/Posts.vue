@@ -117,4 +117,11 @@ watch(kw, () => {
   padding-bottom: 100px;
   min-height: 84vh;
 }
+
+@media only screen and (max-width: 760px) {
+  .app_wrapper-posts {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
 </style>
