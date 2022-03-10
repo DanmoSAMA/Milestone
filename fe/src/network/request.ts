@@ -28,7 +28,7 @@ export async function request<T>(
     const instance = axios.create({
       // 这里还有问题，设置了没用
       // baseURL: BE_DOMAIN,
-      baseURL: 'http://127.0.0.1:8080',
+      baseURL: 'http://api.danmoits.com/milestone',
       timeout: 60000,
     });
 
