@@ -59,6 +59,7 @@ import Markdown from 'vue3-markdown-it';
 import jump from '../../utils/jump';
 
 import Edit from '../../components/Edit/Edit.vue';
+import { getToken } from '../../utils/token';
 
 const id = <string>getQuery().id;
 const post = ref<Post>({ ...DEFAULT_POST });
@@ -85,11 +86,16 @@ getPostDetail(id)
   });
 
 async function handleDel() {
-  if (confirm('确认删除文章吗?')) {
-    const check = await delPost(id);
-    if (check) {
-      alert('删除成功!');
-      jump('/posts', { page: '0' });
+  if (!getToken()) {
+    alert('请先登陆');
+    jump('/login');
+  } else {
+    if (confirm('确认删除文章吗?')) {
+      const check = await delPost(id);
+      if (check) {
+        alert('删除成功!');
+        jump('/posts', { page: '0' });
+      }
     }
   }
 }
@@ -105,7 +111,7 @@ async function handleDel() {
   transition: 0.8s all;
 
   &-main {
-    transition: .8s all;
+    transition: 0.8s all;
     opacity: 1;
     padding-top: 10px;
     position: relative;

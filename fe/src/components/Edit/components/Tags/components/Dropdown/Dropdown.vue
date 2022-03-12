@@ -29,19 +29,22 @@ const props = defineProps({
 });
 
 const tags = [
+  '前端',
+  '后端',
   'html',
   'css',
+  'less/scss',
   'js',
   'ts',
   'vue',
   'react',
   'node',
-  'koa',
   'os',
+  '运维/部署',
   '算法',
-  'webpack',
   '脚手架',
   '浏览器',
+  '调库',
   '其他',
 ];
 </script>
