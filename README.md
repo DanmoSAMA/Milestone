@@ -9,5 +9,7 @@
 
 后端：koa + mongodb
 
+部署：nginx
+
 ## 作者
 [DanmoSAMA](https://github.com/DanmoSAMA)
