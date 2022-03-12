@@ -147,6 +147,7 @@ async function handleDel() {
 
     &-content {
       min-height: 400px;
+      overflow: hidden;
     }
 
     &-btn {
