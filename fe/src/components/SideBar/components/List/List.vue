@@ -30,6 +30,25 @@ const isDropdownShown = ref(false)
 function toggleShowDropdown() {
   isDropdownShown.value = !isDropdownShown.value
 }
+
+// resize节流
+;(function () {
+  window.addEventListener('resize', resizeThrottler, false)
+  var resizeTimeout
+  function resizeThrottler() {
+    if (!resizeTimeout) {
+      resizeTimeout = setTimeout(function () {
+        resizeTimeout = null
+        actualResizeHandler()
+      }, 66)
+    }
+  }
+  function actualResizeHandler() {
+    if (document.body.offsetWidth > 760) {
+      isDropdownShown.value = true
+    }
+  }
+})()
 </script>
 
 <style lang="scss">
