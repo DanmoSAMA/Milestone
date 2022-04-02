@@ -6,8 +6,8 @@
 </template>
 
 <script setup lang="ts">
-import List from './components/List/List.vue';
-import UserInfo from './components/UserInfo/UserInfo.vue';
+import List from './components/List/List.vue'
+import UserInfo from './components/UserInfo/UserInfo.vue'
 </script>
 
 <style lang="scss">
@@ -15,7 +15,6 @@ import UserInfo from './components/UserInfo/UserInfo.vue';
   width: 300px;
   margin-right: 12px;
   flex-shrink: 0;
-  // background-color: #fff;
   // 该值待定
   max-height: 1000vh;
   position: relative;

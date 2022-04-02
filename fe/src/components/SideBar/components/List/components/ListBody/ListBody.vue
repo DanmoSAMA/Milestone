@@ -11,7 +11,7 @@
       :class="{ selected: currentPage === 'posts' }"
       @click="handleClick('posts')"
     >
-      <svg-icon name="shouye" :styleConfig="listIconStyleConfig" />
+      <svg-icon name="index" />
       首页
     </div>
     <div
@@ -19,7 +19,7 @@
       :class="{ selected: currentPage === 'tags' }"
       @click="handleClick('tags')"
     >
-      <svg-icon name="gf-tags" :styleConfig="listIconStyleConfig" />
+      <svg-icon name="tag" />
       标签
     </div>
     <div
@@ -27,7 +27,7 @@
       :class="{ selected: currentPage === 'search' }"
       @click="handleClick('search')"
     >
-      <svg-icon name="sousuo" :styleConfig="listIconStyleConfig" />
+      <svg-icon name="search" />
       搜索
     </div>
     <hr class="c-sidebar-list-body-wrapper-hr" />
@@ -42,42 +42,41 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import { currentPage } from '../../../../../../hooks/useCurPage';
-import { curPageNum } from '../../../../../../hooks/usePage';
-import { curPageType } from '../../../../../../models/curPage';
-import { isEdited } from '../../../../../../hooks/useIsEdited';
-import { tag } from '../../../../../../hooks/useTag';
-import { kw } from '../../../../../../hooks/useKw';
+import { ref } from 'vue'
+import { currentPage } from '../../../../../../hooks/useCurPage'
+import { curPageNum } from '../../../../../../hooks/usePage'
+import { curPageType } from '../../../../../../models/curPage'
+import { isEdited } from '../../../../../../hooks/useIsEdited'
+import { tag } from '../../../../../../hooks/useTag'
+import { kw } from '../../../../../../hooks/useKw'
 
-import jump from '../../../../../../utils/jump';
+import jump from '../../../../../../utils/jump'
 
-const showContent = ref(false);
+const showContent = ref(false)
 
 setTimeout(() => {
-  showContent.value = true;
-}, 300);
-
-// 用于传入svg
-const listIconStyleConfig = {
-  color: '#333',
-  position: 'relative',
-  top: '-1px',
-};
+  showContent.value = true
+}, 300)
 
 function handleClick(val: curPageType) {
-  currentPage.value = val;
-  isEdited.value = false;
-  tag.value = '';
-  kw.value = '';
+  currentPage.value = val
+  isEdited.value = false
+  tag.value = ''
+  kw.value = ''
 
-  if (val === 'posts') jump('/posts', { page: '0' });
-  else jump(`/${val}`);
+  if (val === 'posts') jump('/posts', { page: '0' })
+  else jump(`/${val}`)
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scope>
 @import '../../../../../../styles/color-var.scss';
+
+.svg-icon {
+  color: #333;
+  position: relative;
+  top: -1px;
+}
 
 .c-sidebar-list-body-wrapper {
   padding: 12px 0;
@@ -88,7 +87,6 @@ function handleClick(val: curPageType) {
   &-hr {
     width: 96%;
     margin: 4px auto;
-    // background-color: #F6F7F9 !important;
     border: none;
     height: 1px;
   }

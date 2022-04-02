@@ -9,29 +9,19 @@
 </template>
 
 <script setup lang="ts">
-import { useRoute } from 'vue-router';
+import { useRoute } from 'vue-router'
 
-import hljs from 'highlight.js';
-import 'highlight.js/styles/atom-one-dark.css';
-import './styles/index.scss';
+import hljs from 'highlight.js'
+import 'highlight.js/styles/atom-one-dark.css'
+import './styles/index.scss'
 
-const route = useRoute();
+const route = useRoute()
 </script>
 
 <style lang="scss">
 * {
-  // margin: 0;
-  // padding: 0;
-  // font-size: 16px;
-  // font-weight: normal;
   letter-spacing: 2px;
 }
-
-// a {
-//   color: #333;
-//   text-decoration: none;
-//   cursor: default;
-// }
 
 .app_wrapper {
   &-body {
