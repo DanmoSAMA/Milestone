@@ -23,7 +23,7 @@ import { ref } from 'vue'
 
 import ListBody from './components/ListBody/ListBody.vue'
 
-const motto = '用进废退 | 艺不压身'
+const motto = '龍は屈せず'
 const screenWidth = ref(document.body.offsetWidth)
 const isDropdownShown = ref(false)
 
