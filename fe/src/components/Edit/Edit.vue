@@ -39,69 +39,69 @@
 </template>
 
 <script setup lang="ts">
-import { ref, Ref, onMounted } from 'vue';
-import { addPost } from '../../network/post/addPost';
-import { currentPage } from '../../hooks/useCurPage';
-import { isEdited, setIsEdited } from '../../hooks/useIsEdited';
-import { updatePost as updatePostReq } from '../../network/post/updatePost';
+import { ref, Ref, onMounted } from 'vue'
+import { addPost } from '../../network/post/addPost'
+import { currentPage } from '../../hooks/useCurPage'
+import { isEdited, setIsEdited } from '../../hooks/useIsEdited'
+import { updatePost as updatePostReq } from '../../network/post/updatePost'
 
-import jump from '../../utils/jump';
-import Tags from './components/Tags/Tags.vue';
+import jump from '../../utils/jump'
+import Tags from './components/Tags/Tags.vue'
 
-import { getToken } from '../../utils/token';
+import { getToken } from '../../utils/token'
 
 onMounted(() => {
   if (!getToken()) {
-    alert('请先登陆');
-    jump('/login');
+    alert('请先登陆')
+    jump('/login')
   }
-});
+})
 
 const props = defineProps({
   defaultTitle: String,
   defaultTags: Array,
   defaultContent: String,
   id: String,
-  type: Number, // 0 表示新建，1 表示编辑
-});
+  type: Number // 0 表示新建，1 表示编辑
+})
 
-const title = ref(props.defaultTitle);
-const content = ref(props.defaultContent);
+const title = ref(props.defaultTitle)
+const content = ref(props.defaultContent)
 
 // 被选择的标签
 // const chosenTags = ref(props.defaultTags) as Ref<string[]>;
-const chosenTags = ref([...props.defaultTags]);
+const chosenTags = ref([...props.defaultTags])
 
 // 创建文章
 const sendPostReq = async () => {
   const data = {
     title: title.value,
     content: content.value,
-    tags: chosenTags.value,
-  };
+    tags: chosenTags.value
+  }
   if (title.value.length && content.value.length) {
     // 登陆相关逻辑
 
-    const check = await addPost(data);
+    const check = await addPost(data)
     // toggle的逻辑
     if (check) {
-      alert('发表成功');
-      jump('/posts', { page: '0' });
-      currentPage.value = 'posts';
+      alert('发表成功')
+      jump('/posts', { page: '0' })
+      currentPage.value = 'posts'
     }
-  } else alert('标题或内容不能为空');
-};
+  } else alert('标题或内容不能为空')
+}
 
 // 更新文章（更新后需要刷新一次页面，因为没有重新生成Posts组件，数据还是之前请求的数据）
 async function updatePost() {
   const data = {
     title: title.value,
     content: content.value,
-    tags: chosenTags.value,
-  };
-  const res = await updatePostReq(data, props.id);
-  if (res) alert('更新成功');
-  setIsEdited(false);
+    tags: chosenTags.value
+  }
+  const res = await updatePostReq(data, props.id)
+  if (res) alert('更新成功')
+  setIsEdited(false)
 }
 
 // 返回首页
@@ -112,12 +112,12 @@ function toHome() {
     content.value !== ''
   ) {
     if (confirm('内容将不会被保存，确定返回吗')) {
-      jump('/posts', { page: '0' });
-      currentPage.value = 'posts';
+      jump('/posts', { page: '0' })
+      currentPage.value = 'posts'
     }
   } else {
-    jump('/posts', { page: '0' });
-    currentPage.value = 'posts';
+    jump('/posts', { page: '0' })
+    currentPage.value = 'posts'
   }
 }
 
@@ -129,10 +129,10 @@ function toPost() {
     content.value !== ''
   ) {
     if (confirm('内容将不会被保存，确定返回吗')) {
-      setIsEdited(false);
+      setIsEdited(false)
     }
   } else {
-    setIsEdited(false);
+    setIsEdited(false)
   }
 }
 </script>
