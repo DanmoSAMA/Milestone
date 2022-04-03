@@ -28,22 +28,22 @@
 </template>
 
 <script setup lang="ts">
-import { usePosts } from '../../../../pinia/posts';
-import { ref } from 'vue';
-import { currentPage } from '../../../../hooks/useCurPage';
+import { usePosts } from '../../../../pinia/posts'
+import { ref } from 'vue'
+import { currentPage } from '../../../../hooks/useCurPage'
 
-const postsStore = usePosts();
+const postsStore = usePosts()
 
-const showContent = ref(false);
+const showContent = ref(false)
 
 setTimeout(() => {
-  showContent.value = true;
-}, 1500);
+  showContent.value = true
+}, 1500)
 
 // 避免重复请求，导致request.ts抛出错误
-if (currentPage.value !== 'posts') {
-  postsStore.setPosts();
-}
+// if (currentPage.value !== 'posts') {
+//   postsStore.setPosts();
+// }
 </script>
 
 <style lang="scss">
