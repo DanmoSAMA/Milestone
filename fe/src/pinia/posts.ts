@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
-import { getAllPosts } from '../network/post/getAllPosts';
+
 import { GetPostsResData } from '../../shared/http/post';
+import { getAllPosts } from '../network/post/getAllPosts';
 
 export const usePosts = defineStore('posts', {
   state: () => {

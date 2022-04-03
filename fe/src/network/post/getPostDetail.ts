@@ -1,5 +1,5 @@
-import { Post } from "../../../shared/models/post";
-import { request } from "../request";
+import { Post } from '../../../shared/models/post';
+import { request } from '../request';
 
 export async function getPostDetail(id: string) {
   const res = await request<Post>({

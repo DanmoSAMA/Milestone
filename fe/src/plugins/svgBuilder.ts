@@ -1,5 +1,6 @@
+import { readdirSync, readFileSync } from 'fs';
 import { Plugin } from 'vite';
-import { readFileSync, readdirSync } from 'fs';
+
 let idPerfix = '';
 const svgTitle = /<svg([^>+].*?)>/;
 const clearHeightWidth = /(width|height)="([^>+].*?)"/g;

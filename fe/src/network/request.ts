@@ -1,7 +1,8 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+
 import { HttpRes } from '../../shared/http';
 import { BE_DOMAIN } from '../constants/domain';
-import { clearToken, getToken } from "../utils/token";
+import { clearToken, getToken } from '../utils/token';
 
 // 记录对哪些url的请求正在进行中, 若上一次请求未完成则不进行下一次请求
 const requestSet = new Set<string>();

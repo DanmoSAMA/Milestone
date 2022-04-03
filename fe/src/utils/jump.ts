@@ -1,7 +1,7 @@
-import router from '../router';
-import { Query } from '../models/query';
-import { curPageNum } from '../hooks/usePage';
 import { kw } from '../hooks/useKw';
+import { curPageNum } from '../hooks/usePage';
+import { Query } from '../models/query';
+import router from '../router';
 
 export default function jump(path: string, query?: Query) {
   if (query) {

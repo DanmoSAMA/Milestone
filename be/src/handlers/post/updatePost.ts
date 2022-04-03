@@ -1,7 +1,7 @@
 import { Middleware } from 'koa-router';
 
 import { createError } from '../../middleware/useHandleError';
-import { UpdatePostReq, HttpRes } from '../../models';
+import { HttpRes, UpdatePostReq } from '../../models';
 import { Post } from '../../models/post';
 
 export const updatePost: Middleware = async (ctx) => {

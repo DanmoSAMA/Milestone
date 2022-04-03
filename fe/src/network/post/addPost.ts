@@ -1,5 +1,5 @@
-import { CreatePostReq } from "../../../shared/http/post";
-import { request } from "../request";
+import { CreatePostReq } from '../../../shared/http/post';
+import { request } from '../request';
 
 export async function addPost(data: CreatePostReq) {
   const res = await request({

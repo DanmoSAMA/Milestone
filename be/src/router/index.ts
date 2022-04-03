@@ -1,6 +1,7 @@
 import * as Router from 'koa-router';
-import { postRouter } from './post';
+
 import { useAuth } from '../middleware/useAuth';
+import { postRouter } from './post';
 
 const router = new Router();
 

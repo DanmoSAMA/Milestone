@@ -1,9 +1,10 @@
 import * as Koa from 'koa';
-import * as Cors from 'koa-cors';
 import * as BodyParser from 'koa-bodyparser';
+import * as Cors from 'koa-cors';
 import * as Logger from 'koa-logger';
-import router from './router/index';
+
 import { setupMongo } from './models';
+import router from './router/index';
 
 setupMongo();
 
