@@ -1,12 +1,14 @@
-import * as Router from 'koa-router';
+import * as Router from 'koa-router'
 
-import { useAuth } from '../middleware/useAuth';
-import { postRouter } from './post';
+import { useAuth } from '../middleware/useAuth'
+import { postRouter } from './post'
+import { tagRouter } from './tag'
 
-const router = new Router();
+const router = new Router()
 
 router
   .use('/post', postRouter.routes())
-  .get('/login', useAuth(false));
+  .use('/tag', tagRouter.routes())
+  .get('/login', useAuth(false))
 
-export default router;
+export default router

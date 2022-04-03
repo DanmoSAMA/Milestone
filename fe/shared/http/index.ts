@@ -1,7 +1,8 @@
 export type HttpRes<T = unknown> = {
-  status: number;
-  msg: string;
-  data: T;
-};
+  status: number
+  msg: string
+  data: T
+}
 
-export * from "./post";
+export * from './post'
+export * from './tag'

@@ -1,18 +1,22 @@
 <template>
   <div class="app_wrapper-tags">
-    <div :class="showContent ? 'app_wrapper-tags-inner' : 'app_wrapper-tags-inner hidden'">
+    <div
+      :class="
+        showContent ? 'app_wrapper-tags-inner' : 'app_wrapper-tags-inner hidden'
+      "
+    >
       <div class="app_wrapper-tags-inner-title">标签</div>
       <div class="app_wrapper-tags-inner-count">
-        目前共计{{ postsStore.tags.length }}个标签
+        目前共计{{ tags.length }}个标签
       </div>
       <div class="app_wrapper-tags-inner-cloud">
         <div
           class="app_wrapper-tags-inner-cloud-item"
-          v-for="tag in postsStore.tags"
+          v-for="tag in tags"
           :key="tag"
           @click="handleClick(tag)"
         >
-          {{ tag }}
+          {{ tag.name }}
         </div>
       </div>
     </div>
@@ -20,22 +24,27 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import jump from '../../utils/jump';
-import { usePosts } from '../../pinia/posts';
-import { currentPage } from '../../hooks/useCurPage';
+import { ref, Ref, onMounted } from 'vue'
+import { currentPage } from '../../hooks/useCurPage'
+import { getAllTags } from '../../network/tag/getAllTags'
+import { Tag } from '../../../shared/models/tag'
 
-const postsStore = usePosts();
+import jump from '../../utils/jump'
 
-const showContent = ref(false);
+const showContent = ref(false)
+const tags = <Ref<Array<Tag>>>ref([])
+
+onMounted(async () => {
+  tags.value = await getAllTags()
+})
 
 setTimeout(() => {
-  showContent.value = true;
-}, 600);
+  showContent.value = true
+}, 600)
 
 function handleClick(tag: string) {
-  currentPage.value = 'posts';
-  jump('/posts', { page: '0', tag });
+  currentPage.value = 'posts'
+  jump('/posts', { page: '0', tag })
 }
 </script>
 
@@ -47,7 +56,7 @@ function handleClick(tag: string) {
   background-color: #fff;
 
   &-inner {
-    transition: all .8s;
+    transition: all 0.8s;
     position: relative;
     top: 0;
 
