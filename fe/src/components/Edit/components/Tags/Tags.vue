@@ -4,7 +4,7 @@
       class="app_wrapper-edit-body-tags-add"
       @click="
         (e) => {
-          e.stopPropagation();
+          e.stopPropagation()
         }
       "
       v-show="chosenTags.length < 6"
@@ -23,7 +23,7 @@
       :key="tag"
       @click="
         () => {
-          chosenTags.splice(index, 1);
+          chosenTags.splice(index, 1)
         }
       "
     >
@@ -33,16 +33,15 @@
 </template>
 
 <script setup lang="ts">
-import { useShowDropdown } from '../../../../hooks/useShowDropdown';
-import Dropdown from './components/Dropdown/Dropdown.vue';
+import { useShowDropdown } from '../../../../hooks/useShowDropdown'
+import Dropdown from './components/Dropdown/Dropdown.vue'
 
 const props = defineProps({
-  chosenTags: Array,
-});
+  chosenTags: Array
+})
 
-const { chosenTags } = props;
-
-const { showDropdown, setShowDropdown } = useShowDropdown();
+const { chosenTags } = props
+const { showDropdown, setShowDropdown } = useShowDropdown()
 </script>
 
 <style lang="scss">

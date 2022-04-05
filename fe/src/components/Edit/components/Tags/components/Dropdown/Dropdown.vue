@@ -12,8 +12,8 @@
       :key="tag"
       @click="
         () => {
-          if (props.chosenTags.find((item) => item === tag)) return;
-          props.chosenTags.push(tag);
+          if (props.chosenTags.find((item) => item === tag)) return
+          props.chosenTags.push(tag)
         }
       "
     >
@@ -25,28 +25,34 @@
 <script setup lang="ts">
 const props = defineProps({
   showDropdown: Boolean,
-  chosenTags: Array,
-});
+  chosenTags: Array
+})
 
 const tags = [
-  '前端',
-  '后端',
   'html',
   'css',
-  'less/scss',
   'js',
   'ts',
   'vue',
   'react',
   'node',
   'os',
+  'webpack/vite',
+  'git',
+  'nginx',
+  'markdown',
+  'linux',
+  '前端',
+  '后端',
   '运维/部署',
-  '算法',
-  '脚手架',
+  '数据结构/算法',
+  '计网',
+  '组原',
   '浏览器',
-  '调库',
-  '其他',
-];
+  '小程序',
+  '面经',
+  '其他'
+]
 </script>
 
 <style lang="scss">

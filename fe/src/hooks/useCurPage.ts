@@ -1,15 +1,15 @@
-import { ref } from 'vue';
+import { ref } from 'vue'
 
-import { curPageType } from '../models/curPage';
+import { curPageType } from '../models/curPage'
 
 // 防止刷新页面后，页面组件和侧栏被选中的item不对应的bug
-const curLocation = window.location.href.split('/').at(-1) as string;
+const curLocation = window.location.href.split('/').at(-1) as string
 const curType = (
   curLocation.length <= 6
     ? curLocation !== ''
       ? curLocation
       : 'posts'
     : 'posts'
-) as curPageType;
+) as curPageType
 
-export const currentPage = ref<curPageType>(curType);
+export const currentPage = ref<curPageType>(curType)
