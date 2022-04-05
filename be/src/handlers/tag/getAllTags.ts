@@ -4,7 +4,7 @@ import { GetTagsRes } from '../../models'
 import { Tag } from '../../models/tag'
 
 export const getAllTags: Middleware = async (ctx) => {
-  const tags = await Tag.find()
+  const tags = await Tag.find({ count: { $gt: 0 } })
 
   const ret: GetTagsRes = {
     status: 200,

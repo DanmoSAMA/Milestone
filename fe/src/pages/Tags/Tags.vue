@@ -7,12 +7,12 @@
     >
       <div class="app_wrapper-tags-inner-title">标签</div>
       <div class="app_wrapper-tags-inner-count">
-        目前共计{{ tags.length }}个标签
+        目前共计{{ tagsStore.tags.length }}个标签
       </div>
       <div class="app_wrapper-tags-inner-cloud">
         <div
           class="app_wrapper-tags-inner-cloud-item"
-          v-for="tag in tags"
+          v-for="tag in tagsStore.tags"
           :key="tag"
           @click="handleClick(tag)"
         >
@@ -24,18 +24,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref, Ref, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
+import { useTags } from '../../pinia/tags'
 import { currentPage } from '../../hooks/useCurPage'
-import { getAllTags } from '../../network/tag/getAllTags'
-import { Tag } from '../../../shared/models/tag'
-
 import jump from '../../utils/jump'
 
+const tagsStore = useTags()
 const showContent = ref(false)
-const tags = <Ref<Array<Tag>>>ref([])
 
 onMounted(async () => {
-  tags.value = await getAllTags()
+  tagsStore.setTags()
 })
 
 setTimeout(() => {

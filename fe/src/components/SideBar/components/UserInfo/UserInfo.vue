@@ -18,7 +18,7 @@
       </div>
       <div class="c-sidebar-userinfo-count-tags">
         <span class="c-sidebar-userinfo-count-tags-count">
-          {{ postsStore.tags.length }}
+          {{ tagsStore.tags.length }}
         </span>
         <span class="c-sidebar-userinfo-count-tags-title"> 标签 </span>
       </div>
@@ -28,22 +28,27 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
 import { usePosts } from '../../../../pinia/posts'
-import { ref } from 'vue'
+import { useTags } from '../../../../pinia/tags'
 import { currentPage } from '../../../../hooks/useCurPage'
 
 const postsStore = usePosts()
-
+const tagsStore = useTags()
 const showContent = ref(false)
 
-setTimeout(() => {
-  showContent.value = true
-}, 1500)
+onMounted(async () => {
+  // 避免重复请求，导致request.ts抛出错误
+  if (currentPage.value !== 'tags') {
+    tagsStore.setTags()
+  }
+})
 
-// 避免重复请求，导致request.ts抛出错误
-// if (currentPage.value !== 'posts') {
-//   postsStore.setPosts();
-// }
+onMounted(() => {
+  setTimeout(() => {
+    showContent.value = true
+  }, 1500)
+})
 </script>
 
 <style lang="scss">
