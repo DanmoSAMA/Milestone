@@ -47,54 +47,58 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import { Post, DEFAULT_POST } from '../../../shared/models/post';
-import { getPostDetail } from '../../network/post/getPostDetail';
-import { delPost } from '../../network/post/delPost';
-import { isEdited, setIsEdited } from '../../hooks/useIsEdited';
+import { ref, onMounted } from 'vue'
+import { Post, DEFAULT_POST } from '../../../shared/models/post'
+import { getPostDetail } from '../../network/post/getPostDetail'
+import { delPost } from '../../network/post/delPost'
+import { isEdited, setIsEdited } from '../../hooks/useIsEdited'
 
-import router from '../../router';
-import getQuery from '../../utils/getQuery';
-import Markdown from 'vue3-markdown-it';
-import jump from '../../utils/jump';
+import router from '../../router'
+import getQuery from '../../utils/getQuery'
+import Markdown from 'vue3-markdown-it'
+import jump from '../../utils/jump'
 
-import Edit from '../../components/Edit/Edit.vue';
-import { getToken } from '../../utils/token';
+import Edit from '../../components/Edit/Edit.vue'
+import { getToken } from '../../utils/token'
 
-const id = <string>getQuery().id;
-const post = ref<Post>({ ...DEFAULT_POST });
-const source = ref('');
-const title = ref('');
-const tags = ref<string[]>([]);
+const id = <string>getQuery().id
+const post = ref<Post>({ ...DEFAULT_POST })
+const source = ref('')
+const title = ref('')
+const tags = ref<string[]>([])
 
-const showContent = ref(false);
+const showContent = ref(false)
 
-setTimeout(() => {
-  showContent.value = true;
-}, 600);
+onMounted(() => {
+  setTimeout(() => {
+    showContent.value = true
+  }, 600)
+})
 
-getPostDetail(id)
-  .then((p) => {
-    post.value = p;
-    source.value = p.content;
-    title.value = p.title;
-    tags.value = p.tags;
-  })
-  .catch(() => {
-    alert('未找到文章');
-    jump('/posts', { page: '0' });
-  });
+onMounted(() => {
+  getPostDetail(id)
+    .then((p) => {
+      post.value = p
+      source.value = p.content
+      title.value = p.title
+      tags.value = p.tags
+    })
+    .catch(() => {
+      alert('未找到文章')
+      jump('/posts', { page: '0' })
+    })
+})
 
 async function handleDel() {
   if (!getToken()) {
-    alert('请先登陆');
-    jump('/login');
+    alert('请先登陆')
+    jump('/login')
   } else {
     if (confirm('确认删除文章吗?')) {
-      const check = await delPost(id);
+      const check = await delPost(id)
       if (check) {
-        alert('删除成功!');
-        jump('/posts', { page: '0' });
+        alert('删除成功!')
+        jump('/posts', { page: '0' })
       }
     }
   }

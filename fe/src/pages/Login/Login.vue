@@ -14,17 +14,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import { login } from '../../network/user/login';
+import { ref } from 'vue'
+import { login } from '../../network/user/login'
+import jump from '../../utils/jump'
 
-import jump from '../../utils/jump';
-
-const pswd = ref('');
+const pswd = ref('')
 
 function handleLogin(pswd: string) {
-  login(pswd).then(check => {
-    if (!check) alert('密码错误');
-    else jump('/posts', { page: '0' });
+  login(pswd).then((check) => {
+    if (!check) alert('密码错误')
+    else jump('/posts', { page: '0' })
   })
 }
 </script>

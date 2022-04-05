@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, Ref, watch } from 'vue'
+import { ref, Ref, watch, onMounted } from 'vue'
 import { GetPostsResData } from '../../../shared/http/post'
 import { usePosts } from '../../pinia/posts'
 import { curPageNum, eachPagePostNum, totalPageNum } from '../../hooks/usePage'
@@ -42,11 +42,13 @@ const noPosts = ref(false)
 
 const showContent = ref(false)
 
-setTimeout(() => {
-  showContent.value = true
-}, 600)
+onMounted(() => {
+  setTimeout(() => {
+    showContent.value = true
+  }, 600)
+})
 
-// 避免刷新丢掉现在的状态
+// 此处是为了避免刷新丢掉现在的状态
 curPageNum.value = getQuery().page
   ? !isNaN(parseInt(getQuery().page as string))
     ? parseInt(getQuery().page as string)

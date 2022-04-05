@@ -22,7 +22,7 @@
             fontSize: '20px',
             position: 'absolute',
             right: '6%',
-            cursor: 'pointer',
+            cursor: 'pointer'
           }"
           @click="search(searchStr)"
         />
@@ -32,24 +32,25 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import { currentPage } from '../../hooks/useCurPage';
-import jump from '../../utils/jump';
+import { ref, onMounted } from 'vue'
+import { currentPage } from '../../hooks/useCurPage'
+import jump from '../../utils/jump'
 
-const searchStr = ref('');
+const searchStr = ref('')
+const showContent = ref(false)
 
-const showContent = ref(false);
-
-setTimeout(() => {
-  showContent.value = true;
-}, 600);
+onMounted(() => {
+  setTimeout(() => {
+    showContent.value = true
+  }, 600)
+})
 
 function search(searchStr) {
-  currentPage.value = 'posts';
+  currentPage.value = 'posts'
   if (searchStr) {
-    jump('/posts', { page: '0', kw: searchStr });
+    jump('/posts', { page: '0', kw: searchStr })
   } else {
-    alert('搜索内容不能为空');
+    alert('搜索内容不能为空')
   }
 }
 </script>
@@ -64,7 +65,7 @@ function search(searchStr) {
   background-color: #fff;
 
   &-inner {
-    transition: .8s all;
+    transition: 0.8s all;
     position: relative;
     top: 0;
 

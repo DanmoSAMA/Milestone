@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUpdated } from 'vue'
 import { usePosts } from '../../../../pinia/posts'
 import { useTags } from '../../../../pinia/tags'
 import { currentPage } from '../../../../hooks/useCurPage'
