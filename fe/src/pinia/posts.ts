@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-
 import { GetPostsResData } from '../../shared/http/post'
 import { getAllPosts } from '../network/post/getAllPosts'
 

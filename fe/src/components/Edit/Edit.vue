@@ -42,9 +42,9 @@
 import { ref, onMounted } from 'vue'
 import { addPost } from '../../network/post/addPost'
 import { currentPage } from '../../hooks/useCurPage'
-import { setIsEdited } from '../../hooks/useIsEdited'
 import { updatePost as updatePostReq } from '../../network/post/updatePost'
 import { tagsStore } from '../../pinia/tags'
+import { postStore } from '../../pinia/post'
 
 import jump from '../../utils/jump'
 import Tags from './components/Tags/Tags.vue'
@@ -104,7 +104,7 @@ async function updatePost() {
     alert('更新成功')
     tagsStore.setTags()
   }
-  setIsEdited(false)
+  postStore.setIsEdited(false)
 }
 
 // 返回首页
@@ -132,10 +132,10 @@ function toPost() {
     content.value !== ''
   ) {
     if (confirm('内容将不会被保存，确定返回吗')) {
-      setIsEdited(false)
+      postStore.setIsEdited(false)
     }
   } else {
-    setIsEdited(false)
+    postStore.setIsEdited(false)
   }
 }
 </script>

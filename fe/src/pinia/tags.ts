@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-
 import { getAllTags } from '../network/tag/getAllTags'
 import { Tag } from '../../shared/models/tag'
 

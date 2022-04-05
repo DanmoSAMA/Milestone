@@ -46,9 +46,9 @@ import { ref } from 'vue'
 import { currentPage } from '../../../../../../hooks/useCurPage'
 import { curPageNum } from '../../../../../../hooks/usePage'
 import { curPageType } from '../../../../../../models/curPage'
-import { isEdited } from '../../../../../../hooks/useIsEdited'
 import { tag } from '../../../../../../hooks/useTag'
 import { kw } from '../../../../../../hooks/useKw'
+import { postStore } from '../../../../../../pinia/post'
 
 import jump from '../../../../../../utils/jump'
 
@@ -60,7 +60,7 @@ setTimeout(() => {
 
 function handleClick(val: curPageType) {
   currentPage.value = val
-  isEdited.value = false
+  postStore.setIsEdited(false)
   tag.value = ''
   kw.value = ''
 

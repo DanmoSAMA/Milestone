@@ -4,15 +4,15 @@
       :class="
         showContent ? 'app_wrapper-post-main' : 'app_wrapper-post-main hidden'
       "
-      v-if="!isEdited"
+      v-if="!postStore.isEdited"
     >
       <h1 class="app_wrapper-post-main-title">
-        {{ title }}
+        {{ postStore.title }}
       </h1>
       <div class="app_wrapper-post-main-tags">
         <div
           class="app_wrapper-post-main-tags-item"
-          v-for="tag in tags"
+          v-for="tag in postStore.tags"
           :key="tag"
           @click="jump('/posts', { page: '0', tag })"
         >
@@ -21,12 +21,15 @@
       </div>
       <div class="app_wrapper-post-main-content">
         <Markdown
-          :source="source"
+          :source="postStore.content"
           class="app_wrapper-post-main-content-markdown_body"
         />
       </div>
       <div class="app_wrapper-post-main-btn">
-        <div class="app_wrapper-post-main-btn-edit" @click="setIsEdited(true)">
+        <div
+          class="app_wrapper-post-main-btn-edit"
+          @click="postStore.setIsEdited(true)"
+        >
           编辑
         </div>
         <div class="app_wrapper-post-main-btn-delete" @click="handleDel()">
@@ -36,11 +39,11 @@
     </div>
     <!--此处必须用v-if，如果用v-show，一开始就会生成vdom，会直接把没有值的props传给Edit-->
     <Edit
-      v-if="isEdited"
-      :defaultTitle="title"
-      :defaultTags="tags"
-      :defaultContent="source"
-      :id="id"
+      v-if="postStore.isEdited"
+      :defaultTitle="postStore.title"
+      :defaultTags="postStore.tags"
+      :defaultContent="postStore.content"
+      :id="postStore.id"
       :type="1"
     />
   </div>
@@ -48,12 +51,10 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { Post, DEFAULT_POST } from '../../../shared/models/post'
-import { getPostDetail } from '../../network/post/getPostDetail'
 import { delPost } from '../../network/post/delPost'
-import { isEdited, setIsEdited } from '../../hooks/useIsEdited'
 import { getToken } from '../../utils/token'
 import { tagsStore } from '../../pinia/tags'
+import { postStore } from '../../pinia/post'
 
 import router from '../../router'
 import getQuery from '../../utils/getQuery'
@@ -63,31 +64,19 @@ import jump from '../../utils/jump'
 import Edit from '../../components/Edit/Edit.vue'
 
 const id = <string>getQuery().id
-const post = ref<Post>({ ...DEFAULT_POST })
-const source = ref('')
-const title = ref('')
-const tags = ref<string[]>([])
-
 const showContent = ref(false)
+
+postStore.setPost(id).then((check) => {
+  if (!check) {
+    alert('未找到文章')
+    jump('/posts', { page: '0' })
+  }
+})
 
 onMounted(() => {
   setTimeout(() => {
     showContent.value = true
   }, 600)
-})
-
-onMounted(() => {
-  getPostDetail(id)
-    .then((p) => {
-      post.value = p
-      source.value = p.content
-      title.value = p.title
-      tags.value = p.tags
-    })
-    .catch(() => {
-      alert('未找到文章')
-      jump('/posts', { page: '0' })
-    })
 })
 
 async function handleDel() {
