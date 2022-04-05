@@ -52,6 +52,7 @@ import { Post, DEFAULT_POST } from '../../../shared/models/post'
 import { getPostDetail } from '../../network/post/getPostDetail'
 import { delPost } from '../../network/post/delPost'
 import { isEdited, setIsEdited } from '../../hooks/useIsEdited'
+import { getToken } from '../../utils/token'
 
 import router from '../../router'
 import getQuery from '../../utils/getQuery'
@@ -59,7 +60,6 @@ import Markdown from 'vue3-markdown-it'
 import jump from '../../utils/jump'
 
 import Edit from '../../components/Edit/Edit.vue'
-import { getToken } from '../../utils/token'
 
 const id = <string>getQuery().id
 const post = ref<Post>({ ...DEFAULT_POST })
@@ -98,6 +98,7 @@ async function handleDel() {
       const check = await delPost(id)
       if (check) {
         alert('删除成功!')
+
         jump('/posts', { page: '0' })
       }
     }

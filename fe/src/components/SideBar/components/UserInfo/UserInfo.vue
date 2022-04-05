@@ -29,12 +29,10 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUpdated } from 'vue'
-import { usePosts } from '../../../../pinia/posts'
-import { useTags } from '../../../../pinia/tags'
+import { postsStore } from '../../../../pinia/posts'
+import { tagsStore } from '../../../../pinia/tags'
 import { currentPage } from '../../../../hooks/useCurPage'
 
-const postsStore = usePosts()
-const tagsStore = useTags()
 const showContent = ref(false)
 
 onMounted(async () => {

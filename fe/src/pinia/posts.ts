@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 import { GetPostsResData } from '../../shared/http/post'
 import { getAllPosts } from '../network/post/getAllPosts'
 
-export const usePosts = defineStore('posts', {
+const usePosts = defineStore('posts', {
   state: () => {
     return {
       posts: <GetPostsResData>[]
@@ -18,3 +18,5 @@ export const usePosts = defineStore('posts', {
     }
   }
 })
+
+export const postsStore = usePosts()

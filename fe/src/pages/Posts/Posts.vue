@@ -22,7 +22,7 @@
 <script setup lang="ts">
 import { ref, Ref, watch, onMounted } from 'vue'
 import { GetPostsResData } from '../../../shared/http/post'
-import { usePosts } from '../../pinia/posts'
+import { postsStore } from '../../pinia/posts'
 import { curPageNum, eachPagePostNum, totalPageNum } from '../../hooks/usePage'
 import { tag } from '../../hooks/useTag'
 import { kw } from '../../hooks/useKw'
@@ -33,8 +33,6 @@ import NoPosts from './components/NoPosts/NoPosts.vue'
 
 import getQuery from '../../utils/getQuery'
 import jump from '../../utils/jump'
-
-const postsStore = usePosts()
 
 const filteredPosts = ref<GetPostsResData>([])
 const pagedPosts = ref<GetPostsResData>([])

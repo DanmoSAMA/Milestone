@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 import { getAllTags } from '../network/tag/getAllTags'
 import { Tag } from '../../shared/models/tag'
 
-export const useTags = defineStore('tags', {
+const useTags = defineStore('tags', {
   state: () => {
     return {
       tags: <Tag[]>[]
@@ -15,3 +15,5 @@ export const useTags = defineStore('tags', {
     }
   }
 })
+
+export const tagsStore = useTags()

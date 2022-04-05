@@ -25,11 +25,10 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { useTags } from '../../pinia/tags'
+import { tagsStore } from '../../pinia/tags'
 import { currentPage } from '../../hooks/useCurPage'
 import jump from '../../utils/jump'
 
-const tagsStore = useTags()
 const showContent = ref(false)
 
 onMounted(async () => {
