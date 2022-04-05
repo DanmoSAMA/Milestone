@@ -55,6 +55,7 @@ import { delPost } from '../../network/post/delPost'
 import { getToken } from '../../utils/token'
 import { tagsStore } from '../../pinia/tags'
 import { postStore } from '../../pinia/post'
+import { postsStore } from '../../pinia/posts'
 
 import router from '../../router'
 import getQuery from '../../utils/getQuery'
@@ -89,6 +90,7 @@ async function handleDel() {
       if (check) {
         alert('删除成功!')
         tagsStore.setTags()
+        postsStore.setCnt()
         jump('/posts', { page: '0' })
       }
     }

@@ -12,7 +12,7 @@
     <div class="c-sidebar-userinfo-count">
       <div class="c-sidebar-userinfo-count-posts">
         <span class="c-sidebar-userinfo-count-posts-count">
-          {{ postsStore.posts.length }}
+          {{ postsStore.cnt }}
         </span>
         <span class="c-sidebar-userinfo-count-posts-title"> 日志 </span>
       </div>
@@ -29,17 +29,21 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUpdated } from 'vue'
-import { postsStore } from '../../../../pinia/posts'
 import { tagsStore } from '../../../../pinia/tags'
 import { currentPage } from '../../../../hooks/useCurPage'
+import { postsStore } from '../../../../pinia/posts'
 
 const showContent = ref(false)
 
-onMounted(async () => {
+onMounted(() => {
   // 避免重复请求，导致request.ts抛出错误
   if (currentPage.value !== 'tags') {
     tagsStore.setTags()
   }
+})
+
+onMounted(() => {
+  postsStore.setCnt()
 })
 
 onMounted(() => {

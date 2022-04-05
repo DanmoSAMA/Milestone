@@ -1,11 +1,13 @@
 import { defineStore } from 'pinia'
 import { GetPostsResData } from '../../shared/http/post'
 import { getAllPosts } from '../network/post/getAllPosts'
+import { getPostsCnt } from '../network/post/getPostsCnt'
 
 const usePosts = defineStore('posts', {
   state: () => {
     return {
-      posts: <GetPostsResData>[]
+      posts: <GetPostsResData>[],
+      cnt: 0
     }
   },
   actions: {
@@ -14,6 +16,9 @@ const usePosts = defineStore('posts', {
       if (newPosts && newPosts.length) {
         this.posts = newPosts
       }
+    },
+    async setCnt() {
+      this.cnt = await getPostsCnt()
     }
   }
 })
