@@ -26,10 +26,7 @@ export const updatePost: Middleware = async (ctx) => {
 
   if (!post) createError({ msg: '找不到文章', status: 404 })
 
-  post.title = req.title
-  post.content = req.content
-
-  const oldTags = new Set(post.tags.map((t) => t.name))
+  const oldTags = new Set(post.tags)
   const newTags = new Set(req.tags)
   // old有，new无
   const deletedTags = AMinusB(oldTags, newTags)
@@ -50,6 +47,10 @@ export const updatePost: Middleware = async (ctx) => {
   const createdTags = await Tag.insertMany(
     nonExistingTagNames.map((name) => ({ name, count: 0 }))
   )
+
+  post.title = req.title
+  post.content = req.content
+  post.tags = req.tags
 
   await post.save()
 

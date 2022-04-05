@@ -103,6 +103,7 @@ async function updatePost() {
   if (res) {
     alert('更新成功')
     tagsStore.setTags()
+    postStore.setPost(props.id)
   }
   postStore.setIsEdited(false)
 }
