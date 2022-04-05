@@ -53,6 +53,7 @@ import { getPostDetail } from '../../network/post/getPostDetail'
 import { delPost } from '../../network/post/delPost'
 import { isEdited, setIsEdited } from '../../hooks/useIsEdited'
 import { getToken } from '../../utils/token'
+import { tagsStore } from '../../pinia/tags'
 
 import router from '../../router'
 import getQuery from '../../utils/getQuery'
@@ -98,7 +99,7 @@ async function handleDel() {
       const check = await delPost(id)
       if (check) {
         alert('删除成功!')
-
+        tagsStore.setTags()
         jump('/posts', { page: '0' })
       }
     }

@@ -39,11 +39,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, Ref, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { addPost } from '../../network/post/addPost'
 import { currentPage } from '../../hooks/useCurPage'
-import { isEdited, setIsEdited } from '../../hooks/useIsEdited'
+import { setIsEdited } from '../../hooks/useIsEdited'
 import { updatePost as updatePostReq } from '../../network/post/updatePost'
+import { tagsStore } from '../../pinia/tags'
 
 import jump from '../../utils/jump'
 import Tags from './components/Tags/Tags.vue'
@@ -69,7 +70,6 @@ const title = ref(props.defaultTitle)
 const content = ref(props.defaultContent)
 
 // 被选择的标签
-// const chosenTags = ref(props.defaultTags) as Ref<string[]>;
 const chosenTags = ref([...props.defaultTags])
 
 // 创建文章
@@ -81,11 +81,11 @@ const sendPostReq = async () => {
   }
   if (title.value.length && content.value.length) {
     // 登陆相关逻辑
-
     const check = await addPost(data)
     // toggle的逻辑
     if (check) {
       alert('发表成功')
+      tagsStore.setTags()
       jump('/posts', { page: '0' })
       currentPage.value = 'posts'
     }
@@ -100,7 +100,10 @@ async function updatePost() {
     tags: chosenTags.value
   }
   const res = await updatePostReq(data, props.id)
-  if (res) alert('更新成功')
+  if (res) {
+    alert('更新成功')
+    tagsStore.setTags()
+  }
   setIsEdited(false)
 }
 
