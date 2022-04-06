@@ -9,21 +9,28 @@ export const getAllPosts: Middleware = async (ctx) => {
 
   const posts: PostBrief[] = await Post.find()
   // 根据kw筛选文章
-  const filteredPosts: PostBrief[] =
-    kw !== ''
-      ? posts.filter(
-          (item) =>
-            item.tags.find((item) => item === kw) ||
-            item.title.indexOf(kw) !== -1
-        )
-      : posts
+  const filteredPosts: PostBrief[] = kw
+    ? posts.filter(
+        (item) =>
+          item.tags.find((item) => item === kw) || item.title.indexOf(kw) !== -1
+      )
+    : posts
 
   const postsPerPageCnt = 8
+
+  console.log(filteredPosts)
+  const data = {
+    posts: filteredPosts.slice(
+      page * postsPerPageCnt,
+      (page + 1) * postsPerPageCnt
+    ),
+    filteredCnt: filteredPosts.length
+  }
 
   const ret: GetPostsRes = {
     status: 200,
     msg: 'ok',
-    data: posts.slice(page * postsPerPageCnt, (page + 1) * postsPerPageCnt)
+    data: data
   }
 
   ctx.body = ret

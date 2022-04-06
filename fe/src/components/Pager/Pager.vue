@@ -12,7 +12,7 @@
       </div>
       <div
         :class="
-          curPageNum === Math.floor(postsStore.cnt / 8)
+          curPageNum === Math.floor((postsStore.filteredCnt - 1) / 8)
             ? 'c-pager-btn-pre disabled'
             : 'c-pager-btn-pre'
         "
@@ -25,15 +25,23 @@
 </template>
 
 <script setup lang="ts">
+import { onUpdated } from 'vue'
 import { curPageNum } from '../../hooks/usePageNum'
-import { kw } from '../../hooks/useKw'
 import { postsStore } from '../../pinia/posts'
 import jump from '../../utils/jump'
+import getQuery from '../../utils/getQuery'
+
+let kw = getQuery().kw as string
+
+onUpdated(() => {
+  kw = getQuery().kw as string
+})
 
 async function toIndex() {
   curPageNum.value = 0
-  if (kw.value !== '') {
-    await postsStore.setPosts(0, kw.value)
+
+  if (kw) {
+    await postsStore.setPosts(0, kw)
   } else {
     await postsStore.setPosts(0)
   }
@@ -42,8 +50,9 @@ async function toIndex() {
 
 async function toPrePage() {
   curPageNum.value--
-  if (kw.value !== '') {
-    await postsStore.setPosts(curPageNum.value, kw.value)
+
+  if (kw) {
+    await postsStore.setPosts(curPageNum.value, kw)
   } else {
     await postsStore.setPosts(curPageNum.value)
   }
@@ -52,8 +61,9 @@ async function toPrePage() {
 
 async function toNextPage() {
   curPageNum.value++
-  if (kw.value !== '') {
-    await postsStore.setPosts(curPageNum.value, kw.value)
+
+  if (kw) {
+    await postsStore.setPosts(curPageNum.value, kw)
   } else {
     await postsStore.setPosts(curPageNum.value)
   }

@@ -14,7 +14,7 @@
           class="app_wrapper-tags-inner-cloud-item"
           v-for="tag in tagsStore.tags"
           :key="tag"
-          @click="handleClick(tag)"
+          @click="handleClick(tag.name)"
         >
           {{ tag.name }}
         </div>
@@ -26,6 +26,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { tagsStore } from '../../pinia/tags'
+import { postsStore } from '../../pinia/posts'
 import { currentPage } from '../../hooks/useCurPage'
 import jump from '../../utils/jump'
 
@@ -39,9 +40,10 @@ setTimeout(() => {
   showContent.value = true
 }, 600)
 
-function handleClick(tag: string) {
+async function handleClick(val: string) {
   currentPage.value = 'posts'
-  jump('/posts', { page: '0', tag })
+  await postsStore.setPosts(0, val)
+  jump('/posts', { page: '0', kw: val })
 }
 </script>
 

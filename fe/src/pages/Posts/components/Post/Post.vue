@@ -1,6 +1,9 @@
 <template>
   <div class="app_wrapper-posts-inner-post">
-    <div class="app_wrapper-posts-inner-post-title" @click="jump('/post', { id })">
+    <div
+      class="app_wrapper-posts-inner-post-title"
+      @click="jump('/post', { id })"
+    >
       {{ title }}
     </div>
     <div class="app_wrapper-posts-inner-post-tags">
@@ -8,10 +11,7 @@
         class="app_wrapper-posts-inner-post-tags-item"
         v-for="tag in tags"
         :key="tag"
-        @click="
-          jump('/posts', { page: 0, tag });
-          tagParam = tag;
-        "
+        @click="filterByKw(tag)"
       >
         {{ tag }}
       </div>
@@ -20,23 +20,27 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import { tag as tagParam } from '../../../../hooks/useTag';
-import jump from '../../../../utils/jump';
+import { postsStore } from '../../../../pinia/posts'
+import jump from '../../../../utils/jump'
 
 const props = defineProps({
   post: {
     type: Object,
-    required: true,
+    required: true
   },
   id: {
     type: String,
-    required: true,
-  },
-});
+    required: true
+  }
+})
 
-const { id } = props;
-const { title, tags } = props.post;
+const { id } = props
+const { title, tags } = props.post
+
+async function filterByKw(val: string) {
+  await postsStore.setPosts(0, val)
+  jump('/posts', { page: '0', kw: val })
+}
 </script>
 
 <style lang="scss">
@@ -51,7 +55,7 @@ const { title, tags } = props.post;
   // border-bottom: 1px solid #e5e6ea;
   position: relative;
   padding: 10px;
-  transition: all .8s;
+  transition: all 0.8s;
   opacity: 1;
 
   &-title {
@@ -145,7 +149,6 @@ const { title, tags } = props.post;
 
 @media only screen and (max-width: 760px) {
   .app_wrapper-posts-inner-post {
-
     &-tags {
       &-item {
         font-size: 14px;

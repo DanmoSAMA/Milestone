@@ -8,5 +8,5 @@ export async function getAllPosts(query: GetPostsReq) {
     params: query
   })
 
-  return res.data || []
+  return res.data || null
 }

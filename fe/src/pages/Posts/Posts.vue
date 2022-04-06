@@ -20,10 +20,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { postsStore } from '../../pinia/posts'
 import { curPageNum } from '../../hooks/usePageNum'
-import { kw } from '../../hooks/useKw'
+import { noPosts } from '../../hooks/useNoPosts'
 
 import Pager from '../../components/Pager/Pager.vue'
 import Post from './components/Post/Post.vue'
@@ -32,7 +32,6 @@ import NoPosts from './components/NoPosts/NoPosts.vue'
 import getQuery from '../../utils/getQuery'
 import jump from '../../utils/jump'
 
-const noPosts = ref(false)
 const showContent = ref(false)
 
 onMounted(() => {
@@ -47,6 +46,11 @@ onMounted(async () => {
     await postsStore.setPosts(0)
     jump('/posts', { page: '0' })
   }
+  // page不是number
+  else if (Number.isNaN(parseInt(getQuery().page as string))) {
+    await postsStore.setPosts(0)
+    jump('/posts', { page: '0' })
+  }
   // page超出范围
   else if (
     parseInt(getQuery().page as string) > Math.floor(postsStore.cnt / 8) ||
@@ -56,14 +60,15 @@ onMounted(async () => {
     jump('/posts', { page: '0' })
   }
   curPageNum.value = parseInt(getQuery().page as string)
-  kw.value = getQuery().kw ? (getQuery().kw as string) : ''
+  const kw = getQuery().kw as string
 
-  if (kw.value !== '') {
-    await postsStore.setPosts(curPageNum.value, kw.value)
+  if (kw) {
+    await postsStore.setPosts(curPageNum.value, kw)
   } else {
     await postsStore.setPosts(curPageNum.value)
   }
-  if (postsStore.cnt === 0) noPosts.value = true
+  // 此处不应使用 postsStore.cnt 进行判断，因为它是在侧栏请求的，时间上未必在这里执行之前
+  if (postsStore.posts.length === 0) noPosts.value = true
 })
 </script>
 

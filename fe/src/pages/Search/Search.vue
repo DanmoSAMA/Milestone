@@ -8,7 +8,7 @@
       "
     >
       <div class="app_wrapper-search-inner-title">搜索</div>
-      <div class="app_wrapper-search-inner-hint">支持搜索标题</div>
+      <div class="app_wrapper-search-inner-hint">支持搜索标题、标签</div>
       <div class="app_wrapper-search-inner-input_wrapper">
         <input
           type="text"
@@ -34,6 +34,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { currentPage } from '../../hooks/useCurPage'
+import { postsStore } from '../../pinia/posts'
 import jump from '../../utils/jump'
 
 const searchStr = ref('')
@@ -45,9 +46,10 @@ onMounted(() => {
   }, 600)
 })
 
-function search(searchStr) {
+async function search(searchStr) {
   currentPage.value = 'posts'
   if (searchStr) {
+    await postsStore.setPosts(0, searchStr)
     jump('/posts', { page: '0', kw: searchStr })
   } else {
     alert('搜索内容不能为空')

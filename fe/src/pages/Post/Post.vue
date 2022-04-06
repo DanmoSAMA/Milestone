@@ -14,7 +14,7 @@
           class="app_wrapper-post-main-tags-item"
           v-for="tag in postStore.tags"
           :key="tag"
-          @click="jump('/posts', { page: '0', tag })"
+          @click="filterByKw(tag)"
         >
           {{ tag }}
         </div>
@@ -95,6 +95,11 @@ async function handleDel() {
       }
     }
   }
+}
+
+async function filterByKw(val: string) {
+  await postsStore.setPosts(0, val)
+  jump('/posts', { page: '0', kw: val })
 }
 </script>
 

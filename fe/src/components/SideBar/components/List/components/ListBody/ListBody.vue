@@ -46,9 +46,9 @@ import { ref } from 'vue'
 import { currentPage } from '../../../../../../hooks/useCurPage'
 import { curPageNum } from '../../../../../../hooks/usePageNum'
 import { curPageType } from '../../../../../../models/curPage'
-import { tag } from '../../../../../../hooks/useTag'
-import { kw } from '../../../../../../hooks/useKw'
+import { noPosts } from '../../../../../../hooks/useNoPosts'
 import { postStore } from '../../../../../../pinia/post'
+import { postsStore } from '../../../../../../pinia/posts'
 
 import jump from '../../../../../../utils/jump'
 
@@ -58,14 +58,16 @@ setTimeout(() => {
   showContent.value = true
 }, 300)
 
-function handleClick(val: curPageType) {
+async function handleClick(val: curPageType) {
   currentPage.value = val
   postStore.setIsEdited(false)
-  tag.value = ''
-  kw.value = ''
 
-  if (val === 'posts') jump('/posts', { page: '0' })
-  else jump(`/${val}`)
+  if (val === 'posts') {
+    await postsStore.setPosts(0)
+    curPageNum.value = 0
+    if (postsStore.posts.length > 0) noPosts.value = false
+    jump('/posts', { page: '0' })
+  } else jump(`/${val}`)
 }
 </script>
 
