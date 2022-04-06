@@ -71,6 +71,9 @@ postStore.setPost(id).then((check) => {
   if (!check) {
     alert('未找到文章')
     jump('/posts', { page: '0' })
+  } else {
+    // 改变标题
+    document.title = `${postStore.title} | Milestone`
   }
 })
 
