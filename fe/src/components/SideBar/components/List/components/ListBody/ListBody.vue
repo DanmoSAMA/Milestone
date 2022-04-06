@@ -44,7 +44,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { currentPage } from '../../../../../../hooks/useCurPage'
-import { curPageNum } from '../../../../../../hooks/usePage'
+import { curPageNum } from '../../../../../../hooks/usePageNum'
 import { curPageType } from '../../../../../../models/curPage'
 import { tag } from '../../../../../../hooks/useTag'
 import { kw } from '../../../../../../hooks/useKw'

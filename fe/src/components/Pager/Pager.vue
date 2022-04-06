@@ -1,8 +1,6 @@
 <template>
   <div class="c-pager">
-    <div class="c-pager-cur_page" @click="jump('/posts', { page: '0' })">
-      第{{ curPageNum }}页
-    </div>
+    <div class="c-pager-cur_page" @click="toIndex()">第{{ curPageNum }}页</div>
     <div class="c-pager-btn">
       <div
         :class="
@@ -14,7 +12,7 @@
       </div>
       <div
         :class="
-          curPageNum === totalPageNum - 1
+          curPageNum === Math.floor(postsStore.cnt / 8)
             ? 'c-pager-btn-pre disabled'
             : 'c-pager-btn-pre'
         "
@@ -27,17 +25,39 @@
 </template>
 
 <script setup lang="ts">
-import { curPageNum, totalPageNum } from '../../hooks/usePage';
-import jump from '../../utils/jump';
+import { curPageNum } from '../../hooks/usePageNum'
+import { kw } from '../../hooks/useKw'
+import { postsStore } from '../../pinia/posts'
+import jump from '../../utils/jump'
 
-function toPrePage() {
-  curPageNum.value--;
-  jump('/posts', { page: `${curPageNum.value}` });
+async function toIndex() {
+  curPageNum.value = 0
+  if (kw.value !== '') {
+    await postsStore.setPosts(0, kw.value)
+  } else {
+    await postsStore.setPosts(0)
+  }
+  jump('/posts', { page: '0' })
 }
 
-function toNextPage() {
-  curPageNum.value++;
-  jump('/posts', { page: `${curPageNum.value}` });
+async function toPrePage() {
+  curPageNum.value--
+  if (kw.value !== '') {
+    await postsStore.setPosts(curPageNum.value, kw.value)
+  } else {
+    await postsStore.setPosts(curPageNum.value)
+  }
+  jump('/posts', { page: `${curPageNum.value}` })
+}
+
+async function toNextPage() {
+  curPageNum.value++
+  if (kw.value !== '') {
+    await postsStore.setPosts(curPageNum.value, kw.value)
+  } else {
+    await postsStore.setPosts(curPageNum.value)
+  }
+  jump('/posts', { page: `${curPageNum.value}` })
 }
 </script>
 

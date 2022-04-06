@@ -11,8 +11,8 @@ const usePosts = defineStore('posts', {
     }
   },
   actions: {
-    async setPosts() {
-      const newPosts = await getAllPosts()
+    async setPosts(page: number, kw?: string) {
+      const newPosts = await getAllPosts({ page, kw })
       if (newPosts && newPosts.length) {
         this.posts = newPosts
       }

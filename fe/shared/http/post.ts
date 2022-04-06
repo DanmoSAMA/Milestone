@@ -5,8 +5,8 @@ import { HttpRes } from './'
 export type GetPostsResData = Post[]
 export type GetPostsRes = HttpRes<GetPostsResData>
 export type GetPostsReq = {
-  // limit: number;
-  // kw?: string;
+  page: number
+  kw?: string
 }
 
 export type GetPostDetailResData = Post
