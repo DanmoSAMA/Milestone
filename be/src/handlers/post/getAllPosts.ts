@@ -18,7 +18,6 @@ export const getAllPosts: Middleware = async (ctx) => {
 
   const postsPerPageCnt = 8
 
-  console.log(filteredPosts)
   const data = {
     posts: filteredPosts.slice(
       page * postsPerPageCnt,

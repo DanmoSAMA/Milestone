@@ -16,7 +16,8 @@
     "koa-cors": "^0.0.16",
     "koa-logger": "^3.2.1",
     "koa-router": "^10.1.1",
-    "mongoose": "^6.2.1"
+    "mongoose": "^6.2.1",
+    "sha256": "^0.2.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15",

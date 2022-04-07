@@ -1,14 +1,14 @@
-import * as Koa from 'koa';
-import * as BodyParser from 'koa-bodyparser';
-import * as Cors from 'koa-cors';
-import * as Logger from 'koa-logger';
+import * as Koa from 'koa'
+import * as BodyParser from 'koa-bodyparser'
+import * as Cors from 'koa-cors'
+import * as Logger from 'koa-logger'
 
-import { setupMongo } from './models';
-import router from './router/index';
+import { setupMongo } from './models'
+import router from './router/index'
 
-setupMongo();
+setupMongo()
 
-const app = new Koa();
+const app = new Koa()
 
 app
   .use(Logger())
@@ -18,5 +18,5 @@ app
   .use(router.allowedMethods())
 
   .listen(8080, () => {
-    console.log('Server is running at 127.0.0.1:8080');
-  });
+    console.log('Server is running at 127.0.0.1:8080')
+  })
