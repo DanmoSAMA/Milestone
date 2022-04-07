@@ -6,13 +6,16 @@ import { getAllPosts } from '../handlers/post/getAllPosts'
 import { getPostsCnt } from '../handlers/post/getPostsCnt'
 import { getPostDetail } from '../handlers/post/getPostDetail'
 import { updatePost } from '../handlers/post/updatePost'
+import { useAuth } from '../middleware/useAuth'
 
 export const postRouter = new Router()
 
 postRouter
-  .post('/', createPost)
   .get('/cnt', getPostsCnt)
   .get('/:id', getPostDetail)
   .get('/', getAllPosts)
-  .delete('/:id', deletePost)
+  // 后端校验
+  .use(useAuth())
+  .post('/', createPost)
   .put('/:id', updatePost)
+  .delete('/:id', deletePost)

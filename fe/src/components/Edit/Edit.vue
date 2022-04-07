@@ -94,7 +94,7 @@ const sendPostReq = async () => {
   } else alert('标题或内容不能为空')
 }
 
-// 更新文章（更新后需要刷新一次页面，因为没有重新生成Posts组件，数据还是之前请求的数据）
+// 更新文章
 async function updatePost() {
   const data = {
     title: title.value,
