@@ -12,24 +12,41 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.createPost = void 0;
 const useHandleError_1 = require("../../middleware/useHandleError");
 const post_1 = require("../../models/post");
+const tag_1 = require("../../models/tag");
 const createPost = (ctx) => __awaiter(void 0, void 0, void 0, function* () {
     const req = ctx.request.body;
     if (!req.content)
         (0, useHandleError_1.createError)({
             status: 400,
-            msg: '文章内容为空',
+            msg: '文章内容为空'
         });
     if (!req.title)
         (0, useHandleError_1.createError)({
             status: 400,
-            msg: '文章标题为空',
+            msg: '文章标题为空'
         });
+    const existingTags = (yield tag_1.Tag.find({
+        name: {
+            $in: req.tags
+        }
+    })) || [];
+    const newTagNames = req.tags.filter((name) => !existingTags.find((tag) => tag.name === name));
+    yield tag_1.Tag.insertMany(newTagNames.map((name) => ({ name })));
+    const bulk = tag_1.Tag.collection.initializeUnorderedBulkOp();
+    bulk
+        .find({
+        name: {
+            $in: existingTags.map((t) => t.name)
+        }
+    })
+        .update({ $inc: { count: 1 } })
+        .execute();
     const newPost = new post_1.Post(req);
     yield newPost.save();
     const ret = {
         status: 200,
         msg: 'ok',
-        data: { id: newPost._id },
+        data: { id: newPost._id }
     };
     ctx.body = ret;
 });

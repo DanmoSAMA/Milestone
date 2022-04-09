@@ -9,24 +9,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllPosts = void 0;
-const post_1 = require("../../models/post");
-const getAllPosts = (ctx) => __awaiter(void 0, void 0, void 0, function* () {
-    const { page, kw } = ctx.request.query;
-    const posts = yield post_1.Post.find();
-    const filteredPosts = kw
-        ? posts.filter((item) => item.tags.find((item) => item === kw) || item.title.indexOf(kw) !== -1)
-        : posts;
-    const postsPerPageCnt = 8;
-    const data = {
-        posts: filteredPosts.slice(page * postsPerPageCnt, (page + 1) * postsPerPageCnt),
-        filteredCnt: filteredPosts.length
-    };
+exports.getAllTags = void 0;
+const tag_1 = require("../../models/tag");
+const getAllTags = (ctx) => __awaiter(void 0, void 0, void 0, function* () {
+    const tags = yield tag_1.Tag.find({ count: { $gt: 0 } });
     const ret = {
         status: 200,
         msg: 'ok',
-        data: data
+        data: tags
     };
     ctx.body = ret;
 });
-exports.getAllPosts = getAllPosts;
+exports.getAllTags = getAllTags;
