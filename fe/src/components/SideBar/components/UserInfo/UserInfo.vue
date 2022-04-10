@@ -43,7 +43,9 @@ onMounted(() => {
 })
 
 onMounted(() => {
-  postsStore.setCnt()
+  if (currentPage.value !== 'posts') {
+    postsStore.setCnt()
+  }
 })
 
 onMounted(() => {

@@ -29,12 +29,12 @@ import { onUpdated } from 'vue'
 import { curPageNum } from '../../hooks/usePageNum'
 import { postsStore } from '../../pinia/posts'
 import jump from '../../utils/jump'
-import getQuery from '../../utils/getQuery'
+import { useRoute } from 'vue-router'
 
-let kw = getQuery().kw as string
+let kw = useRoute().query.kw as string
 
 onUpdated(() => {
-  kw = getQuery().kw as string
+  kw = useRoute().query.kw as string
 })
 
 async function toIndex() {

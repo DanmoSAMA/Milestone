@@ -56,15 +56,15 @@ import { getToken } from '../../utils/token'
 import { tagsStore } from '../../pinia/tags'
 import { postStore } from '../../pinia/post'
 import { postsStore } from '../../pinia/posts'
+import { useRoute } from 'vue-router'
 
 import router from '../../router'
-import getQuery from '../../utils/getQuery'
 import Markdown from 'vue3-markdown-it'
 import jump from '../../utils/jump'
 
 import Edit from '../../components/Edit/Edit.vue'
 
-const id = <string>getQuery().id
+const id = useRoute().query.id as string
 const showContent = ref(false)
 
 postStore.setPost(id).then((check) => {

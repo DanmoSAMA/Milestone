@@ -5,7 +5,7 @@ import { HttpRes } from './'
 export type GetPostsResData = { posts: Post[]; filteredCnt: number }
 export type GetPostsRes = HttpRes<GetPostsResData>
 export type GetPostsReq = {
-  page: number
+  page: string
   kw?: string
 }
 

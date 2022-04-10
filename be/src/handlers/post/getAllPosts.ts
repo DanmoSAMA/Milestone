@@ -7,7 +7,9 @@ import { Post } from '../../models/post'
 export const getAllPosts: Middleware = async (ctx) => {
   const { page, kw } = ctx.request.query as GetPostsReq
 
-  const posts: PostBrief[] = await Post.find()
+  const pageNum = parseInt(page)
+
+  const posts: PostBrief[] = await (await Post.find()).reverse()
   // 根据kw筛选文章
   const filteredPosts: PostBrief[] = kw
     ? posts.filter(
@@ -20,8 +22,8 @@ export const getAllPosts: Middleware = async (ctx) => {
 
   const data = {
     posts: filteredPosts.slice(
-      page * postsPerPageCnt,
-      (page + 1) * postsPerPageCnt
+      pageNum * postsPerPageCnt,
+      (pageNum + 1) * postsPerPageCnt
     ),
     filteredCnt: filteredPosts.length
   }

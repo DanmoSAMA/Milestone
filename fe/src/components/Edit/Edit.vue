@@ -46,6 +46,7 @@ import { updatePost as updatePostReq } from '../../network/post/updatePost'
 import { tagsStore } from '../../pinia/tags'
 import { postStore } from '../../pinia/post'
 import { postsStore } from '../../pinia/posts'
+import { noPosts } from '../../hooks/useNoPosts'
 
 import jump from '../../utils/jump'
 import Tags from './components/Tags/Tags.vue'
@@ -88,6 +89,7 @@ const sendPostReq = async () => {
       alert('发表成功')
       tagsStore.setTags()
       postsStore.setCnt()
+      noPosts.value = false
       jump('/posts', { page: '0' })
       currentPage.value = 'posts'
     }

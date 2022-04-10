@@ -24,15 +24,18 @@ import { ref, onMounted } from 'vue'
 import { postsStore } from '../../pinia/posts'
 import { curPageNum } from '../../hooks/usePageNum'
 import { noPosts } from '../../hooks/useNoPosts'
+import { useRoute } from 'vue-router'
+import { getPostsCnt } from '../../network/post/getPostsCnt'
 
 import Pager from '../../components/Pager/Pager.vue'
 import Post from './components/Post/Post.vue'
 import NoPosts from './components/NoPosts/NoPosts.vue'
 
-import getQuery from '../../utils/getQuery'
 import jump from '../../utils/jump'
 
 const showContent = ref(false)
+const page = useRoute().query.page as string
+const kw = useRoute().query.kw as string
 
 onMounted(() => {
   setTimeout(() => {
@@ -41,26 +44,27 @@ onMounted(() => {
 })
 
 onMounted(async () => {
+  await postsStore.setCnt()
   // 未提供page参数
-  if (!getQuery().page) {
+  if (!page) {
     await postsStore.setPosts(0)
     jump('/posts', { page: '0' })
   }
   // page不是number
-  else if (Number.isNaN(parseInt(getQuery().page as string))) {
+  else if (Number.isNaN(parseInt(page))) {
     await postsStore.setPosts(0)
     jump('/posts', { page: '0' })
   }
   // page超出范围
   else if (
-    parseInt(getQuery().page as string) > Math.floor(postsStore.cnt / 8) ||
-    parseInt(getQuery().page as string) < 0
+    parseInt(page) > Math.floor(postsStore.cnt / 8) ||
+    parseInt(page) < 0
   ) {
+    console.log(1, parseInt(page), Math.floor(postsStore.cnt / 8))
     await postsStore.setPosts(0)
     jump('/posts', { page: '0' })
   }
-  curPageNum.value = parseInt(getQuery().page as string)
-  const kw = getQuery().kw as string
+  curPageNum.value = parseInt(page)
 
   if (kw) {
     await postsStore.setPosts(curPageNum.value, kw)
