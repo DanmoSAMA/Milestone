@@ -13,13 +13,14 @@ exports.getAllPosts = void 0;
 const post_1 = require("../../models/post");
 const getAllPosts = (ctx) => __awaiter(void 0, void 0, void 0, function* () {
     const { page, kw } = ctx.request.query;
-    const posts = yield post_1.Post.find();
+    const pageNum = parseInt(page);
+    const posts = yield (yield post_1.Post.find()).reverse();
     const filteredPosts = kw
         ? posts.filter((item) => item.tags.find((item) => item === kw) || item.title.indexOf(kw) !== -1)
         : posts;
     const postsPerPageCnt = 8;
     const data = {
-        posts: filteredPosts.slice(page * postsPerPageCnt, (page + 1) * postsPerPageCnt),
+        posts: filteredPosts.slice(pageNum * postsPerPageCnt, (pageNum + 1) * postsPerPageCnt),
         filteredCnt: filteredPosts.length
     };
     const ret = {

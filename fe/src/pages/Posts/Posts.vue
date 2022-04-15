@@ -49,22 +49,25 @@ onMounted(async () => {
   if (!page) {
     await postsStore.setPosts(0)
     jump('/posts', { page: '0' })
+    curPageNum.value = 0
   }
   // page不是number
   else if (Number.isNaN(parseInt(page))) {
     await postsStore.setPosts(0)
     jump('/posts', { page: '0' })
+    curPageNum.value = 0
   }
   // page超出范围
   else if (
     parseInt(page) > Math.floor(postsStore.cnt / 8) ||
     parseInt(page) < 0
   ) {
-    console.log(1, parseInt(page), Math.floor(postsStore.cnt / 8))
     await postsStore.setPosts(0)
     jump('/posts', { page: '0' })
+    curPageNum.value = 0
+  } else {
+    curPageNum.value = parseInt(page)
   }
-  curPageNum.value = parseInt(page)
 
   if (kw) {
     await postsStore.setPosts(curPageNum.value, kw)
