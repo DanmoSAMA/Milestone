@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
-      "module": "commonjs",
-      "declaration": false,
-      "removeComments": true,
-      "emitDecoratorMetadata": true,
-      "experimentalDecorators": true,
-      "target": "es6",
-      "sourceMap": false,
-      "outDir": "./dist",
+    "baseUrl": ".",
+    "module": "commonjs",
+    "declaration": false,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es6",
+    "sourceMap": false,
+    "outDir": "./dist",
+    "lib": ["esnext"]
   },
-  "exclude": [
-      "node_modules"
-  ],
+  "exclude": ["node_modules"]
 }

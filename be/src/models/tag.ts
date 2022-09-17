@@ -7,4 +7,4 @@ export const tagSchema = new Schema({
   count: { type: Number, default: 1 }
 })
 
-export const Tag: Model<TagModel> = model('Tag', tagSchema)
+export const Tag: Model<TagModel> = model<TagModel>('Tag', tagSchema)
